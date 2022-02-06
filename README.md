@@ -1,14 +1,18 @@
 # Sammelband
 
+Offline read-it-later.
+
 ## TODO
 
-- [ ] Add styling to parsed articles
+- [X] Add styling to parsed articles
 - [ ] HTML-to-PDF converter
 - [ ] Add options to form for user style preferences
 - [ ] Add titles to each parsed article
-- [ ] Separate user requests using express-session
+- [X] Separate user requests using express-session
 - [ ] Implement email function
 - [ ] Add notifications using socket.io
 - [ ] Form validation
-- [ ] Add reset button (delete existing HTML file)
+- [X] Download button
+- [X] Add reset button (delete existing HTML file)
 - [ ] HTML-to-EPUB
+- [ ] Upload CSV of URLs (e.g. from bookmarks)

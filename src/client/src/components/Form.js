@@ -10,7 +10,8 @@ function Form() {
         }
         console.log(urls);
         e.preventDefault();
-        fetch('http://localhost:3001/article_urls/', {
+        fetch('/submit', {
+            credentials: 'same-origin',
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -20,13 +21,40 @@ function Form() {
         })
     }
 
+    const deleteFile = () => {
+        fetch('/delete', {
+            credentials: 'same-origin',
+            method: 'GET',
+            mode: 'cors',
+        })
+    }
+
     return ( 
         <form onSubmit={ handleSubmit }>
             <label>
                 URLs:
-                <textarea name="urls" id="url-input" onChange={ e => {setUrls(e.target.value)} }/>
+                <textarea 
+                    id="url-input" 
+                    onChange={ e => {setUrls(e.target.value)} } 
+                    required
+                    pattern="^http.*"
+                    />
             </label>
+            <div>
+                <input type="radio" value="dark" name="color-theme"/> Dark mode
+                <input type="radio" value="light" name="color-theme"/> Light mode
+            </div>
+            <div> 
+                <input type="radio" value="html" name="format"/> HTML
+                <input type="radio" value="pdf" name="format"/> PDF 
+                <input type="radio" value="epub" name="format"/> EPUB
+                <input type="radio" value="markdown" name="format"/> Markdown 
+                <input type="radio" value="txt" name="format"/> TXT 
+            </div>
+                
+
             <input type="submit" value="Submit" />
+            <button onClick={ deleteFile }>Delete</button>
         </form>
     )
 }

@@ -3,21 +3,36 @@ const axios = require('axios');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-const mercury = require('@postlight/mercury-parser');
 const { Readability } = require('@mozilla/readability');
 const { JSDOM } = require('jsdom');
+const session = require('express-session');
+const { exec } = require('child_process');
+
 const app = express();
+
+
+app.use(['/', '/submit', '/download'], session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure: false}
+}))
+app.use(express.json());
+app.use(cors({ credentials: true, origin: true }));
+
+app.use('/public', express.static(path.join(__dirname, 'public')));
 const port = 3001;
 
 const styles = require('./styles'); // Load CSS styles from ./styles.js
+
+
+
 
 function cleanParsedArticle(output) {
     return output.split('\n').join('<br/>')
 }
 
-function addStyles() {
-    fs.writeFile('./public/sammelband.html', styles.styles, { flag: 'a+' }, err => {if (err) throw err;});
-}
+
 
 async function fetchFromURL(urls) {
     let documents = [];
@@ -27,34 +42,48 @@ async function fetchFromURL(urls) {
         .then(res => {
             documents.push(res.data);
         })
+        .catch(err => console.log(err));
     }
-    console.log('Documents: ', documents);
+    //console.log('Documents: ', documents);
     return documents;   
 
 }
 
-function writeToFile(parsedArticles) {
-    fs.unlinkSync('./public/sammelband.html');
-    addStyles();
+function pandoc(to, id) {
+    console.log('pandoc()');
+    let filepath = path.join(__dirname, './public', `sammelband-${id}.pdf`)
+    exec(`pandoc -t html5 ${filepath}`, (error, stdout, stderr) => {
+        if (error) console.log(error);
+        if (stderr) console.log(stderr);
+        console.log(`stdout: ${stdout}`);
+    });
+}
+
+function writeToFile(parsedArticles, id) {
+    //fs.unlinkSync('./public/sammelband.html');
+    let filepath = `./public/sammelband-${id}.html`;
+    // Add styles to top of html file
+    fs.writeFile(filepath, styles.styles, { flag: 'a+' }, err => {if (err) throw err;});
     for (item of parsedArticles) {
-        fs.writeFile('./public/sammelband.html', item, { flag: 'a+' }, err => {if (err) throw err;});
+        fs.writeFile(filepath, item, { flag: 'a+' }, err => {if (err) throw err;});
     }
+
 }
 
 // mozilla/readability version
 function parseDocuments(documents) {
     console.log('parseDocuments()');
-    console.log(documents)
+    //console.log(documents)
     let parsedArticles = [];
     documents.forEach(document => {
         let doc = new JSDOM(document);
         let reader = new Readability(doc.window.document);
         let article = reader.parse();
         console.log('Parsed:...')
-        console.log(article);
+        //console.log(article);
         parsedArticles.push(article.content);
     })
-    console.log('parsedArticles', parsedArticles);
+    //console.log('parsedArticles', parsedArticles);
     return parsedArticles;
 }
 
@@ -81,65 +110,51 @@ function parseFromURL(url) {
 */
 var postHandler = function (req, res, next) {
     console.log('getHTMLDocumtent()');
-    
+    console.log(req.session.id);
     const urls = req.body.urls.split('\n');
     console.log(urls);
     fetchFromURL(urls)
         .then(documents => parseDocuments(documents))
-        .then(parsedArticles => writeToFile(parsedArticles));
-    
-   
-    
-    
-    /*
-    urls.forEach(url => {
-        parseFromURL(url)
-    });
-    */
-    /*
-    mercury.parse(url)
-    .then(result => {
-        console.log(result);
-        parsed = result.content.split('\n').join('<br/>')
-        parsedArticles.push(parsed);
-        //console.log(parsedArticles);
-        for (item of parsedArticles) {
-            fs.writeFile('./public/sammelband.html', item, { flag: 'a+' }, err => {if (err) throw err;});
-        };
-
-    });
-    
-    */
-
+        .then(parsedArticles => writeToFile(parsedArticles, req.session.id));
 
     res.end();
+    
 }
 
 
-app.use(cors());
-app.use(express.json());
-app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use('/article_urls', postHandler);
+
+app.use('/submit', postHandler);
+
 
 app.get('/', (req, res) => {
+    console.log(req.session.id);
     res.send('You absolute genius');
 });
 
-app.post('/article_urls', (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
+app.post('/submit', (req, res) => {
     console.log(req.body);
     return;
 });
 
 app.get('/download', (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.download(path.join(__dirname, 'public', 'sammelband.html'));
+    console.log(req.session.id);
+    //res.set('Access-Control-Allow-Origin', '*');
+    res.download(
+        path.join(__dirname, './public', `sammelband-${req.session.id}.html`), 
+        'sammelband.html',
+        err => console.log(err)
+        );
     console.log('Sammelband downloaded');
 });
 
+app.get('/delete', (req, res) => {
+    console.log(req.session.id);
+    fs.unlinkSync(path.join(__dirname, './public', `sammelband-${req.session.id}.html`));
+    console.log('Sammelband deleted');
+})
 
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`Listening on port ${port}`);
 });
 

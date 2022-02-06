@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Urls() {
+function Form() {
     const [urls, setUrls] = useState('');
 
     const handleSubmit = e => {
@@ -24,11 +24,11 @@ function Urls() {
         <form onSubmit={ handleSubmit }>
             <label>
                 URLs:
-                <textarea name="urls" onChange={ e => {setUrls(e.target.value)} }/>
+                <textarea name="urls" id="url-input" onChange={ e => {setUrls(e.target.value)} }/>
             </label>
             <input type="submit" value="Submit" />
         </form>
     )
 }
 
-export default Urls;
+export default Form;

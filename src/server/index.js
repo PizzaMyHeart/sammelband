@@ -9,7 +9,7 @@ const { JSDOM } = require('jsdom');
 const app = express();
 const port = 3001;
 
-let returnedArticle = [];
+
 
 function cleanParsedArticle(output) {
     return output.split('\n').join('<br/>')
@@ -29,18 +29,27 @@ async function fetchFromURL(urls) {
 
 }
 
+function writeToFile(parsedArticles) {
+    for (item of parsedArticles) {
+        fs.writeFile('./public/sammelband.html', item, { flag: 'a+' }, err => {if (err) throw err;});
+    }
+}
+
 // mozilla/readability version
 function parseDocuments(documents) {
     console.log('parseDocuments()');
     console.log(documents)
-    let parsed = [];
+    let parsedArticles = [];
     documents.forEach(document => {
         let doc = new JSDOM(document);
         let reader = new Readability(doc.window.document);
         let article = reader.parse();
         console.log('Parsed:...')
         console.log(article);
+        parsedArticles.push(article.content);
     })
+    console.log('parsedArticles', parsedArticles);
+    return parsedArticles;
 }
 
 // mercury-parser version
@@ -64,12 +73,15 @@ function parseFromURL(url) {
     
 }
 */
-var getHTMLDocument = function (req, res, next) {
+var postHandler = function (req, res, next) {
     console.log('getHTMLDocumtent()');
     
     const urls = req.body.urls.split('\n');
     console.log(urls);
-    fetchFromURL(urls).then(documents => parseDocuments(documents));
+    fetchFromURL(urls)
+        .then(documents => parseDocuments(documents))
+        .then(parsedArticles => writeToFile(parsedArticles));
+    
    
     
     
@@ -101,7 +113,7 @@ var getHTMLDocument = function (req, res, next) {
 app.use(cors());
 app.use(express.json());
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use('/article_urls', getHTMLDocument);
+app.use('/article_urls', postHandler);
 
 app.get('/', (req, res) => {
     res.send('You absolute genius');
@@ -117,7 +129,7 @@ app.get('/download', (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
     res.download(path.join(__dirname, 'public', 'sammelband.html'));
     console.log('Sammelband downloaded');
-})
+});
 
 
 

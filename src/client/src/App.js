@@ -1,11 +1,10 @@
-import './App.css';
 import DownloadBtn from './components/DownloadBtn';
-import Urls from  './components/Urls'
+import Form from  './components/Form'
 
 function App() {
   return (
     <div className="App">
-      <Urls />
+      <Form />
       <DownloadBtn />
     </div>
   );

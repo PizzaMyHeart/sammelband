@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1>Sammelband</h1>
+    <header><h1>Sammelband</h1></header>
     <App />
   </React.StrictMode>,
   document.getElementById('root')

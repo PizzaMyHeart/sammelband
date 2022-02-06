@@ -1,500 +1,637 @@
-<div id="readability-page-1" class="page"><div>
-    
-    <p>This domain is for use in illustrative examples in documents. You may use this
-    domain in literature without prior coordination or asking for permission.</p>
-    <p><a href="https://www.iana.org/domains/example">More information...</a></p>
+
+        <style>
+        /*!
+        * Gutenberg
+        *
+        * MIT Fabien Sa
+        * https://github.com/BafS/Gutenberg
+        */
+       /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+       /* Document
+          ========================================================================== */
+       /**
+        * 1. Correct the line height in all browsers.
+        * 2. Prevent adjustments of font size after orientation changes in iOS.
+        */
+       html {
+         line-height: 1.15;
+         /* 1 */
+         -webkit-text-size-adjust: 100%;
+         /* 2 */ }
+       
+       /* Sections
+          ========================================================================== */
+       /**
+        * Remove the margin in all browsers.
+        */
+       body {
+         margin: 0; }
+       
+       /**
+        * Render the main element consistently in IE.
+        */
+       main {
+         display: block; }
+       
+       /**
+        * Correct the font size and margin on h1 elements within section and
+        * article contexts in Chrome, Firefox, and Safari.
+        */
+       h1 {
+         font-size: 2em;
+         margin: 0.67em 0; }
+       
+       /* Grouping content
+          ========================================================================== */
+       /**
+        * 1. Add the correct box sizing in Firefox.
+        * 2. Show the overflow in Edge and IE.
+        */
+       hr {
+         box-sizing: content-box;
+         /* 1 */
+         height: 0;
+         /* 1 */
+         overflow: visible;
+         /* 2 */ }
+       
+       /**
+        * 1. Correct the inheritance and scaling of font size in all browsers.
+        * 2. Correct the odd em font sizing in all browsers.
+        */
+       pre {
+         font-family: monospace, monospace;
+         /* 1 */
+         font-size: 1em;
+         /* 2 */ }
+       
+       /* Text-level semantics
+          ========================================================================== */
+       /**
+        * Remove the gray background on active links in IE 10.
+        */
+       a {
+         background-color: transparent; }
+       
+       /**
+        * 1. Remove the bottom border in Chrome 57-
+        * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+        */
+       abbr[title] {
+         border-bottom: none;
+         /* 1 */
+         text-decoration: underline;
+         /* 2 */
+         text-decoration: underline dotted;
+         /* 2 */ }
+       
+       /**
+        * Add the correct font weight in Chrome, Edge, and Safari.
+        */
+       b,
+       strong {
+         font-weight: bolder; }
+       
+       /**
+        * 1. Correct the inheritance and scaling of font size in all browsers.
+        * 2. Correct the odd em font sizing in all browsers.
+        */
+       code,
+       kbd,
+       samp {
+         font-family: monospace, monospace;
+         /* 1 */
+         font-size: 1em;
+         /* 2 */ }
+       
+       /**
+        * Add the correct font size in all browsers.
+        */
+       small {
+         font-size: 80%; }
+       
+       /**
+        * Prevent sub and sup elements from affecting the line height in
+        * all browsers.
+        */
+       sub,
+       sup {
+         font-size: 75%;
+         line-height: 0;
+         position: relative;
+         vertical-align: baseline; }
+       
+       sub {
+         bottom: -0.25em; }
+       
+       sup {
+         top: -0.5em; }
+       
+       /* Embedded content
+          ========================================================================== */
+       /**
+        * Remove the border on images inside links in IE 10.
+        */
+       img {
+         border-style: none; }
+       
+       /* Forms
+          ========================================================================== */
+       /**
+        * 1. Change the font styles in all browsers.
+        * 2. Remove the margin in Firefox and Safari.
+        */
+       button,
+       input,
+       optgroup,
+       select,
+       textarea {
+         font-family: inherit;
+         /* 1 */
+         font-size: 100%;
+         /* 1 */
+         line-height: 1.15;
+         /* 1 */
+         margin: 0;
+         /* 2 */ }
+       
+       /**
+        * Show the overflow in IE.
+        * 1. Show the overflow in Edge.
+        */
+       button,
+       input {
+         /* 1 */
+         overflow: visible; }
+       
+       /**
+        * Remove the inheritance of text transform in Edge, Firefox, and IE.
+        * 1. Remove the inheritance of text transform in Firefox.
+        */
+       button,
+       select {
+         /* 1 */
+         text-transform: none; }
+       
+       /**
+        * Correct the inability to style clickable types in iOS and Safari.
+        */
+       button,
+       [type="button"],
+       [type="reset"],
+       [type="submit"] {
+         -webkit-appearance: button; }
+       
+       /**
+        * Remove the inner border and padding in Firefox.
+        */
+       button::-moz-focus-inner,
+       [type="button"]::-moz-focus-inner,
+       [type="reset"]::-moz-focus-inner,
+       [type="submit"]::-moz-focus-inner {
+         border-style: none;
+         padding: 0; }
+       
+       /**
+        * Restore the focus styles unset by the previous rule.
+        */
+       button:-moz-focusring,
+       [type="button"]:-moz-focusring,
+       [type="reset"]:-moz-focusring,
+       [type="submit"]:-moz-focusring {
+         outline: 1px dotted ButtonText; }
+       
+       /**
+        * Correct the padding in Firefox.
+        */
+       fieldset {
+         padding: 0.35em 0.75em 0.625em; }
+       
+       /**
+        * 1. Correct the text wrapping in Edge and IE.
+        * 2. Correct the color inheritance from fieldset elements in IE.
+        * 3. Remove the padding so developers are not caught out when they zero out
+        *    fieldset elements in all browsers.
+        */
+       legend {
+         box-sizing: border-box;
+         /* 1 */
+         color: inherit;
+         /* 2 */
+         display: table;
+         /* 1 */
+         max-width: 100%;
+         /* 1 */
+         padding: 0;
+         /* 3 */
+         white-space: normal;
+         /* 1 */ }
+       
+       /**
+        * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+        */
+       progress {
+         vertical-align: baseline; }
+       
+       /**
+        * Remove the default vertical scrollbar in IE 10+.
+        */
+       textarea {
+         overflow: auto; }
+       
+       /**
+        * 1. Add the correct box sizing in IE 10.
+        * 2. Remove the padding in IE 10.
+        */
+       [type="checkbox"],
+       [type="radio"] {
+         box-sizing: border-box;
+         /* 1 */
+         padding: 0;
+         /* 2 */ }
+       
+       /**
+        * Correct the cursor style of increment and decrement buttons in Chrome.
+        */
+       [type="number"]::-webkit-inner-spin-button,
+       [type="number"]::-webkit-outer-spin-button {
+         height: auto; }
+       
+       /**
+        * 1. Correct the odd appearance in Chrome and Safari.
+        * 2. Correct the outline style in Safari.
+        */
+       [type="search"] {
+         -webkit-appearance: textfield;
+         /* 1 */
+         outline-offset: -2px;
+         /* 2 */ }
+       
+       /**
+        * Remove the inner padding in Chrome and Safari on macOS.
+        */
+       [type="search"]::-webkit-search-decoration {
+         -webkit-appearance: none; }
+       
+       /**
+        * 1. Correct the inability to style clickable types in iOS and Safari.
+        * 2. Change font properties to inherit in Safari.
+        */
+       ::-webkit-file-upload-button {
+         -webkit-appearance: button;
+         /* 1 */
+         font: inherit;
+         /* 2 */ }
+       
+       /* Interactive
+          ========================================================================== */
+       /*
+        * Add the correct display in Edge, IE 10+, and Firefox.
+        */
+       details {
+         display: block; }
+       
+       /*
+        * Add the correct display in all browsers.
+        */
+       summary {
+         display: list-item; }
+       
+       /* Misc
+          ========================================================================== */
+       /**
+        * Add the correct display in IE 10+.
+        */
+       template {
+         display: none; }
+       
+       /**
+        * Add the correct display in IE 10.
+        */
+       [hidden] {
+         display: none; }
+       
+       * {
+         -moz-box-sizing: border-box;
+         -webkit-box-sizing: border-box;
+         box-sizing: border-box; }
+       
+       *,
+       *:before,
+       *:after,
+       p:first-letter,
+       div:first-letter,
+       blockquote:first-letter,
+       li:first-letter,
+       p:first-line,
+       div:first-line,
+       blockquote:first-line,
+       li:first-line {
+         background: transparent !important;
+         box-shadow: none !important;
+         text-shadow: none !important; }
+       
+       html {
+         font-size: 16px;
+         margin: 0;
+         padding: 0; }
+       
+       body {
+         -moz-osx-font-smoothing: grayscale;
+         -webkit-font-smoothing: antialiased;
+         background: #fff !important;
+         color: #000 !important;
+         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+         font-size: 1rem;
+         line-height: 1.5;
+         margin: 0 auto;
+         text-rendering: optimizeLegibility; }
+       
+       p,
+       blockquote,
+       table,
+       ul,
+       ol,
+       dl {
+         margin-bottom: 1.5rem;
+         margin-top: 0; }
+       
+       p:last-child,
+       ul:last-child,
+       ol:last-child {
+         margin-bottom: 0; }
+       
+       h1,
+       h2,
+       h3,
+       h4,
+       h5,
+       h6 {
+         color: #000;
+         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+         line-height: 1.2;
+         margin-bottom: 0.75rem;
+         margin-top: 0; }
+       
+       h1 {
+         font-size: 2.5rem; }
+       
+       h2 {
+         font-size: 2rem; }
+       
+       h3 {
+         font-size: 1.75rem; }
+       
+       h4 {
+         font-size: 1.5rem; }
+       
+       h5 {
+         font-size: 1.25rem; }
+       
+       h6 {
+         font-size: 1rem; }
+       
+       a, a:visited {
+         color: #000;
+         text-decoration: underline;
+         word-wrap: break-word; }
+       
+       table {
+         border-collapse: collapse; }
+       
+       thead {
+         display: table-header-group; }
+       
+       table,
+       th,
+       td {
+         border-bottom: 1px solid #000; }
+       
+       td,
+       th {
+         padding: 8px 16px;
+         page-break-inside: avoid; }
+       
+       code,
+       pre,
+       kbd {
+         border: 1px solid #bbb;
+         font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+         font-size: 85%; }
+       
+       code,
+       kbd {
+         padding: 3px; }
+       
+       pre {
+         margin-bottom: 1.5rem;
+         padding: 10px 12px; }
+         pre code,
+         pre kbd {
+           border: 0; }
+       
+       ::-webkit-input-placeholder {
+         color: transparent; }
+       
+       :-moz-placeholder {
+         color: transparent; }
+       
+       ::-moz-placeholder {
+         color: transparent; }
+       
+       :-ms-input-placeholder {
+         color: transparent; }
+       
+       blockquote {
+         border: 0;
+         border-left: 5px solid #bbb;
+         margin-left: 1px;
+         padding: 12px 1.5rem; }
+         [dir='rtl'] blockquote {
+           border-left: 0;
+           border-right: 5px solid #bbb;
+           margin-left: 0;
+           margin-right: 1px; }
+         blockquote:first-child {
+           margin-top: 0; }
+         blockquote p:last-child,
+         blockquote ul:last-child,
+         blockquote ol:last-child {
+           margin-bottom: 0; }
+         blockquote footer {
+           display: block;
+           font-size: 80%; }
+       
+       img {
+         border: 0;
+         display: block;
+         max-width: 100% !important;
+         vertical-align: middle; }
+       
+       hr {
+         border: 0;
+         border-bottom: 2px solid #bbb;
+         height: 0;
+         margin: 2.25rem 0;
+         padding: 0; }
+       
+       dt {
+         font-weight: bold; }
+       
+       dd {
+         margin: 0;
+         margin-bottom: 0.75rem; }
+       
+       abbr[title],
+       acronym[title] {
+         border: 0;
+         text-decoration: none; }
+       
+       table,
+       blockquote,
+       pre,
+       code,
+       figure,
+       li,
+       hr,
+       ul,
+       ol,
+       a,
+       tr {
+         page-break-inside: avoid; }
+       
+       h2,
+       h3,
+       h4,
+       p,
+       a {
+         orphans: 3;
+         widows: 3; }
+       
+       h1,
+       h2,
+       h3,
+       h4,
+       h5,
+       h6 {
+         page-break-after: avoid;
+         page-break-inside: avoid; }
+       
+       h1 + p,
+       h2 + p,
+       h3 + p {
+         page-break-before: avoid; }
+       
+       img {
+         page-break-after: auto;
+         page-break-before: auto;
+         page-break-inside: avoid; }
+       
+       pre {
+         white-space: pre-wrap !important;
+         word-wrap: break-word; }
+       
+       body {
+         padding-bottom: 2.54cm;
+         padding-left: 1.8cm;
+         padding-right: 1.8cm;
+         padding-top: 2.54cm; }
+       
+       a[href^='http']:after, a[href^='ftp']:after {
+         content: " (" attr(href) ")";
+         font-size: 80%; }
+       
+       a[href$='.jpg']:after, a[href$='.jpeg']:after, a[href$='.gif']:after, a[href$='.png']:after {
+         display: none; }
+       
+       abbr[title]:after,
+       acronym[title]:after {
+         content: " (" attr(title) ")"; }
+       
+       .page-break,
+       .break-before,
+       .page-break-before {
+         page-break-before: always; }
+       
+       .break-after,
+       .page-break-after {
+         page-break-after: always; }
+       
+       .avoid-break-inside {
+         page-break-inside: avoid; }
+       
+       .no-print {
+         display: none; }
+       
+       a.no-reformat:after {
+         content: ''; }
+       
+       abbr[title].no-reformat:after,
+       acronym[title].no-reformat:after {
+         content: ''; }
+       
+       .no-reformat abbr:after,
+       .no-reformat acronym:after,
+       .no-reformat a:after {
+         content: ''; }
+        </style>
+    <div id="readability-page-1" class="page"><div><div>
+<p><img width="1063" height="709" src="https://metacpc.org/wp-content/uploads/2022/01/shutterstock_1329447017.jpg" alt="" loading="lazy" srcset="https://metacpc.org/wp-content/uploads/2022/01/shutterstock_1329447017.jpg 1063w, https://metacpc.org/wp-content/uploads/2022/01/shutterstock_1329447017-300x200.jpg 300w, https://metacpc.org/wp-content/uploads/2022/01/shutterstock_1329447017-1024x683.jpg 1024w, https://metacpc.org/wp-content/uploads/2022/01/shutterstock_1329447017-768x512.jpg 768w" sizes="(max-width: 1063px) 100vw, 1063px"></p><figcaption></figcaption></div><p><strong><a href="https://the-crypto-syllabus.com/yanis-varoufakis-on-techno-feudalism/" target="_blank" rel="noopener">The Crypto Syllabus</a></strong></p><blockquote><p>“Within our present oligarchic, exploitative, irrational, and inhuman world system, the rise of crypto applications will only make our society more oligarchic, more exploitative, more irrational, and more inhuman.”</p></blockquote><p>Rare is the person who could expertly comment – in a single interview! – on the rise of NFTs and their origins in the virtual worlds of gaming, the logic of the emerging regime of techno-feudalism, and the folly of El Salvador’s Bitcoin-heavy negotiating tactics with the IMF. Luckily, we have found this person in Yanis Varoufakis, the prominent economist, politician, and public intellectual, who is also former Greek finance minister. Yanis was kind enough to grant us an extensive interview, which provides a panoramic (and, at times, rather critical) view of what is going at the intersection of money, macroeconomics, and the digital.</p><p>~ Evgeny Morozov</p><hr><p><strong>In the early 2010s, before your stint in the Greek government, you worked as&nbsp;<a href="https://www.thenation.com/article/archive/videogame-yanis-varoufakis-used-study-eurozone/" target="_blank" rel="noopener">economist-in-residence for Valve</a>, a prominent gaming company. In what ways were your skills as an economics expert in game theory useful for dissecting the economics of virtual worlds? And, in turn, what kinds of insights, if any, on the inner workings of the real economy did you gain through that experience?</strong></p><p>Ten years ago, the metaverse was already up and running within gaming communities. Valve’s games had already spawned economies so large that Valve was both excited and spooked. Some digital assets that had previously been distributed for free (via the game’s drops) began to trade for tens of thousands of dollars on eBay, well before anyone had thought of NFTs.</p><p>What if the prices of these spontaneously lucrative items and activities were to crash? That was what kept the people at Valve awake at night. You can see this from the email with which I was approached: ‘I have been following your blog for a while… Here at my company we were discussing an issue of linking economies in two virtual environments (creating a shared currency), and wrestling with some of the thornier problems of balance of payments, when it occurred to me “this is Germany and Greece”, a thought that wouldn’t have occurred to me without having followed your blog’.</p><p>My reasons for getting involved were many. One was the prospect of studying an economy as an omniscient researcher: Since I would have access to the full data set in real time, I did not need statistics! Another was the lure of playing ‘god’; i.e. being able to do with these digital economies things that no economist can do in the ‘real’ world, e.g. alter rules, prices, and quantities to see what happens. Another objective was to forge empirically supported narratives that transcend the border separating the ‘real’ from the digital economies.</p><p>What did I learn back then? The key insight was that observed behaviour utterly demolished some key neoliberal fantasies: Barter does not give way to sound money, in the form of some digital gold simulacrum. (Nb. We established that various goods/items vie for dominance as numeraires, without ever dominating.) Selflessness is always present (evidenced by substantial doubly anonymous gifting). Social relations emerge (even in these faceless digital worlds) which then ‘infect’ prices and quantities in a manner that bears little connection to the neoliberal view of exchange values formed in a political and moral vacuum.</p><p>Today, a decade later, it is clear that gaming communities like the one I studied at Valve have been operating as fully-fledged metaverses (to use Zuckerberg’s term). Gamers were drawn to them by the game but, once ‘inside’, they stayed to live out a large part of their life, making friends, producing goods for sale, consuming entertainment, debating, etc. Zuckerberg’s ambition is to insert his billions of Facebook non-gamer users into a Steam-like digital social economy – complete with a top-down platform currency that he controls. How can I resist the parallelism with a digital fiefdom in which Zuckerberg dreams of being the techno-lord?</p><p><strong>NFTs are all the rage these days. Their rapid rise can be traced to&nbsp;<a href="https://the-crypto-syllabus.com/bibliography-games/" target="_blank" rel="noopener">CryptoKitties</a>, a blockchain-based computer game that took off in 2017. There are now also many gamers who&nbsp;<a href="https://www.vice.com/en/article/3abaw5/gamers-dont-want-nfts" target="_blank" rel="noopener">oppose NFTs</a>&nbsp;and the rather problematic ideas of ownership that they embed. Was something like NFTs already on the horizon during your time at Valve? Do you think that NFTs will change our ideas about ownership, scarcity, and remuneration in ways that might be of help to the broader&nbsp;<a href="https://www.yanisvaroufakis.eu/2020/07/27/why-bitcoin-is-the-not-socialists-ally-reply-to-ben-arc/" target="_blank" rel="noopener">progressive project</a>? This, at any rate, is the belief of some advocating for Web3.</strong></p><p>Hats in TF2!&nbsp;<a href="https://www.wikiwand.com/en/Team_Fortress_2" target="_blank" rel="noopener">Team Fortress 2</a>&nbsp;(or TF2) players were obsessed with digital hats. Initially part of free drops, some hats that were discontinued later became collectibles. Players began bartering within the game (e.g. I will give you two laser guns for this one hat of yours). Then, when the demand for some hat rose sufficiently, the players would step out of the game, meet up on eBay, trade the hat for (sometimes) thousands of dollars, before, finally, returning to the game where the vendor would hand the hat over to the buyer. Note the unbelievable levels of trust between strangers this transaction involved: the vendor could have walked away with both the money and the hat. Valve decided to reduce the need for so much trust, cut eBay out, and make a neat profit too by creating trading rooms within the game (i.e. create an in-game market for digital items owned and supervised by Valve).</p><p>NFTs differ in two respects from digital assets like the hats in TF2: The blockchain cuts out the company (e.g. Valve). And it allows the digital asset to emigrate from the game/realm that spawned it to&nbsp;<em>any</em>&nbsp;other digital realm.</p><p>Do I think that NFTs have subversive potential? Let’s see. In a digital environment, NFTs are like all other commodities. They reflect the triumph of exchange value (with which capitalism trounced experiential or use value) within a metaverse (Valve-like or Zuckerberg-style). In that sense, NFTs offer nothing new within digital worlds, except perhaps that they turbocharge the ideology of capitalism (exchange value rules supreme). In the analogue world, NFTs have value only to the extent that bragging rights offer utility to those who care for them. Even though in so doing, they force outfits like Sotheby’s and Christie’s (which used to monopolise the trade in bragging rights) to change their ways, NFTs in no way subverts the structure of property rights creating and underpinning the oligarchy’s exorbitant power over the many.</p><p>So, no, I see little radical potential from NFTs. Having said that, a good, future, liberal techno-communist society may find ways of using them as part of a broad network of technologies helping us keep records of our identities, property, etc.</p><blockquote><p>As long as we do not have these mechanical slaves catering for humanity as a whole (and not just producing commodities owned by the 1% of the 1%), the idea that people must now play like robots to earn a living so as to be human in their spare time is, indeed, the apotheosis of misanthropy.</p></blockquote><p><strong>Much has been made of the fact that in some countries of the Global South (e.g. the Philippines) blockchain-based games like Axie Infinity are&nbsp;<a href="https://restofworld.org/2021/axie-infinity/" target="_blank" rel="noopener">creating a parallel economy</a>, allowing players to redeem virtual tokens – their value has recently skyrocketed – in fiat money. The founder of Reddit, for one,&nbsp;<a href="https://markets.businessinsider.com/news/currencies/play-to-earn-crypto-reddit-cofounder-alexis-ohanian-dao-gaming-2022-1" target="_blank" rel="noopener">has recently argued</a>&nbsp;that all future games will follow this play-to-earn model, adding that ‘90% of people will not play a game unless they are being properly valued for that time’. What are we to make of this? Is it yet another dystopia of global capitalism? Or is it a minor improvement from sweatshop labor, perhaps, the consequence of the global pandemic keeping many people stuck at home playing games?</strong></p><p>When I worked with Valve, ten years ago, there were thousands of young people in China, in Kazakhstan, and elsewhere making a mint out of providing services to members of Valve’s gaming communities. Gifted players made good money paid by other players keen to watch them play. So, there is nothing new to the idea of a parallel economy that allows people in poorer countries or regions to earn as they play, or from offering in-game services.</p><p>Was that a good or a bad thing? Of course, it was good for a young person in Shenzhen who managed to earn $60k a year designing digital hats on his PC – instead of destroying his body in a sweatshop. The question, however, is: Could all workers in Shenzhen (and beyond) be rescued from sweatshops by migrating to a metaverse? The answer is: Not before we have robots working for all of us so that we can reproduce the material conditions of our lives. As long as we do not have these mechanical slaves catering for humanity as a whole (and not just producing commodities owned by the 1% of the 1%), the idea that people must now play like robots to earn a living so as to be human in their spare time is, indeed, the apotheosis of misanthropy.</p><p><strong>One of your critiques of Bitcoin as a currency (which you clearly state it is not and cannot be) is that it limits policy space available, such that, when there is a pandemic, it won’t be possible to increase the money supply. I suppose this also covers ‘printing money’, with all of the perverse consequences of QE that you yourself have documented elsewhere. Wouldn’t the Bitcoin maximalists be at least coherent in arguing that this inability to print money is a feature, not a bug, of the system?</strong></p><p>When ‘Bitcoin maximalists’, as you call them, wax lyrical about the inability to print money (and celebrate this inability as Bitcoin’s feature, rather than its bug), they are being terribly unoriginal – banal, I dare say. Capitalism nearly died in 1929, and tens of millions&nbsp;<em>did</em>&nbsp;die in the war that ensued, because of this toxic fallacy that underpinned the Gold Standard then and Bitcoin now. Which fallacy? The fallacy of composition, as John Maynard Keynes called it.</p><p>Its essence is a tendency to extrapolate from the personal realm to the macroeconomic one. To say that if something is good for me – if a practice is sound at the level of my family, business, etc. – it must also be good for the state, government, humanity at large. For example, yes, parsimony is a good thing for me, personally. If I can’t make ends meet, I need to tighten my belt; otherwise, I shall sink more and more into debt. However, the exact opposite holds for a macroeconomy: If, in the midst of a recession, the government tries to tighten its belt as a means of eliminating its budget deficit, then public expenditure will decline at a time of falling private expenditure. And since the sum of private and public expenditure equals aggregate income, the government will be – inadvertently – magnifying the recession and, yes, its own deficit (as government revenues fall). This is an example of one thing (belt-tightening) being good at the micro-level and catastrophic at the macro level.</p><p>Similarly with gold, Bitcoin, and all other ‘things’ of exchange value: If you have gold, it is good for you if its supply is limited, fixed if possible. Same with Bitcoin, silver, dollars. (Nb. It is why the rich and powerful traditionally opposed expansionary monetary policy, crying ‘hyperinflation’ at the drop of a hat.) So, yes, if you are invested in Bitcoin, or for some reason you are elated every time its dollar exchange rate rises, you have every reason to think that its algorithmically fixed supply is a good thing, a feature. But, there is a price for that: A fixed money supply translates into a deflationary dynamic which, in a system prone to under-employing its people and under-investing in things society needs (i.e. capitalism), is a catastrophe in the making.</p><p>The Gold Standard is, indeed, a great source of insight into how dangerously primitive Bitcoin maximalist thinking is. Suppose Bitcoin were to take over from fiat currencies. What would banks do? They would lend in Bitcoin, of course. This means that overdraft facilities would emerge allowing lenders to buy goods and services with Bitcoins that do not yet exist. What would governments do? At moments of stress, they would have to issue units of account linked to Bitcoin (as they did under the Gold Exchange Standard during the interwar period). All this private and public liquidity would cause a boom period before, inevitably, the crash comes. And then, with millions of people wrecked, governments and banks would have to abandon Bitcoin. In short, just like gold, Bitcoin is eminently… abandonable (once it has done enormous damage). Put differently, either Bitcoin will never take over from fiat money or, if it does, it will cause huge unnecessary pain (before being abandoned).</p><blockquote><p>To believe that you can fix money, or that you can fix the state, is to demonstrate a devastating innocence regarding the larger exploitative system with which they are integrated.</p></blockquote><p><strong>What about other crypto-currencies, though, which do allow for very sophisticated operations and incentive structures, including algorithmically programmed demurrage? Would they be closer to being defined as currencies?</strong></p><p>No, that will not work either. The problem with Bitcoin is not just its fixed supply. It is the presumption that the rate of change of the money supply can be predicted and foreshadowed within any algorithm. That the money supply can be de-politicised. So, it is not a question of how sophisticated and complex the algorithm is. It is, rather, that a purely political, unknowable, process can never, ever, be captured by an algorithm. It cannot and, therefore, it should not.</p><p><strong>Because of the growing interest in Ethereum, there has been a strange resurgence of interest in mechanism design and game theory among the crypto-community; some&nbsp;<a href="https://assets.pubpub.org/sy02t720/31581340240758.pdf" target="_blank" rel="noopener">papers</a>&nbsp;on crypto-economics proudly cite Leonid Hurwicz and Oskar Lange. If one studies&nbsp;<a href="https://the-crypto-syllabus.com/bibliography-cryptoeconomics/" target="_blank" rel="noopener">this nascent discipline</a>&nbsp;a bit closer, however, one is struck by its choice of focus: microeconomics is everywhere but macroeconomics – save for some Austrian critiques of fiat money – is nowhere, not even in the orthodox Samuelson version.</strong></p><p>You put your finger on the nail. This is, again, the fallacy of composition: imagining that what works for you must work for society at large; that what makes sense in the micro-world makes sense in the macro one too. Crypto-enthusiasts with strong views on money, in this sense, fall under the category of people best described by Keynes as ‘resembling Euclidean geometers in a non-Euclidean world’. Keynes was referring to classical economists who thought of money as a commodity, as a thing. The crypto-monetarists are repeating the same conceptual error.</p><figure><img src="https://the-crypto-syllabus.com/content/images/2022/01/Varoufakis-2-1.jpg" alt=""><figcaption>Yanis Varoufakis speaking in Moscow, 2015 –&nbsp;<a href="https://www.flickr.com/photos/valerijledenev/21289128734/in/photolist-yQnbVL-2iV8kY6-25aEY2D-2kvCd29-2ivhXLK-vtD3ph-yrfmh3-yrfmgG-DtMX9j-zK6afs-DMDLuH-DnqgQg-DVUiyK-DTzvv1-DKtXzb-CYvpDe-DtMY5N-DTzxzb-2iV8kYX-DnqfSp-UwsSzV-NS6CzZ-qE4LZJ-D1P1L6-2iV7H6R-CYvoHM-2ehj1oC-2if5gWf-2i8TWa2-2cZTNvR-2iVaqXa" target="_blank" rel="noopener">source</a></figcaption></figure><p><strong>From the very early days – i.e. the early 2010s – you have been arguing that ‘blockchain is a fantastic solution to the problem we have not yet discovered. But it is not the solution to the problem of money’. But are we&nbsp;<em>that&nbsp;</em>ignorant? One could say that the blockchain, as a project inspired by the&nbsp;<a href="https://the-crypto-syllabus.com/bibliography-cypherpunks/" target="_blank" rel="noopener">cypherpunk ideology</a>, has always been a solution to the problem of the state: it promises to take the state out of domains as diverse as&nbsp;<a href="https://the-crypto-syllabus.com/bibliography-law/" target="_blank" rel="noopener">law</a>&nbsp;(with the rise of smart contracts) or&nbsp;<a href="https://the-crypto-syllabus.com/bibliography-arts-culture/" target="_blank" rel="noopener">arts funding</a>&nbsp;(with the fractionalization of ownership through NFTs) or, most obviously, central banking (with its critique of fiat money).</strong></p><p>To think that Bitcoin can solve the problem of money, or the problem of the state, is to misunderstand what money is or what states do. Every exploitative socio-economic system is predicated on what the minority running it can make the rest do for them (who does what to whom, as Lenin famously put it). Money and the state are epiphenomena of this system. To believe that you can fix money, or that you can fix the state, is to demonstrate a devastating innocence regarding the larger exploitative system with which they are integrated. No smart contract can, for example, subvert the labour contracts that underpin society’s layered patterns of exploitation. No NFT can change an art world where art is a commodity within a universe of commodified people and things. No central bank can serve the interests of the people so long as it is independent of the demos. Yes, blockchain will be useful in societies liberated from the patterned extractive power of the few. However, blockchain will not liberate us. Indeed, any digital service, currency, or good that is built on it within the present system will simply reproduce the present system’s legitimacy.</p><p><strong>Assuming you are still upbeat about the blockchain, how do you reconcile this anti-statist bias with what you see as its potential in an emancipated society? What does that potential consist of exactly? Even if one assumes there’s some value in both game theory and mechanism design, what use are they to the progressive project stripped of any macro perspective?</strong></p><p>My answer lies in my sci-fi novel,&nbsp;<em><a href="https://bookshop.org/a/25948/9781612199573" target="_blank" rel="noopener">Another Now</a></em>&nbsp;(in particular, Chapter 6). In it, I present a blueprint of a post-capitalist, non-exploitative social economy. Blockchain features there as a technology used both by central banks and local communities to create a public, distributed ledger for two things: Money, of course. And title leases for properties in a County’s commercial zone (which are on a perpetual auction, the proceeds of which are used to maintain and expand the County’s social zone). From this, you can see that I consider blockchain, and Ethereum-style mechanisms, as technologies that will prove extremely useful once private property in the means of production ends. But, on their own, these technologies will not liberate us from the extractive power of the few.</p><p><strong>You have described yourself as an ‘<a href="https://www.theguardian.com/news/2015/feb/18/yanis-varoufakis-how-i-became-an-erratic-marxist" target="_blank" rel="noopener">erratic Marxist</a>’, pointing out that you do have strong libertarian tendencies. In Italy, where I’ve been living for quite some time now, there’s, of course, this long-running tradition of Autonomous Marxism, which shares many of these beliefs. It has always been critical of the state and state bureaucracy, with its rigid, centralized ways of organizing society. Now, it seems there is a new promising solution to this age-old problem:&nbsp;<a href="https://the-crypto-syllabus.com/bibliography-daos/" target="_blank" rel="noopener">DAOs</a>, short for decentralized autonomous organizations, which promise to put transparent algorithmic rules in place of the Weberian charismatic leaders. Do you find anything of value in such new institutional forms? Or do they smack of the same technocratic credo – with its belief that political problems can be solved by designing clever mechanisms and incentives – that they claim to be attacking?</strong></p><p>Karl Marx was erratic. He changed his mind all the time, infuriating his friends and comrades. He wrote furious repudiations of his earlier ideas. And he could not stand those who called themselves… Marxist (e.g. famously saying ‘If they are Marxists, I am not’). So, I described myself as an ‘erratic Marxist’ to signify two things: That I am not dogmatic. And, that I am at odds with those ‘official’ Marxists who seek personal power from a dogmatic custodianship of Marx’s thinking. In fact, I went one step beyond, referring to myself as a ‘libertarian Marxist’ – a self-description that was immediately derided by several libertarians and most Marxists. My reason? Like the anarcho-syndicalists in Spain and the Autonomous Marxists of Italy that you mentioned, I fail to see how one can genuinely cherish freedom and tolerate capitalism. And also: how one could be both illiberal and left-wing.</p><p>On the question of DAOs, I must say that I look at them with sympathy. But, again, as with my attitude to the blockchain, I am convinced that these are tools that will very much come in handy once a broad internationalist movement overthrows the oligarchy’s property rights over the means of production (including the cloud servers!). As I try to outline in my&nbsp;<em>Another Now</em>, a digital anarcho-syndicalist future society will use many of these DAO-like tools. But, and this is a gigantic but, DAO-like tools will not bring about this new society in which DAO-like tools are useful. (Nb. We can already see how DAOs are being usurped by regressives and real estate moguls in the United States.)</p><blockquote><p>Within our present oligarchic, exploitative, irrational, and inhuman world system, the rise of crypto applications will only make our society more oligarchic, more exploitative, more irrational, and more inhuman.</p></blockquote><p><strong>Observing the crypto space from the sidelines, I get the impression that it has allowed many of the old neoliberal policy ideas to come back. I’m thinking especially about the use of market-based instruments in fighting climate change: all of a sudden, the blockchain promises to revive&nbsp;<a href="https://the-crypto-syllabus.com/bram-buscher-on-nature3/" target="_blank" rel="noopener">many of the ideas</a>&nbsp;related to natural ecosystem services, while the rise of often anonymous activist organizations like KlimaDAO has&nbsp;<a href="https://www.spglobal.com/platts/en/market-insights/latest-news/energy-transition/010622-voluntary-carbon-market-rally-set-to-stretch-into-2022-on-demand-optimism" target="_blank" rel="noopener">helped boost</a>&nbsp;what was once a languishing market in carbon emissions. As a result, the reputation of the market as a problem-solving device has been restored, even if temporarily. How should progressives react to such developments? Are these crypto-projects, which promise to reverse climate change via finance, occupying the empty activist space that should have been filled by central banks before they got somewhat sidetracked by the advice they are getting from BlackRock? What&nbsp;<em>should&nbsp;</em>the central banks be doing about this green-tech-finance axis?</strong></p><p>Precisely my point. In the name of liberating us from moguls, states, and even climate change, crypto zealots are turbocharging the ideology of commodification (i.e. neoliberalism). What should we do? The only thing that will work is: To take over parliaments so as to legislate a corporate law that ends tradeable shares, and introduces the one-share-one-employee principle in its stead. To take over central banks and make them issue&nbsp;<a href="https://www.yanisvaroufakis.eu/2012/09/26/are-digital-currencies-the-future/" target="_blank" rel="noopener">digital currencies</a>&nbsp;on a distributed ledger that makes basic income possible. To take over governments and implement personal ownership of our data. In short, no algorithm will remove the need for a genuine revolution.</p><p><strong>One of the interesting consequences of the ongoing currency crisis in Turkey has been the&nbsp;<a href="https://www.wsj.com/articles/turks-pile-into-bitcoin-and-tether-to-escape-plunging-lira-11641982077" target="_blank" rel="noopener">growing popularity</a>&nbsp;of&nbsp;<a href="https://the-crypto-syllabus.com/bibliography-stablecoins/" target="_blank" rel="noopener">stablecoins</a>&nbsp;such as Tether among the Turkish population. This is even more remarkable given that Tether has been&nbsp;<a href="https://www.theverge.com/22620464/tether-backing-cryptocurrency-stablecoin" target="_blank" rel="noopener">rumored</a>&nbsp;to have problems of its own, which many in the crypto community expect to explode sooner or later. Erdoğan’s hands seem to be tied, as Turkish cities brim with ads for crypto services, which are genuinely popular with the local population. You’ve spoken, somewhat dismissively, about stablecoins in the past but how do you see them changing the dynamics of a currency crisis like the one in Turkey? How should the government be reacting to them, if at all?</strong></p><p>Bitcoin was, as I claimed earlier, the digital-algorithmic reincarnation of the Gold Standard – supported by the same vacuous arguments and the same underlying oligarchic motives. Stablecoins are yet another reincarnation of yet another primitive, failed idea: the so-called currency board.</p><p>The idea behind the Gold Standard was that national currencies gained credibility because their state/central bank gave up the right to print money at will. By fixing the exchange rate of a national currency to the price of gold (e.g. $35 for one ounce of gold), and freely allowing two-way convertibility, it was common knowledge that, if the authorities printed money in total value exceeding the value of the gold in the central bank’s vaults, at some point people holding paper money would demand gold that the central bank did not have.</p><p>A currency board (e.g. the system underpinning Bulgaria’s national currency today) is similar in that the central bank fixes the national currency’s exchange rate to equal the average price of a basket of hard currencies. Again, as long as there are no capital controls and the national currency is fully convertible to the hard currencies in the currency board, if the central bank prints more money than is equivalent (under the fixed exchange rate) to its foreign currency reserves, it risks a run on its reserves. As with the Gold Standard, currency boards have proven fragile – at the sign of economic crisis, war, or other types of stress, they are abandoned.</p><p>A stablecoin is a currency board with the difference that it applies to a stateless digital currency (like Tether), not a national currency. This means that there is no state to legislate that the system administrators honour the fixed exchange rate; that they not create stablecoins in excess of the value of their reserves, cash them in, and do a runner. In other words, in addition to the inherent instability of currency boards, stablecoins are ripe for fraud.</p><p>In conclusion, the fact that stablecoins or Bitcoin itself acquire the aura of saviours in countries hit by inflation, like Turkey, is nothing more than a measure of the desperation of the people: they will clutch at straws. Stablecoins offer Turks no respite from inflation that buying euros or dollars cannot offer. So, why buy Tether instead of dollars or euros? Why rely on the shadowy characters running a private currency board? Only because the latter deploy good marketing to exploit desperate people.</p><p><strong>What do you make of China’s recent efforts to rein in both its FinTech market and the crypto industry, as well as to accelerate the development of the e-yuan? Are they an example for Europe and the US to emulate? And if so, what are the elements worth borrowing?</strong></p><p>I am immensely impressed by these moves, especially when looked at as a package. The Chinese authorities are, at once: (1) deflating the real estate bubble (by taking down Evergrande, blow-by-blow); (2) aiming to reduce aggregate investment from 50% to 30% of GDP as a precondition for boosting the wage share of GDP; (3) ending the oppressive tutoring system for pupils that crushes young souls without helping nurture creative thinking; (4) sponsoring sci-fi writing and game design; (5) restricting the power of Big Tech; and, last but certainly not least, (6) bringing the digital yuan online.</p><p>That last move, the digital yuan, constitutes a revolution: when fully-fledged, it will equip every resident in China, but also anyone from around the world who wants to trade with China, with a digital wallet – a basic digital bank account. In one move, therefore, the commercial banks will have been ‘dis-intermediated’; or, in plain English, they will have lost their monopoly over the payments system. This is genuinely a radical break from finance as we have known it. And, yes, it is one that we should emulate in Europe and in the United States – which is, of course, why Wall Street and the rest of the West’s financiers will do their best to stop it, preferring to blow up the world rather than allow themselves to be… dis-intermediated.</p><p><strong>Are you familiar with the plans for the ‘digital dollar’ advanced by the likes of&nbsp;<a href="https://scholarship.law.ufl.edu/jtlp/vol25/iss1/1/" target="_blank" rel="noopener">Robert Hockett</a>&nbsp;and&nbsp;<a href="https://vanderbiltlawreview.org/lawreview/2021/10/the-peoples-ledger-how-to-democratize-money-and-finance-the-economy/" target="_blank" rel="noopener">Saule Omarova</a>, which, in essence, insist on the need to build a&nbsp;<a href="https://www.yanisvaroufakis.eu/2021/08/02/a-central-bank-cryptocurrency-to-democratise-money-project-syndicate-jordan-times/" target="_blank" rel="noopener">democratically accountable CBDC</a>? How likely do you think the Fed is to implement something like this, especially given how much opposition – including from the crypto industry – there was for Omarova’s nomination to the Biden administration? We have also&nbsp;<a href="https://markets.businessinsider.com/news/currencies/bill-cbdc-tom-emmer-fed-digital-currency-crypto-retail-investors-2022-1" target="_blank" rel="noopener">recently heard</a>&nbsp;from Congressman Tom Emmer, who, while proclaiming that Washington should be building crypto with ‘American characteristics’, wants to prohibit the Fed from any experiments with a&nbsp;<a href="https://the-crypto-syllabus.com/bibliography-cdbcs/" target="_blank" rel="noopener">CBDC</a>. One of Emmer’s stated reasons for such action was to ‘maintain dollar dominance’. &nbsp;What do you think is behind such proclamations? Do they mean we are likely to see Facebook’s earlier efforts to launch its own stablecoin – now called (ironically) Diem – given an official stamp of approval?</strong></p><p>The situation sounds complex but it is very, very simple. Most dollars, pounds, euros, and yen are already digital. The digitisation of money is not the issue. The issue is the monopoly of the payments system. Today, you use digital money (phone apps or plastic cards) to buy a cup of coffee at your local Starbucks. But, to do so, you first need an account with a commercial bank. In other words, to grant you access to digital fiat money, the state forces you to fall into the embrace of the commercial banks.</p><p>So, today, the state guarantees a monopoly over payments to commercial banks. And that is only one gift to the oligarchy. A second, even greater gift, is that only commercial banks are allowed to have an account with the central bank. So, when a recession hits, and the central bank decides to stimulate the economy, the central bank lowers the interest rate of the overdraft it grants commercial bankers – who then exploit this to profit from arbitrage (by lending the money on to customers at a higher interest rate). And when the recession gets even worse (as has been the case since 2008 and now with the pandemic), the central bank prints digital dollars or euros and credits them directly into the accounts the commercial banks have with the central bank. This is the definition of exorbitant privilege!</p><p>So, this is why Wall Street prefers to see the world explode, time end, or Armageddon arrives, rather than allow the Fed to proceed with the digital dollar: because a digital dollar would mean that every resident in the US, and anyone beyond US borders trading with Americans, will be granted a digital wallet. That would be detrimental to the power of commercial banks. First, because people would no longer be obliged to open a bank account with them (think of all the lost fees!). Secondly, because there will no longer exist a rationale as to why the Fed or the ECB, etc., cannot – when they think they must stimulate the economy – drop helicopter money on everyone. Why credit dollars only to the accounts commercial banks keep at the Fed and not credit the people’s digital wallets directly? Indeed, why give money to commercial banks at all?</p><figure><img src="https://the-crypto-syllabus.com/content/images/2022/01/Varoufakis-1-2.jpg" alt=""><figcaption>Yanis Varoufakis in Barcelona, 2015 –&nbsp;<a href="https://www.flickr.com/photos/marclozano/21550742494/in/photolist-yQnbVL-2iV8kY6-25aEY2D-2kvCd29-vtD3ph-yrfmh3-yrfmgG-DtMX9j-DVUiyK-DTzxzb-2iV8kYX-2iV7H6R-qE4LZJ-2ivhXLK-zK6afs-DMDLuH-DnqgQg-DTzvv1-DKtXzb-CYvpDe-DtMY5N-DnqfSp-UwsSzV-NS6CzZ-D1P1L6-2if5gWf-2i8TWa2-2iVaqXa-CYvoHM-2ehj1oC-2cZTNvR" target="_blank" rel="noopener">source</a></figcaption></figure><p><strong>One of the persistent critiques of cryptocurrencies like Bitcoin and Ethereum is&nbsp;<a href="https://the-crypto-syllabus.com/bibliography-energy-climate/" target="_blank" rel="noopener">their immense energy use</a>, which, on the surface, seems like the price to pay for not trusting the state as the arbiter of truth/provider of trust. The solution proposed by the Ethereum Foundation has been to shift from today’s energy-intensive mechanism of Proof of Work to the less environmentally damaging Proof of Stake. Yet, the latter, once you look closely at the details, solves the energy problem by making the entire system more plutocratic, because, in essence, it runs on the principle ‘one dollar (or ether) = one vote’. What makes this crypto-plutocracy tolerable to many of its advocates is their jaded view of today’s financial system, which they see as even more plutocratic and hell-bent on appropriating even more of the bailout money. How does one answer such critiques?</strong></p><p>The environmental costs of crypto are very large, undoubtedly. But, even if there existed a magic wand whose waiving would make blockchain run on zero watts, crypto currencies would remain more of a problem than a solution – for reasons I explained above. In brief, within our present oligarchic, exploitative, irrational, and inhuman world system, the rise of crypto applications will only make our society more oligarchic, more exploitative, more irrational, and more inhuman. This is why, in opposing the crypto enthusiasts, I never even bother to mention their environmental repercussions.</p><p><strong>If one looks closely at some of the influential crypto projects, they feature a bizarre mix of ideologies. There’s, for example, a very ambitious project called&nbsp;<a href="https://cosmos.network/" target="_blank" rel="noopener">Cosmos</a>&nbsp;– it bills itself as ‘the Internet of blockchains’ – which is set up as a cooperative, an institutional form dear to the heart of many leftists. Yet its&nbsp;<a href="https://ebuchman.github.io/about/" target="_blank" rel="noopener">co-founder and CEO</a>&nbsp;is a&nbsp;<a href="https://theblockchainsocialist.com/the-heterodox-politics-of-the-internet-of-blockchains-and-sustainability-existentialism/" target="_blank" rel="noopener">big believer</a>&nbsp;in ‘<a href="https://the-crypto-syllabus.com/adam-tooze-on-macrofinance/" target="_blank" rel="noopener">free banking</a>’, an ideology espoused by many libertarians in the US. Do you think the left has been too slow to make sense of the crypto/digital currency space? It seems that even on an earlier set of issues before crypto – complementary and alternative currencies, for example – there seems to be no coherent leftist position, so that today they can be easily appropriated by the crypto start-ups pushing the tokenization of everything…</strong></p><p>The Left, radicals, progressives, etc. have either refused to acknowledge the genuine ingenuity of blockchain or have fallen for it. We seem to have forgotten how Marx and Engels had the nous and the ability, on the one hand, to admire and celebrate the technological and scientific wonders of their era and, on the other hand, grasp that these potentially liberating technologies were bound to enslave the many if they became instrumentalised by the very few. The two Germans believed in the emancipatory potential of the steam engine and of electromagnetism. But, they never believed that society would be liberated by the steam engine and/or electromagnetism. Liberation required a political movement that first overthrows the bourgeoisie and only then presses these magnificent technologies into the service of the many. This seems to me an excellent way of approaching today’s potentially liberating technologies, including blockchain.</p><p><strong>You are acquainted with Michel Feher, the Belgian activist-philosopher. I don’t know if you’ve read his&nbsp;<a href="https://bookshop.org/a/25948/9781942130123" target="_blank" rel="noopener"><em>Rated Agency</em></a><em>,&nbsp;</em>but it does capture many arguments advanced by those who see something politically significant – something to be used by progressive forces – in the structural transformation of global finance associated not only with the rise of crypto but also with the popularity of day-trading apps like Robinhood. At least on the surface, the latter do allow retail investors to pool their efforts together and engage in financial activism that was previously available only to hedge funds (Feher himself had an interesting interpretation of the&nbsp;<a href="https://www.ppesydney.net/another-speculation-is-possible-the-political-lesson-of-r-wallstreetbets/" target="_blank" rel="noopener">GameStop</a>&nbsp;saga). I can see this logic working for coordinating divestment campaigns. Yet, apart from crowdfunding for, say,&nbsp;<a href="https://www.dailycal.org/2021/12/30/berkeley-to-adopt-blockchain-technology-for-microbond-financing-program/" target="_blank" rel="noopener">micro-municipal bonds</a>, I can’t yet see a more proactive deployment of such power – except, perhaps, when driven by the desire to ‘stick it’ to the hedge fund industry and spoil their carefully engineered shorting of stocks like GameStop. How do you see this landscape? Is there much value in getting the left to proactively develop some capacities that would allow it to ‘move’ markets?</strong></p><p>In Chapter 6 of my&nbsp;<a href="https://bookshop.org/books/another-now/9781612199573" target="_blank" rel="noopener"><em>Another Now</em></a>, I imagined how capitalism fell to a variety of techno-rebels who used a mix of financial engineering, worldwide consumer boycotts, and conventional industrial strikes/activism. A year later, I remember receiving calls from US journalists asking me: ‘<a href="https://www.yanisvaroufakis.eu/2021/01/28/did-we-see-yesterday-something-like-another-nows-crowdshorters-in-action-defending-gamestop-you-be-the-judge/" target="_blank" rel="noopener">Are your Crowdshorters in action?</a>’ I was very amused to hear them talk of the Crowdshorters as if they were a real techno-rebel group. Of course, what occasioned the journalists’ questions was the GameStop mini-rebellion that saw millions of small-stake investors take on a couple of vile hedge funds, using the Robinhood platform. So, clearly, I am mightily excited by the idea of a techno-rebellion. If you want to see how I imagine it, on days when hope trumps pessimism, that chapter is my long answer.</p><blockquote><p>I anticipate an almighty struggle for the right to a digital ECB wallet that will bring back memories of the struggle for universal franchise.</p></blockquote><p><strong>You’ve argued&nbsp;<a href="https://www.yanisvaroufakis.eu/2013/04/22/bitcoin-and-the-dangerous-fantasy-of-apolitical-money/" target="_blank" rel="noopener">against depoliticizing money</a>, which also explains, at least in part, your critical stance on Bitcoin. There have been plans, as you well know, for the digital euro. It would probably be more political than Bitcoin, as it would have a direct connection to the ECB. But as long as the ECB remains seen as a technocratic and apolitical institution, so would the digital euro. You’ve written and spoken extensively about it in the past but what would it mean, in practical terms, to politicize an institution such as the ECB? Stated more broadly, what would keeping the ‘political’ dimension of money in the picture imply in terms of practical politics?</strong></p><p>European bankers loathe the idea of a digital euro just as vigorously as Wall Street bankers hate the idea of a digital dollar. It would end their monopoly over payments and make it hard to justify the exclusive umbilical cord connecting them to the printing presses of central banks (see above). What makes the Eurozone special is that it features no Eurozone Treasury, no common debt, no federal decision-making body. This is, lest we forget, a design feature of the Eurozone, one that Europe’s oligarchy adores. Come to think of it, the non-existence of&nbsp;<em>any</em>&nbsp;government with a capacity to transfer substantial wealth from financiers and corporates to the many (not even the German one can do this) is any oligarchy’s wet dream. Why would they want to spoil this triumph either by creating a democratically elected federal government or a digital euro?</p><p>But here is an interesting thought: The peoples of Europe have failed to push for a federal democracy in Europe. However, the Chinese central bank digital currency may prove harder to ignore: If a Dutch or German firm that trades with China can acquire a digital wallet from the Chinese central bank, they will most certainly use it. That means that the euro’s dominance will be challenged even within Europe. So, the pressure on the ECB to create a digital euro is enormous. But so is the oligarchy’s counter-pressure to ensure that, even if a digital euro is created, the people of Europe should not be allowed a digital euro wallet with the ECB. In this sense, I anticipate an almighty struggle for the right to a digital ECB wallet that will bring back memories of the struggle for universal franchise.</p><p><strong>What do you make of what is going on in&nbsp;<a href="https://the-crypto-syllabus.com/jorge-e-cuellar-on-el-salvadors-bitcoin-experiment/" target="_blank" rel="noopener">El Salvador</a>? Not only has it made Bitcoin legal tender (shortly after announcing the Chivo Wallet with some money placed in it to incentivize use) but it will also be issuing the so-called Volcano Bonds, which have attracted their share of controversy. Is there a way to look at these bonds as a tactic that expands El Salvador’s options in negotiating with the IMF? Based on your own experience negotiating with that institution, do you think they stand any chance of success?</strong></p><p>It is a preposterous stunt. For the life of me I cannot even begin to answer those who say to me: ‘Had you, Yanis, adopted Bitcoin back in 2015, all of the Greek people’s problems would have gone away!’ Why would they? The poor of Greece or of El Salvador would have no way to get their hands on Bitcoin anyway. Then the only beneficiaries would be Bitcoin hoarders (of whom very few live in El Salvador or Greece), who suddenly benefit from a spike in Bitcoin demand and from being able to spend their stash in El Salvador without the cost of converting them to dollars. The only poor El Salvadorians who may gain something are the expats sending money home in the form of remittances – people who are, now, fleeced by Western Union and the like.</p><p>On Volcano Bonds, this is a dangerous development. A government is inviting speculators to buy cryptocurrency backed by an impoverished state. Early Bitcoin enthusiasts were motivated, partly, by a loathing of governments that took on unsustainable debt – before indulging domestically in financial repression and austerity – in order to be able to extend-and-pretend their debt. The worry was that, at some point, Wall Street and other grubby conventional financiers would start building similar pyramids on… Bitcoin. And, the ultimate fear was that the state would join in. Well, Volcano Bonds are making this nightmare a reality, allowing speculators to speculate on a cryptocurrency using an impoverished sovereign state as backup.</p><p>More generally, and lest we forget, El Salvador’s public debt is in dollars, and thus impervious to whether Bitcoin is made legal tender or not. Making Bitcoin legal tender just adds enormous costs on small businesses, and ensures that those who do accept Bitcoin effectively exit the domestic fiscal system – leading to a substantial loss of fiscal space for the government, a development that increases its long term dollar debt burden.</p><p>As for the argument that, by adopting Bitcoin, Bitcoin will flood into the country thus boosting investment and giving the government more degrees of freedom vis-à-vis the IMF, again I cannot see the logic here. Bitcoin business moved into the Baltics, Puerto Rico, and elsewhere because of low costs, low taxes, and negligible regulation of their activities. They did not care if the local corner store is forced by law to accept Bitcoin. (In any case, most of these businesses are ultimately using Bitcoin to earn large amounts of… dollars!).</p><p>In view of the above, I cannot see why anyone would think that, in making Bitcoin legal tender, the El Salvador government is improving its bargaining position vis-à-vis the IMF. The fact that the IMF is utterly opposed to Bitcoin being granted legal tender status in El Salvador, as well as to its president’s Volcano Bonds, does not mean that the IMF is worried that its bargaining power vis-à-vis the El Salvador government is weakened. Quite the opposite: They predict that the Bitcoin experiment will deplete the El Salvador government’s fiscal space, boost the IMF’s power over El Salvador, but, at the same time, put more pressure on the IMF to commit more bailout funds to a failed El Salvador. After the recent IMF fiasco of huge bailouts to the radically right-wing Macri government in Argentina, it is not something the IMF folks cherish.</p><p><strong>You have claimed,&nbsp;<a href="https://greekreporter.com/2021/06/27/bitcoin-varoufakis-blockchain-crypto" target="_blank" rel="noopener">in an interview</a>, that there are feudalistic elements to Bitcoin, for there is no democratic mechanism to determine who gets how many Bitcoins, thus favoring the early adopters. Interestingly, you contract feudalism to democracy here rather than to capitalism. Because if you think about capitalist competition – but also all the shady stuff that Marxists tend to lump under ‘primitive accumulation’ – one can easily argue that there’s nothing non-capitalist in what you describe: those who moved in early got the largest share of the pie, while crypto-mining, as it exists today, favors those with larger capital expenditures. Why describe this system as ‘feudalist’ when ‘capitalist’ would do just as well?</strong></p><p>Assets, by themselves, are neither feudalist nor capitalist. Whether we are talking about gold, cucumbers, or Bitcoin, assets are assets – end of story. What makes an asset feudal or capitalist or socialist is the manner in which it interacts with a society’s social relations of production, the pattern of property rights it shores up, etc. My point, when referring to Bitcoin’s early adopters as a crypto-aristocracy, as crypto-lords, was that, when an asset like Bitcoin (whose exchange value is built on engineered scarcity) is embedded in any oligarchic exploitative system (capitalism, kleptocracy, techno-feudalism, etc.), it acquires the basic character of the (pre-capitalist) feudal order: a small minority are empowered to collect rents in proportion to the chunks of the asset that they began with. To recap, Bitcoin is neither feudalist nor capitalist&nbsp;<em>per se</em>. It is simply oligarchic.</p><figure><img src="https://the-crypto-syllabus.com/content/images/2022/01/Varoufakis-3.jpg" alt=""><figcaption>Yanis Varoufakis in London, 2017 –&nbsp;<a href="https://www.flickr.com/photos/chathamhouse/24294373237/in/photolist-yQnbVL-2iV8kY6-25aEY2D-2kvCd29-2ivhXLK-vtD3ph-yrfmh3-yrfmgG-DtMX9j-zK6afs-DMDLuH-DnqgQg-DVUiyK-DTzvv1-DKtXzb-CYvpDe-DtMY5N-DTzxzb-2iV8kYX-DnqfSp-2iV7H6R-UwsSzV-NS6CzZ-qE4LZJ-D1P1L6-CYvoHM-2ehj1oC-2if5gWf-2i8TWa2-2iVaqXa-2cZTNvR" target="_blank" rel="noopener">source</a></figcaption></figure><p><strong>Recently, you’ve taken up the theme of ‘<a href="https://www.yanisvaroufakis.eu/2021/07/05/techno-feudalism-is-taking-over-project-syndicate-op-ed/" target="_blank" rel="noopener">techno-feudalism</a>’, pointing out that capitalism is no longer what it once was. If I understand your thesis correctly, what makes the current system ‘feudal’ is that A) markets are no longer key to the making of profits (e.g. the QE experience suggests as much), while B) tech platforms have amassed immense political power, which is unprecedented in capitalism. Is it a correct summary of your argument? &nbsp;Are there other important dimensions to ‘techno-feudalism’ that this summary doesn’t capture?</strong></p><p>The question is this: Is capitalism undergoing one more of its many metamorphoses, thus warranting nothing more than a new epithet, e.g. rentier capitalism, platform capitalism, hyper-capitalism or xxxxx-capitalism? Or are we witnessing a qualitative transformation of capitalism into a brand new exploitative mode of production? I think the latter. Moreover, this is not just a theoretical issue. If I am right, grasping the radicality of this transformation is crucial to opposing this new systemic exploitation.</p><p>Puzzlement is, of course, an understandable reaction to my claim – which needs a great deal of explanation and substantiation. Unable to offer it here in full (Nb. I am dedicating my next book to the subject), here is a flavour:</p><p>Capitalism is everywhere we look. Capital is accumulating rapidly and beating labour over the head everywhere and in cruel new ways. So, how come I argue that this is no longer capitalism – but, rather, something worse and distinct? Let me begin by reminding our readers that back in the 1780s, feudalism was everywhere and feudal lords were stronger than ever. However, surreptitiously, capitalism was already infecting feudalism’s roots and a new ruling class (the bourgeoisie) was in the process of taking over.</p><p>My claim is that, similarly today, capitalism – like feudalism in the 1780s – is being usurped by a far more exploitative and very distinct new extractive/exploitative system (which I call techno-feudalism), one that is arriving complete with a new ruling class.</p><p>Critics of my thesis will point out, correctly, that capitalism has undergone many transformations – from its early competitive phase, to monopoly-oligopoly capitalism (1910–onwards), its Bretton-Woods period (during which finance was kept on a leash with capital controls, etc.), financialised capitalism (from 1980–onwards) and, more recently, rentier capitalism. All these capitalisms were distinct and interestingly different from one another. BUT, they were each a version of capitalism.</p><p>What makes a system capitalist? The answer is: It is a system driven by private profits (Nb. not rents) extracted within markets. (To compare and contrast, feudalism was driven by rents extracted outside of markets.) Has that changed? I believe so. What has replaced profit on the one hand and markets on the other? My answer: Central bank money has replaced private profit (as the system’s main fuel and lubricant) and digital fiefdoms/platforms have become the realm in which value and capital are extracted from the majority by a tiny oligarchy.</p><p>Let me explain this in greater detail:</p><p><em>Hypothesis 1: Central bank money replaced private profits as the system’s driver</em></p><p>Profitability no longer drives the system-as-a-whole, even though it remains the be-all and end-all for individual entrepreneurs. Consider what happened in London on August 12, 2020. It was the day markets learned that the British economy shrank disastrously – and by far more than analysts had expected (more than 20% of national income had been lost in the first seven months of 2020). Upon hearing the grim news, financiers thought: ‘Great! The Bank of England, panicking, will print even more pounds and channel them to us to buy shares. Time to buy shares!’</p><p>This is just one of countless manifestations of a new global reality: In the United States and all over the West, central banks print money that financiers lend to corporations, which then use it to buy back their shares – whose prices are thus decoupled from profits. The new barons, as a result, expand their fiefs, courtesy of state money, even if they never earn a dime of profit! Moreover, they dictate terms on the supposed Sovereign – the central banks that keep them ‘liquid’. While the Fed, for example, prides itself over its power and independence, it is today utterly powerless to stop that which it started in 2008: printing money on behalf of bankers and corporates. Even if the Fed suspects that, in keeping the corporate barons liquid, it is precipitating inflation, it knows that ending the money printing will bring the house down. The terror of causing a bad debt and bankruptcy avalanche makes the Fed a hostage to its own decision to print and ensures that it will continue printing to keep the barons liquid. This has never happened before. Powerful central banks, which today keep the system going singlehandedly, have never wielded so little power. Only under feudalism did the Sovereign feel similarly subservient to its barons, while remaining responsible for keeping the whole edifice together.</p><p><em>Hypothesis 2: Digital platforms are replacing markets</em></p><p>Amazon.com, Facebook, etc. are not markets. As you enter them, you leave capitalism behind. Within these platforms, one algorithm (belonging to one person or to very few persons) decides what is on sale, who sees which commodity is available, and how much rent the owner of the platform will keep from the profits of vassal-capitalists allowed to trade within the platform. In short, more and more economic activity is shifting from markets to digital fiefs. And that’s not all.</p><p>During the 20th century, and up to this day, workers in large capitalist oligopolistic firms (like General Electric, Exxon-Mobil, or General Motors) received approximately 80% of the company’s income. Big Tech’s workers do not even collect 1% of their employer’s revenues. This is because paid labour performs only a fraction of the work that Big Tech benefits from. Who performs the bulk of the work? Most of the rest of us! For the first time in history, almost everyone produces for free (often enthusiastically), adding to Big Tech’s capital stock (that is what it means to upload stuff on Facebook or move around while linked to Google Maps). And, moreover, this capital takes a new, far more powerful form (see below, where I talk about command capital).</p><p>At the same time, firms operating in normal capitalist markets – outside Big Tech and Big Finance – see their profitability collapse anyway, their dependence on central bank money grow exponentially, and their ownership be gobbled up by private equity and SPACs. Ergo, as feudal social relations of production were on the wane (and replaced by capitalist social relations) in the 1780s, today it is capitalist social relations of production that are being replaced by what I call technofeudal social relations.</p><p><em>Summing up:</em></p><p>Capital is getting stronger but capitalism is dying. A new system is taking over in which a new ruling class owns and runs both the state money that lubricates it (instead of profits) and the new non-market realms in which the very, very few make the many work on their behalf. Capitalist profits (in the sense of the entrepreneurial profits as understood by Adam Smith and Marx) are disappearing, while new forms of rent are accumulating in the accounts of the new techno-lords in control of both the state and the digital fiefs, in which unwaged or precarious work is performed by the masses – who begin to resemble techno-peasants.</p><p><strong>A common refrain in arguments about the rise of techno-feudalism is that tech platforms are just passive rentiers who are deriving immense profits from user data for which they pay very little. To put this in the most extreme way possible, these are lazy, mostly immaterial rentiers, who, having amassed a lot of IP, are now resting on their laurels. This reading also informs many of the enthusiastic accounts of Web3, which promise to share data wealth with the users who generated it. Yet, if one looks at the balance sheets and earnings statements of these firms, a different picture emerges: they actually invest more – rather than less – in material and tangible assets than non-tech firms (and more than they themselves did a decade ago), all while incurring&nbsp;<a href="https://www.nasdaq.com/articles/which-companies-spend-the-most-in-research-and-development-rd-2021-06-21" target="_blank" rel="noopener">immense R&amp;D and capital expenditures</a>&nbsp;(e.g. Amazon’s for 2020 was over $40 billion; Alphabet’s was almost $30 billion). This seems to fit rather well with the view of these firms as capitalist enterprises that, while controlling some markets, still compete in others (Google, Facebook, and Amazon in advertising; Google, Microsoft, Amazon, and Alibaba in cloud computing and AI services). Aren’t we running the risk of minimizing the really-existing&nbsp;<em>capitalist&nbsp;</em>dynamics of this tech economy when we emphasize those related to feudalism?</strong></p><p>I agree with you in this sense: Jeff Bezos, Elon Musk, et al. invest massively and are nothing like the lazy aristocrats of the original feudal era. But that does not mean that their investment is part of a standard capitalist dynamic. Techno-feudalism is not merely feudalism with gadgets. It is simultaneously much more advanced than capitalism and reminiscent of feudalism.</p><p>Let me be more precise. The massive investment of Big Tech that you mention is crucial. Not just because of its size but, primarily, because of what it produces: a new form of capital that I call&nbsp;<em>command capital</em>. What is command capital?</p><p>Standard capital comprises&nbsp;<em>produced means of production</em>. Command capital, in contrast, comprises&nbsp;<em>produced means of organising the means of industrial production</em>. Its owners can extract huge new value without owning the means of industrial production; merely by owning the privatised informational networks that embody command capital.</p><p>Command capital, to be more precise, lives on privately owned networks/platforms and has the potential to command those who do not own it to do two things: Train the machines/algorithms on which it lives to (A) direct our consumption patterns; and (B) directly manufacture even more command capital on behalf of its owners (e.g. posting stuff on Facebook, a form of labour de-commodification).</p><p>In more abstract terms: Standard capital allows capitalists to amass surplus exchange value. Command capital, in contrast, allows techno-lords (i.e. Jeff Bezos, Elon Musk, et al.) to amass surplus command value. Command value? Yes: Any digital commodity has command value to the extent that its buyer can use it to convert expressive everyday human activity into the capacity to train an algorithm to do two things: (A) make us buy stuff, and (B) make us produce command capital for free and for their benefit.</p><p>In the language of Marx’s political economy, the magnitude of command value contained in any digital commodity is determined by the sum of: the surplus value of the commodities it makes us buy (see A above) + the labour time socially/technically necessary for us to produce a unit of command capital (under B above), to be appropriated instantly by the techno-lords.</p><p>In summary, what Bezos, Musk, et al. are accomplishing through their massive investments cannot be understood in terms of either feudalism or capitalism.</p><ul><li>Feudalism was based on the direct extraction of experiential/use value from peasants.</li><li>Capitalism was based on the extraction of surplus labour from waged labour.</li><li>Technofeudalism is a new system in which the techno-lords are extracting a new power to make the rest of us do things on their behalf. This new power comes from investing in a new form of capital (command capital) that allows them to amass a new type of value (command value) which, in turn, grants them the opportunity to extract surplus value from (i) vassal-capitalists, (ii) the precariat, and (iii) everyone using their platforms to produce on their behalf, unconsciously, even more command capital.</li></ul><p>If I am right, by continuing to call this new environment… capitalism, we would miss the opportunity to appreciate the radically different, and new, processes determining our lives in the here and now. Techno-feudalism, I think, comes much closer to capturing this brave (albeit, dystopic) new world.</p><hr><p><strong>Yanis Varoufakis</strong>&nbsp;is a member of Greece’s Parliament and parliamentary leader of MeRA25, the Greek political party belonging to DiEM25 – Europe’s first transnational paneuropean movement. Previously, he served as Greece’s Finance Minister during the first six months of 2015.</p><p>Varoufakis read mathematics and economics at the Universities of Essex and Birmingham and subsequently taught economics at the Universities of East Anglia, Cambridge, Sydney, Glasgow, Texas and Athens where he still holds a Chair in Political Economy and Economic Theory. He is also&nbsp;<em>Honorary Professor of Political Economy</em>&nbsp;at the University of Sydney,&nbsp;<em>Honoris Causa Professor of Law, Economics and Finance&nbsp;</em>at the University of Torino,&nbsp;<em>Visiting Professor of Political Economy&nbsp;</em>at King’s College, London, and Doctor of the University&nbsp;<em>Honoris Causa</em>&nbsp;at University of Sussex.</p><p>He is the author of a number of best-selling books, including&nbsp;<em>Another Now: A novel</em>&nbsp;(Penguin UK &amp; Melville House US), &nbsp;<em>Adults in the Room: My struggle against Europe’s Deep Establishment</em>&nbsp;(London: Bodley Head, 2017);&nbsp;<em>Talking to My Daughter About the Economy: A brief history of capitalism</em>&nbsp;(London: Bodley Head, 2017),&nbsp;<em>And the Weak Suffer What They Must? Europe, Austerity and the Threat to Global Stability</em>&nbsp;(London: Bodley Head and NY: Nation Books, 2016); and&nbsp;<em>The Global Minotaur: America, Europe and the Future of the World Economy</em>&nbsp;(London: Zed Books, 2011, 2015). His academic books include&nbsp;<em>Economic Indeterminacy</em>&nbsp;(London: Routledge, 2014);&nbsp;<em>Foundations of Economics</em>&nbsp;(London: Routledge, 1998); and&nbsp;<em>Rational Conflict</em>&nbsp;(Oxford: Blackwell, 1991).</p><p>In his own words, Varoufakis was “thrust onto the public scene by Europe’s inane handling of an inevitable crisis”. In January 2015 he was elected to Greece’s Parliament with the largest majority in the country and served as Greece’s Finance Minister (January to July 2015). During his term he experienced first hand the authoritarian inefficiency of the European Union’s institutions and had to negotiate with the Eurogroup, the European Central Bank and the International Monetary Fund. Varoufakis resigned the finance ministry when he refused to sign a loan agreement that perpetuated Greece’s debt-deflationary cycle.</p><p>In February 2016 Varoufakis co-founded DiEM25, the Democracy in Europe Movement – Europe’s first transnational movement. In March 2018 DiEM25 founded MeRA25, its Greek political party. Led by Varoufakis, MeRA25 entered Parliament with nine MPs in the July 2019 General Election.</p></div></div><div id="readability-page-1" class="page"><div>
+<p>Recently I was browsing Product Hunt and I was aimlessly scrolling down to see if there are any interesting ideas. </p>
+<p>I was seeing one recurring idea, popping up once in every few weeks. This is the same idea that I see popping up on HackerNews, ProductHunt, IndieHackers every single week. What is this idea? <strong>Another product to bookmark websites you visit. </strong></p>
+<p>This is one idea that I have seen people beaten to death and beyond. There are several such ideas that I come across every once in a while, but this is the most common one. If you look at all these products, you will see that </p>
+<ul><li>They are almost the same, one is no different from the other. </li><li>One does not provide any advantage over the other.</li><li>The only difference you will see is the UI and the workflow.</li></ul>
+<p>But still people continue to make them. And like most projects, most of them will go offline within the first few years. </p>
+<p>So why people continue beat this idea to death?</p>
+<ul><li>Everyone has this itch, almost everyone who use the internet, including the creators at some point in their lives must have wanted a bookmarking application to save something they have come across the internet.</li><li>Bookmarking is broken in all browsers. From Chrome to FireFox no browser implements an easy to use bookmarking feature, which makes people go around looking for something which does booking marking better. <strong>Personally I feel this is the root cause for all these ideas.</strong> </li><li>There is no clear winner. Even though someone comes up with a bookmarking application every week, no one can tell a default bookmarking application from the back of their mind, such as Google for search or Instagram for photo sharing. There is no clear winner in bookmarking applications. So creators feel like they can create something that will dominate over everything else.</li><li>There is low barrier to entry. Anyone who can make a web app will be able to create a bookmarking application. Yes I have once created a Chrome extension on this idea, so that I learn how to create Chrome extensions.</li></ul>
+<p>The idea of bookmarking, or social bookmaking is not something new. From Delicious to StumbleUpon, to Digg to Pocket and finally a Y Combinator backed company Kippt all failed to capture the bookmarking space. </p>
+<p>Have people who create a bookmarking application read about what happened to them? and why they didn’t work out?</p>
+<p>So with so many big and small players trying to create something that everyone wanted at some point in their lives and still failing, means that there is something inherently wrong about this idea.</p>
+<p><strong>The hypothesis which I believe is the fact that, even though this is an itch people would have while browsing the internet, it’s not a big enough itch for them to use a bookmarking service or pay for such a service. </strong></p>
+<p>Another hypothesis would be</p>
+<p><strong>The market for such an app is so huge, there is no way one clear winner or one solution to fill such a big void.</strong></p>
+<p>Either way,</p>
+<p>Even thinking about myself, even though I have wanted a bookmarking application, it always has been a one time thing, that comes along once in every few months and not something that I would want to use recurrently everyday.</p>
+<p>But no matter what I’m sure people will continue to come up with a new bookmarking app once in every few weeks. </p>
+<p>So in a summery, I feel people beat ideas to death without succeeding because.</p>
+<ul><li>They feel there is an itch in every user, but not a big enough itch to be solved by a solution</li><li>Low barrier to entry</li><li>There is a huge market for the idea, no matter how many products come up there will be enough room everyone, just because the void that has been created.</li><li>Finally there is no problem to be solved in the first place. And everyone is creating a solution in search of a problem.</li></ul>
+<p>What do you think? Write a comment below. </p>
 </div></div><div id="readability-page-1" class="page"><div>
-    
-    <p>This domain is for use in illustrative examples in documents. You may use this
-    domain in literature without prior coordination or asking for permission.</p>
-    <p><a href="https://www.iana.org/domains/example">More information...</a></p>
-</div></div><div id="readability-page-1" class="page"><div><p><em>The author selected the <a href="https://www.brightfunds.org/funds/write-for-donations-covid-19-relief-fund">COVID-19 Relief Fund</a> to receive a donation as part of the <a href="https://do.co/w4do-cta">Write for DOnations</a> program.</em></p>
-<h3 id="introduction">Introduction</h3>
-<p>In the early days of the internet, websites often consisted of static data in an <a href="https://www.digitalocean.com/community/tutorial_series/how-to-build-a-website-with-html">HTML page</a>. But now that web applications have become more interactive and dynamic, it has become increasingly necessary to do intensive operations like make external network requests to retrieve <a href="https://developer.mozilla.org/en-US/docs/Glossary/API">API</a> data. To handle these operations in JavaScript, a developer must use <em>asynchronous programming</em> techniques.</p>
-<p>Since JavaScript is a <em>single-threaded</em> programming language with a <em>synchronous</em> execution model that processes one operation after another, it can only process one statement at a time. However, an action like requesting data from an API can take an indeterminate amount of time, depending on the size of data being requested, the speed of the network connection, and other factors. If API calls were performed in a synchronous manner, the browser would not be able to handle any user input, like scrolling or clicking a button, until that operation completes. This is known as <em>blocking</em>.</p>
-<p>In order to prevent blocking behavior, the browser environment has many Web APIs that JavaScript can access that are <em>asynchronous</em>, meaning they can run in parallel with other operations instead of sequentially. This is useful because it allows the user to continue using the browser normally while the asynchronous operations are being processed.</p>
-<p>As a JavaScript developer, you need to know how to work with asynchronous Web APIs and handle the response or error of those operations. In this article, you will learn about the event loop, the original way of dealing with asynchronous behavior through callbacks, the updated <a href="http://www.ecma-international.org/ecma-262/6.0/">ECMAScript 2015</a> addition of promises, and the modern practice of using <code>async/await</code>.</p>
-<p><strong>Note:</strong> This article is focused on client-side JavaScript in the browser environment. The same concepts are generally true in the <a href="https://nodejs.org/">Node.js</a> environment, however Node.js uses its own <a href="https://nodejs.org/api/">C++ APIs</a> as opposed to the browser’s <a href="https://developer.mozilla.org/en-US/docs/Web/API">Web APIs</a>. For more information on asynchronous programming in Node.js, check out <a href="https://www.digitalocean.com/community/tutorials/how-to-write-asynchronous-code-in-node-js">How To Write Asynchronous Code in Node.js</a>.</p>
-<h2 id="the-event-loop">The Event Loop</h2>
-<p>This section will explain how JavaScript handles asynchronous code with the event loop. It will first run through a demonstration of the event loop at work, and will then explain the two elements of the event loop: the stack and the queue.</p>
-<p>JavaScript code that does not use any asynchronous Web APIs will execute in a synchronous manner—one at a time, sequentially. This is demonstrated by this example code that calls three functions that each print a number to the <a href="https://www.digitalocean.com/community/tutorials/how-to-use-the-javascript-developer-console">console</a>:</p>
-<pre><code><span>// Define three example functions</span>
-<span>function</span> <span>first</span><span>(</span><span>)</span> <span>{</span>
-  console<span>.</span><span>log</span><span>(</span><span>1</span><span>)</span>
-<span>}</span>
+                <p><strong>B</strong><span>ill Gates wheels a hefty metal barrel out onto a stage. He carefully places it down and then faces the audience, which sits silent in a darkened theater. “When I was a kid, the disaster we worried about most was a nuclear war,” he begins. Gates is speaking at TED’s flagship conference, held in Vancouver in 2015. He wears a salmon pink sweater, and his hair is combed down over his forehead, Caesar-style. “That’s why we had a barrel like this down in our basement, filled with cans of food and water,” he says. “When the nuclear attack came, we were supposed to go downstairs, hunker down, and eat out of that barrel.”</span></p>
+<p><span>Now that he is an adult, Gates continues, it is no longer nuclear apocalypse that scares him, but pestilence. A year ago, Ebola killed over ten thousand people in West Africa. If the virus had been airborne or spread to a large city center, things would have been far worse. It might’ve snowballed into a pandemic and killed tens of millions of people. Gates tells the TED attendees that humanity is not ready for this scenario — that a pandemic would trigger a global catastrophe at an unimaginable scale. We have no basement to retreat to and no metal barrel filled with supplies to rely on.&nbsp;</span></p>
+<p><span>But, Gates adds, the future might turn out okay. He has an </span><i><span>idea</span></i><span>. Back when he was a kid, the U.S. military had sufficient funding to mobilize for war at any minute. Gates says that we must prepare for a pandemic with the same fearful intensity. We need to build a medical reserve corps. We need to play germ games like generals play war games. We need to make alliances with other virus-fighting nations. We need to build an arsenal of biomedical weapons to attack any non-human entity that might attack our bodies. “If we start now, we can be ready for the next epidemic,” Gates concludes, to a round of applause.&nbsp;</span></p>
+<p><span>Of course, Gates’s popular and well-shared TED talk — viewed millions of times — didn’t alter the course of history. Neither did any of the other “ideas worth spreading” (the organization’s tagline) presented at the TED conference that year — including Monica Lewinsky’s massively viral speech about how to stop online bullying through compassion and empathy, or a Google engineer’s talk about how driverless cars would make roads smarter and safer in the near future. In fact, seven years after TED 2015, it feels like we are living in a reality that is the exact opposite of the future envisioned that year. A president took office in part because of his talent for online bullying. Driverless cars are nowhere near as widespread as predicted, and those that do share our roads keep crashing. Covid has killed five million people and counting.&nbsp;</span></p>
+<p><span>At the start of the pandemic, I noticed people sharing Gates’s 2015 talk. The general sentiment was one of remorse and lamentation: the tech-prophet had predicted the future for us! If only we had heeded his warning! I wasn’t so sure. It seems to me that Gates’s prediction and proposed solution are at least part of what landed us here. I don’t mean to suggest that Gates’s TED talk is somehow directly responsible for the lack of global preparedness for Covid. But it embodies a certain story about “the future” that TED talks have been telling for the past two decades — one that has contributed to our unending present crisis.</span></p>
+<p><span>The story goes like this: there are problems in the world that make the future a scary prospect. Fortunately, though, there are solutions to each of these problems, and the solutions</span><span> have been formulated by extremely smart, tech-adjacent people. For their ideas to become realities, they merely need to be articulated and spread as widely as possible. And the best way to spread ideas is through stories — hence Gates’s opening anecdote about the barrel. In other words, in the TED episteme, the function of a story isn’t to transform via metaphor or indirection, but to actually manifest a new world. Stories about the future create the future. Or as Chris Anderson, TED’s longtime curator, puts it, “We live in an era where the best way to make a dent on the world… may be simply to stand up and say something.” </span><span>And yet, TED’s archive is a graveyard of ideas. It is a seemingly endless index of stories about the future — the future of science, the future of the environment, the future of work, the future of love and sex, the future of what it means to be human — that never materialized. By this measure alone, TED, and its attendant ways of thinking, should have been abandoned.</span></p>
+<p><span>Though no longer at its cultural apogee, the public speaking platform is more active than ever. New TED talks are constantly being delivered and then uploaded and viewed on TED’s website and YouTube channel, which has 20.5 million subscribers. There are TED podcasts, a TED newsletter, a TED Ideas blog, and a TED publishing arm, which prints “short books to feed your craving for ideas.” Before the end of this year, TEDx events will be held in Barcelona, Tehran, Kabul, Hanoi, Wuhan, Anchorage, Jakarta, Algiers, Lagos, and Tomsk, the oldest university town in Siberia. People are still paying between $5,000 and $50,000 to attend the annual flagship TED conference. In 2021, the event was held </span><span>in Monterey, California. Amid wildfires and the Delta surge, its theme was “the case for optimism.” There were talks on&nbsp;</span><span>urban possibility (“finding new, smarter ways to live together”), a tech comeback (how genetic technology and NFTs “make the case for rousing the techno-optimist in us”), and climate confidence (“How we might beat this thing!”).&nbsp;</span></p>
+<p><span>I recently watched some of the talks from this conference on my laptop. They hit like parodies of a bygone era, so ridiculous that it made me almost nostalgic for a time when TED talks captivated me. Back then, around a decade ago, I watched those articulate, audacious, composed people talk about how they were building robots that would eat trash and turn it into oxygen, or whatever, and I felt hopeful about the future. But</span><span> the trash-eating robots never arrived. With some distance, now, from a world in which TED seemed to offer a bright path forward, it’s time to ask: what exactly is TED? And what happened to the future it envisioned?</span></p>
 
-<span>function</span> <span>second</span><span>(</span><span>)</span> <span>{</span>
-  console<span>.</span><span>log</span><span>(</span><span>2</span><span>)</span>
-<span>}</span>
+<p><strong>I</strong><span>n ancient Athens, public speaking was understood primarily as a means of persuasion; learning to convince others was the duty of a democratic citizen. For Confucius, refined speech was the embodiment of refined ethics. In nineteenth-century America, popular lectures delivered in lyceums up and down the East Coast were seen as a form of moral uplift,</span> <span>raising the nation’s cultural standards and satisfying the middle class’s rapacious appetite for useful knowledge. The primary function of TED, by contrast, is to predict the future.&nbsp;</span></p>
+<p><span>The inaugural TED conference, held in Monterey, California in 1984, was organized by Richard Saul Wurman, an architect, and Harry Marks, a TV broadcast designer, who shared a conviction that the separate fields of technology (T), entertainment (E), and&nbsp;design (D) were converging, and that their convergence was going to change the world. Lofty futurism was nothing new for the Silicon Valley cohort that attended the first TED conference. Since the dawn of digital computing, the engineers and mathematicians building the new machines had spoken of how their inventions would instigate revolutions, upend institutions, disrupt industries, and transform what it means to be human. John von Neumann, sometimes considered the father of modern computing, is said to have confessed to his wife, “What we are creating now is a monster whose influence is going to change history, provided there is any history left.” The world was about to enter a new historical epoch. The change would be exponential and irrevocable across every sphere of human activity. Wurman and Marks packaged this futurist imaginary and sold it as a live event.&nbsp;</span></p>
+<p><span>There are two recordings that survive online from the 1984 TED conference. One is a demo by a Sony executive, dressed in a suit with a silk pocket square, who plays Richard Strauss’s </span><i><span>Also sprach Zarathustra</span></i><span> on the newly invented CD-ROM. The other is a presentation by Nicholas Negroponte, an MIT professor who would later launch the MIT Media Lab, in which he offers five predictions: electronic books, touchscreens, teleconferencing, a computationally mediated service industry, and laptops for every student in school (an idea that would eventually lead to the spectacularly abortive One Laptop per Child program, which Negroponte himself oversaw).</span></p>
+<p><span>TED wasn’t held again until 1990, when Wurman selected a more wide-ranging lineup of speakers. This time, he added philosophers, musicians, religious leaders, and philanthropists to the roster. The talks had to be tech- and future-oriented, but also, crucially, entertaining and visionary. Fewer practical demonstrations, more high-level sermonizing. At TED2, Jaron Lanier spoke of the perception-bending potential of virtual reality. In just an hour and a half, Lanier said, he could build a digital world that attendees could later explore in the V.R. room at the conference. John Naisbitt, then a popular futurist and author, and his wife, Patricia Aburdene, talked about the “megatrends” that would transform our lives in the coming decades — more people would move back to country towns and work remotely via their computers, for instance. For some, this high-minded forecasting seemed odious. Ted Nelson, inventor of Project Xanadu, an ill-fated, hypertext-based alternative to the World Wide Web, also gave a talk at TED2. He began by calling the event “the most self-referentially smug conference that I have been at outside Apple and IBM.” But the new TED format was a commercial success, and over the 1990s, the conference gained a cult following, particularly among the increasingly wealthy Silicon Valley crowd.</span></p>
+<p><span>Wurman’s curatorial decisions and fastidious quality control gave early TED a certain nerdy-chic exclusivity. He sat on stage for every talk. If speakers rambled or bungled a line, he would leave his chair and stand directly behind them until they noticed and left the stage. But after a decade, he grew tired of TED and, in 2001, sold it to Chris Anderson, a British media entrepreneur who made a fortune building websites (including the popular video game site IGN) and publishing magazines about “the web” (like </span><i><span>Business 2.0</span></i><span>) before things went south in the dot-com crash.&nbsp;</span></p>
+<p><span>Anderson’s worldview had been heavily influenced by the tech prophets of the day, like Kevin Kelly, </span><i><span>WIRED</span></i><span>’s born-again Christian founding editor. In his 1998 book, </span><i><span>New Rules for the New Economy, </span></i><span>Kelly would argue that in the digital age, value would be generated no longer through the movement of materials and energy, but through the spreading of ideas and stories — discourse converted with perfect efficiency into capital. Anderson was thinking along the same lines. In 1996, he had established the Sapling Foundation, a not-for-profit whose goal was to “provide a platform for the world’s smartest thinkers, greatest visionaries and most-inspiring teachers, so that millions of people can gain a better understanding of the biggest issues faced by the world, and a desire to help create a better future.”</span></p>
+<p><span>When Anderson purchased TED, it was in the Sapling Foundation’s name, and at the 2002 TED conference, he sketched out a plan through which TED would further its ambitions</span><b>.</b><span> On stage, leaning forward in his office chair, he affected a kind of conceited chumminess distinctly reminiscent of David Brent from the British version of </span><i><span>The Office</span></i><span>. He began with an anecdote about his “eighteen months of business hell” in the late 1990s, but claimed that the experience had given him new insight into the future. The coming decades would not be about gatekeeping or rigid disciplinary boundaries or exclusivity, Anderson said. The future was about openness, connection, democratization of knowledge, collectivity. Ideas were there to be spread. Through this spreading,​ a better world would materialize. “To understand anything,” he said, “you just need to understand the little bits.”</span></p>
 
-<span>function</span> <span>third</span><span>(</span><span>)</span> <span>{</span>
-  console<span>.</span><span>log</span><span>(</span><span>3</span><span>)</span>
-<span>}</span>
-</code></pre>
-<p>In this code, you define three functions that print numbers with <code>console.log()</code>.</p>
-<p>Next, write calls to the functions:</p>
-<pre><code><span>// Execute the functions</span>
-<span>first</span><span>(</span><span>)</span>
-<span>second</span><span>(</span><span>)</span>
-<span>third</span><span>(</span><span>)</span>
-</code></pre>
-<p>The output will be based on the order the functions were called—<code>first()</code>, <code>second()</code>, then <code>third()</code>:</p>
-<pre><code><p>Output</p>1
-2
-3
-</code></pre>
-<p>When an asynchronous Web API is used, the rules become more complicated. A built-in API that you can test this with is <code>setTimeout</code>, which sets a timer and performs an action after a specified amount of time. <code>setTimeout</code> needs to be asynchronous, otherwise the entire browser would remain frozen during the waiting, which would result in a poor user experience.</p>
-<p>Add <code>setTimeout</code> to the <code>second</code> function to simulate an asynchronous request:</p>
-<pre><code><span>// Define three example functions, but one of them contains asynchronous code</span>
-<span>function</span> <span>first</span><span>(</span><span>)</span> <span>{</span>
-  console<span>.</span><span>log</span><span>(</span><span>1</span><span>)</span>
-<span>}</span>
+<p><strong>A</strong><span>nderson’s speech was well-received — Jeff Bezos, an early TED enthusiast who was in the audience that day, gave him a standing ovation — and over the next few years, the conference’s reputation swelled. Anderson continued courting Silicon Valley’s future-builders for presentations. In 2003, Bezos himself, then still at the beginning of his meteoric rise to the top of the global rich list, gave a talk about how the internet was not a commodity, like gold; it was a utility, like electricity. Despite the recent downturn, there were plenty more fortunes to be made in the coming decades. “With innovation there isn’t a last nugget,” he said, grinning, as if he could see his own bright future unfolding before him. Anderson also invited several “thought leaders” who talked convincingly about how technological changes would transform society and human nature itself. This new TED tone was embodied by author Steven Johnson’s 2003 talk, “The Web as a City.” Johnson started with a story about the resilience of New Yorkers in the West Village after 9/11 and then twisted it into a metaphor for Google’s page-rank algorithm: how people and data points, if organized in dense amalgams, can generate a “collective intelligence” greater than the sum of its parts.</span></p>
+<p><span>True to Anderson’s vision, TED’s reach continued to grow. 2005 heralded the first TEDGlobal event, held in the U.K. The biggest expansion came a year later, when TED began to upload talks online, where anyone could view them for free. Among the first talks posted was Sir Ken Robinson’s “Do Schools Kill Creativity?,” which has since become the most viewed TED talk of all time; it has been watchewd 72.2 million times in the sixteen years since. In an immaculately delivered speech, the British author and art education consultant proposed that the public education model developed during the Industrial Revolution was outdated: it valued literacy and numeracy and cared only about disciplining children so as to make them malleable for the workforce. In the future, according to Robinson, these skills would become increasingly irrelevant because of a vague set of changes that were afoot. “It’s the combination of all the things we’ve talked about,” he said, referring to other talks at the conference. “Technology and its transformational effect on work, and demography and the huge explosion in population. Suddenly, degrees aren’t worth anything. Isn’t that true?” In this coming new age, it would be the teacher’s role to help foster children’s creative sparks so they could generate original, fresh, and unlikely ideas to shape the world to come. “Our task is to educate their whole being, so they can face the future,” he said. “We may not see this future, but they will. And our job is to help them make something of it.”</span></p>
+<p><span>It was around the same time that TED talks began to take on a distinct rhetorical style, later laid out in Anderson’s book </span><i><span>TED Talks: The Official TED Guide to Public Speaking</span></i><span>. In it, Anderson insists anyone is capable of giving a TED-esque talk. You just need an interesting topic and then you need to attach that topic to an inspirational story. </span><span>Robots are interesting. Using them to eat trash in Nairobi is inspiring. Put the two together, and you have a TED talk.&nbsp;</span></p>
+<p><span>I like to call this fusion “the inspiresting.” Stylistically, the inspiresting </span><span>is earnest and contrived. It is smart but not quite intellectual, personal but not sincere, jokey but not funny. It is an aesthetic of populist elitism. Politically, the inspiresting performs a certain kind of progressivism, as it is concerned with making the world a better place, however vaguely. </span><span>“The speaker’s work and words move you and fill you with an expanded sense of possibility and excitement,” Anderson writes of the successful TED talk. “You want to go out and be a better person.” </span><span>All this can be achieved, Anderson proposes, without any serious transfers of power. </span><span>In fact, in Anderson’s view, not only is culture upstream from politics, but politics itself — dependent on what he calls “tribal thinking” — destroys the free movement of ideas, with all its world-changing potential. “The toxicity of our political… nonconversations is a true tragedy of the modern world,” he writes. “When people aren’t prepared or ready to listen, communication can’t happen.”&nbsp;</span></p>
 
-<span>function</span> <span>second</span><span>(</span><span>)</span> <span>{</span>
-  <span>setTimeout</span><span>(</span><span>(</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    console<span>.</span><span>log</span><span>(</span><span>2</span><span>)</span>
-  <span>}</span><span>,</span> <span>0</span><span>)</span>
-<span>}</span>
+<p><strong>T</strong><span>ED was never the sole purveyor of inspiresting content.</span><span> Malcolm Gladwell was inspiresting. The blog </span><a href="https://www.brainpickings.org/"><span>Brain Pickings</span></a><span> was inspiresting. </span><span>Burning Man was (once) inspiresting. Alain de Botton,</span><span> Oliver Sacks, and Bill Bryson were masters of the inspiresting. “This American Life” and “Radiolab,” and maybe narrative podcasting as a form, are inspiresting. But </span><span>it was TED talks that perhaps best distilled the inspiresting down into its most concentrated form — eighteen minutes of pure inspiresting.&nbsp;</span></p>
+<p><span>Jill Bolte Taylor’s 2008 talk “My Stroke of Insight” perhaps represents peak inspiresting. A cognitive scientist who spent years “mapping the micro-circuitry of the brain” (interesting), Bolte Taylor tells the story of how one morning she woke up to find that she was having a stroke. Instead of panicking, she saw it as an opportunity to study her own brain. The left side of her brain was bleeding, and she began to lose the cognitive functions required for analytical thought and self-identification. Her right brain took over and she felt herself suddenly to be living in an eternal present, at one with everything. She said “goodbye… to life,” closed her eyes, and felt her spirit become “like a great whale gliding through a sea of silent euphoria.” As Bolte Taylor recounts the experience in front of the TED audience, her eyes fill with tears. Her voice becomes incantatory. “We have the power to choose, moment by moment, who and how we want to be in the world,” she says. “I thought that was an idea worth spreading.” (Inspiring.)&nbsp;</span></p>
+<p><span>What is distinctly TED about Bolte Taylor’s talk is how she makes cognitive science somehow about self-improvement. Her talk does not aim to teach us only about the hemispheres of the brain, but also how to be better humans. This particular rhetorical strategy, already deployed by self-help gurus and life coaches, is apparent in many of the most popular TED talks at the height of the TED era, a period that loosely correlates with Barack Obama’s first term. In her talk, Elizabeth Gilbert, the author of </span><i><span>Eat, Pray, Love</span></i><span>, speaks about how each of us can, like her, become a creative genius. Brené Brown, a social work researcher, tells us how interpersonal vulnerability changed her life — and how it could change yours, too. We were no longer just watching TED talks for information about the future of the world </span><i><span>out there</span></i><span>. TED talks could help us make our future </span><i><span>selves</span></i><span> superior.&nbsp;</span></p>
+<p><span>Suddenly, circa 2010, everyone was sharing TED talks — via email, on Facebook, on personal blogs — and TED, a not-for-profit, was making a lot of money. Tickets to the annual conference were going for $7,500 ($15,000 for VIPs). TED set up partnerships with elite brands. TED speakers who achieved millions of views could parlay the attention into new careers as so-called thought leaders. Advertising executive Simon Sinek’s 2009 talk, “How Great Leaders Inspire Action,” massively boosted sales of his self-help-cum-entrepreneurship book </span><i><span>Start with Why</span></i><span>. </span><span>Sarah Kay, a spoken-word performer whose TED-talk poem, “If I Should Have a Daughter,” amassed millions of views, told </span><i><span>Business Insider</span></i><span>, “I’m very much aware that my career would not be what it is had that video not gone online.” In other words, i</span><span>f you could master the TED-style talk, you could sell anything — even slam poetry.&nbsp;</span></p>
+<p><span>The TED format proved alluring to some academics, too, especially those hoping for a crossover career appealing to both scholarly and popular audiences. Brown’s vulnerability talk vaulted her research to international fame: each one of her books since has appeared on </span><i><span>The</span></i> <i><span>New York</span></i> <i><span>Times</span></i><span> Best Seller list. Though there was no peer review process for TED, the conference had a review system to ensure that speakers were presenting valid, trustworthy material. Quality control was compromised, though, through the creation of the TEDx franchise, which from 2009 let licensees use the brand platform to stage independent events around the world. At a 2010 TEDx event, Randy Powell, a man who claimed to be at the “forefront of the most advanced mathematics ever known to mankind,” </span><a href="https://www.youtube.com/watch?v=7mKER4t-wZE"><span>spoke</span></a><span> about what he called vortex-based mathematics. This previously undiscovered branch of math would, he said, “create inexhaustible free energy, end all diseases, produce all food, travel anywhere in the universe, build the ultimate supercomputer and artificial intelligence, and make obsolete all existing technology.” He got a standing ovation.</span></p>
+<p><span>The video went largely unnoticed until 2012, when a handful of science bloggers found it and pilloried Powell’s claims. The talk, they said, was constructed entirely out of meaningless jargon. In an online forum, a theoretical physicist said that Powell was “either (1) insane, (2) a huckster going for fame or money, or (3) doing a Sokal’s hoax on TED.” Spectacles like this one damaged TED’s brand, and soon critics were accusing the institution of vapid oversimplification. Evgeny Morozov wrote in </span><i><span>The New Republic</span></i><span>, “TED is no longer a responsible curator of ideas worth spreading. Instead it has become something ludicrous.” A long profile of Anderson in </span><i><span>The</span></i> <i><span>New York Times Magazine</span></i><span> called TED </span><span>“the Starbucks of intellectual conglomerates.”&nbsp;</span></p>
+<p><span>Perhaps the most incisive critique came, ironically, at a 2013 TEDx conference. In “What’s Wrong with TED Talks?” media theorist Benjamin Bratton told a story about a friend of his, an astrophysicist, who gave a complex presentation on his research before a donor, hoping to secure funding. When he was finished, the donor decided to pass on the project. “I’m just not inspired,” he told the astrophysicist. “You should be more like Malcolm Gladwell.” Bratton was outraged. He felt that the rhetorical style TED helped popularize was “middlebrow megachurch infotainment,” and had begun to directly influence the type of intellectual work that could be undertaken. If the research wasn’t entertaining or moving, it was seen as somehow less valuable. TED’s influence on intellectual culture was “</span><span>taking something with value and substance&nbsp;and coring it out so that it can be swallowed without chewing,” Bratton said. “This is not the solution to our most frightening problems — rather, this is one of our most frightening problems.” (Online, his talk proved to be one of many ideas worth spreading. “This is by far the most interesting and challenging thing I’ve heard on TED,” one commenter posted. “Very glad to come across it!”)</span></p>
 
-<span>function</span> <span>third</span><span>(</span><span>)</span> <span>{</span>
-  console<span>.</span><span>log</span><span>(</span><span>3</span><span>)</span>
-<span>}</span>
-</code></pre>
-<p><code>setTimeout</code> takes two arguments: the function it will run asynchronously, and the amount of time it will wait before calling that function. In this code you wrapped <code>console.log</code> in an anonymous function and passed it to <code>setTimeout</code>, then set the function to run after <code>0</code> milliseconds.</p>
-<p>Now call the functions, as you did before:</p>
-<pre><code><span>// Execute the functions</span>
-<span>first</span><span>(</span><span>)</span>
-<span>second</span><span>(</span><span>)</span>
-<span>third</span><span>(</span><span>)</span>
-</code></pre>
-<p>You might expect with a <code>setTimeout</code> set to <code>0</code> that running these three functions would still result in the numbers being printed in sequential order. But because it is asynchronous, the function with the timeout will be printed last:</p>
-<pre><code><p>Output</p>1
-3
-2
-</code></pre>
-<p>Whether you set the timeout to zero seconds or five minutes will make no difference—the <code>console.log</code> called by asynchronous code will execute after the synchronous top-level functions. This happens because the JavaScript host environment, in this case the browser, uses a concept called the <em>event loop</em> to handle concurrency, or parallel events. Since JavaScript can only execute one statement at a time, it needs the event loop to be informed of when to execute which specific statement. The event loop handles this with the concepts of a <em>stack</em> and a <em>queue</em>.</p>
-<h3 id="stack">Stack</h3>
-<p>The <em>stack</em>, or call stack, holds the state of what function is currently running. If you’re unfamiliar with the concept of a stack, you can imagine it as an <a href="https://www.digitalocean.com/community/tutorials/understanding-arrays-in-javascript">array</a> with “Last in, first out” (LIFO) properties, meaning you can only add or remove items from the end of the stack. JavaScript will run the current <em>frame</em> (or function call in a specific environment) in the stack, then remove it and move on to the next one.</p>
-<p>For the example only containing synchronous code, the browser handles the execution in the following order:</p>
-<ul>
-<li>Add <code>first()</code> to the stack, run <code>first()</code> which logs <code>1</code> to the console, remove <code>first()</code> from the stack.</li>
-<li>Add <code>second()</code> to the stack, run <code>second()</code> which logs <code>2</code> to the console, remove <code>second()</code> from the stack.</li>
-<li>Add <code>third()</code> to the stack, run <code>third()</code> which logs <code>3</code> to the console, remove <code>third()</code> from the stack.</li>
-</ul>
-<p>The second example with <code>setTimout</code> looks like this:</p>
-<ul>
-<li>Add <code>first()</code> to the stack, run <code>first()</code> which logs <code>1</code> to the console, remove <code>first()</code> from the stack.</li>
-<li>Add <code>second()</code> to the stack, run <code>second()</code>.
-<ul>
-<li>Add <code>setTimeout()</code> to the stack, run the <code>setTimeout()</code> Web API which starts a timer and adds the anonymous function to the <em>queue</em>, remove <code>setTimeout()</code> from the stack.</li>
-</ul>
-</li>
-<li>Remove <code>second()</code> from the stack.</li>
-<li>Add <code>third()</code> to the stack, run <code>third()</code> which logs <code>3</code> to the console, remove <code>third()</code> from the stack.</li>
-<li>The event loop checks the queue for any pending messages and finds the anonymous function from <code>setTimeout()</code>, adds the function to the stack which logs <code>2</code> to the console, then removes it from the stack.</li>
-</ul>
-<p>Using <code>setTimeout</code>, an asynchronous Web API, introduces the concept of the <em>queue</em>, which this tutorial will cover next.</p>
-<h3 id="queue">Queue</h3>
-<p>The <em>queue</em>, also referred to as message queue or task queue, is a waiting area for functions. Whenever the call stack is empty, the event loop will check the queue for any waiting messages, starting from the oldest message. Once it finds one, it will add it to the stack, which will execute the function in the message.</p>
-<p>In the <code>setTimeout</code> example, the anonymous function runs immediately after the rest of the top-level execution, since the timer was set to <code>0</code> seconds. It’s important to remember that the timer does not mean that the code will execute in exactly <code>0</code> seconds or whatever the specified time is, but that it will add the anonymous function to the queue in that amount of time. This queue system exists because if the timer were to add the anonymous function directly to the stack when the timer finishes, it would interrupt whatever function is currently running, which could have unintended and unpredictable effects.</p>
-<p><strong>Note:</strong> There is also another queue called the <em>job queue</em> or <em>microtask queue</em> that handles promises. Microtasks like promises are handled at a higher priority than macrotasks like <code>setTimeout</code>.</p>
-<p>Now you know how the event loop uses the stack and queue to handle the execution order of code. The next task is to figure out how to control the order of execution in your code. To do this, you will first learn about the original way to ensure asynchronous code is handled correctly by the event loop: callback functions.</p>
-<h2 id="callback-functions">Callback Functions</h2>
-<p>In the <code>setTimeout</code> example, the function with the timeout ran after everything in the main top-level execution context. But if you wanted to ensure one of the functions, like the <code>third</code> function, ran after the timeout, then you would have to use asynchronous coding methods. The timeout here can represent an asynchronous API call that contains data. You want to work with the data from the API call, but you have to make sure the data is returned first.</p>
-<p>The original solution to dealing with this problem is using <em>callback functions</em>. Callback functions do not have special syntax; they are just a function that has been passed as an argument to another function. The function that takes another function as an argument is called a <em>higher-order function</em>. According to this definition, any function can become a callback function if it is passed as an argument. Callbacks are not asynchronous by nature, but can be used for asynchronous purposes.</p>
-<p>Here is a syntactic code example of a higher-order function and a callback:</p>
-<pre><code><span>// A function</span>
-<span>function</span> <span>fn</span><span>(</span><span>)</span> <span>{</span>
-  console<span>.</span><span>log</span><span>(</span><span>'Just a function'</span><span>)</span>
-<span>}</span>
-
-<span>// A function that takes another function as an argument</span>
-<span>function</span> <span>higherOrderFunction</span><span>(</span><span>callback</span><span>)</span> <span>{</span>
-  <span>// When you call a function that is passed as an argument, it is referred to as a callback</span>
-  <span>callback</span><span>(</span><span>)</span>
-<span>}</span>
-
-<span>// Passing a function</span>
-<span>higherOrderFunction</span><span>(</span>fn<span>)</span>
-</code></pre>
-<p>In this code, you define a function <code>fn</code>, define a function <code>higherOrderFunction</code> that takes a function <code>callback</code> as an argument, and pass <code>fn</code> as a callback to <code>higherOrderFunction</code>.</p>
-<p>Running this code will give the following:</p>
-<pre><code><p>Output</p>Just a function
-</code></pre>
-<p>Let’s go back to the <code>first</code>, <code>second</code>, and <code>third</code> functions with <code>setTimeout</code>. This is what you have so far:</p>
-<pre><code><span>function</span> <span>first</span><span>(</span><span>)</span> <span>{</span>
-  console<span>.</span><span>log</span><span>(</span><span>1</span><span>)</span>
-<span>}</span>
-
-<span>function</span> <span>second</span><span>(</span><span>)</span> <span>{</span>
-  <span>setTimeout</span><span>(</span><span>(</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    console<span>.</span><span>log</span><span>(</span><span>2</span><span>)</span>
-  <span>}</span><span>,</span> <span>0</span><span>)</span>
-<span>}</span>
-
-<span>function</span> <span>third</span><span>(</span><span>)</span> <span>{</span>
-  console<span>.</span><span>log</span><span>(</span><span>3</span><span>)</span>
-<span>}</span>
-</code></pre>
-<p>The task is to get the <code>third</code> function to always delay execution until after the asynchronous action in the <code>second</code> function has completed. This is where callbacks come in. Instead of executing <code>first</code>, <code>second</code>, and <code>third</code> at the top-level of execution, you will pass the <code>third</code> function as an argument to <code>second</code>. The <code>second</code> function will execute the callback after the asynchronous action has completed.</p>
-<p>Here are the three functions with a callback applied:</p>
-<pre><code><span>// Define three functions</span>
-<span>function</span> <span>first</span><span>(</span><span>)</span> <span>{</span>
-  console<span>.</span><span>log</span><span>(</span><span>1</span><span>)</span>
-<span>}</span>
-
-<span>function</span> <span>second</span><span>(</span><mark><span>callback</span></mark><span>)</span> <span>{</span>
-  <span>setTimeout</span><span>(</span><span>(</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    console<span>.</span><span>log</span><span>(</span><span>2</span><span>)</span>
-
-    <span>// Execute the callback function</span>
-    <mark><span>callback</span><span>(</span><span>)</span></mark>
-  <span>}</span><span>,</span> <span>0</span><span>)</span>
-<span>}</span>
-
-<span>function</span> <span>third</span><span>(</span><span>)</span> <span>{</span>
-  console<span>.</span><span>log</span><span>(</span><span>3</span><span>)</span>
-<span>}</span>
-</code></pre>
-<p>Now, execute <code>first</code> and <code>second</code>, then pass <code>third</code> as an argument to <code>second</code>:</p>
-<pre><code><span>first</span><span>(</span><span>)</span>
-<span>second</span><span>(</span>third<span>)</span>
-</code></pre>
-<p>After running this code block, you will receive the following output:</p>
-<pre><code><p>Output</p>1
-2
-3
-</code></pre>
-<p>First <code>1</code> will print, and after the timer completes (in this case, zero seconds, but you can change it to any amount) it will print <code>2</code> then <code>3</code>. By passing a function as a callback, you’ve successfully delayed execution of the function until the asynchronous Web API (<code>setTimeout</code>) completes.</p>
-<p>The key takeaway here is that callback functions are not asynchronous—<code>setTimeout</code> is the asynchronous Web API responsible for handling asynchronous tasks. The callback just allows you to be informed of when an asynchronous task has completed and handles the success or failure of the task.</p>
-<p>Now that you have learned how to use callbacks to handle asynchronous tasks, the next section explains the problems of nesting too many callbacks and creating a “pyramid of doom.”</p>
-<h2 id="nested-callbacks-and-the-pyramid-of-doom">Nested Callbacks and the Pyramid of Doom</h2>
-<p>Callback functions are an effective way to ensure delayed execution of a function until another one completes and returns with data. However, due to the nested nature of callbacks, code can end up getting messy if you have a lot of consecutive asynchronous requests that rely on each other. This was a big frustration for JavaScript developers early on, and as a result code containing nested callbacks is often called the “pyramid of doom” or “callback hell.”</p>
-<p>Here is a demonstration of nested callbacks:</p>
-<pre><code><span>function</span> <span>pyramidOfDoom</span><span>(</span><span>)</span> <span>{</span>
-  <span>setTimeout</span><span>(</span><span>(</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    console<span>.</span><span>log</span><span>(</span><span>1</span><span>)</span>
-    <span>setTimeout</span><span>(</span><span>(</span><span>)</span> <span>=&gt;</span> <span>{</span>
-      console<span>.</span><span>log</span><span>(</span><span>2</span><span>)</span>
-      <span>setTimeout</span><span>(</span><span>(</span><span>)</span> <span>=&gt;</span> <span>{</span>
-        console<span>.</span><span>log</span><span>(</span><span>3</span><span>)</span>
-      <span>}</span><span>,</span> <span>500</span><span>)</span>
-    <span>}</span><span>,</span> <span>2000</span><span>)</span>
-  <span>}</span><span>,</span> <span>1000</span><span>)</span>
-<span>}</span>
-</code></pre>
-<p>In this code, each new <code>setTimeout</code> is nested inside a higher order function, creating a pyramid shape of deeper and deeper callbacks. Running this code would give the following:</p>
-<pre><code><p>Output</p>1
-2
-3
-</code></pre>
-<p>In practice, with real world asynchronous code, this can get much more complicated. You will most likely need to do error handling in asynchronous code, and then pass some data from each response onto the next request. Doing this with callbacks will make your code difficult to read and maintain.</p>
-<p>Here is a runnable example of a more realistic “pyramid of doom” that you can play around with:</p>
-<pre><code><span>// Example asynchronous function</span>
-<span>function</span> <span>asynchronousRequest</span><span>(</span><span>args<span>,</span> callback</span><span>)</span> <span>{</span>
-  <span>// Throw an error if no arguments are passed</span>
-  <span>if</span> <span>(</span><span>!</span>args<span>)</span> <span>{</span>
-    <span>return</span> <span>callback</span><span>(</span><span>new</span> <span>Error</span><span>(</span><span>'Whoa! Something went wrong.'</span><span>)</span><span>)</span>
-  <span>}</span> <span>else</span> <span>{</span>
-    <span>return</span> <span>setTimeout</span><span>(</span>
-      <span>// Just adding in a random number so it seems like the contrived asynchronous function</span>
-      <span>// returned different data</span>
-      <span>(</span><span>)</span> <span>=&gt;</span> <span>callback</span><span>(</span><span>null</span><span>,</span> <span>{</span><span>body</span><span>:</span> args <span>+</span> <span>' '</span> <span>+</span> Math<span>.</span><span>floor</span><span>(</span>Math<span>.</span><span>random</span><span>(</span><span>)</span> <span>*</span> <span>10</span><span>)</span><span>}</span><span>)</span><span>,</span>
-      <span>500</span><span>,</span>
-    <span>)</span>
-  <span>}</span>
-<span>}</span>
-
-<span>// Nested asynchronous requests</span>
-<span>function</span> <span>callbackHell</span><span>(</span><span>)</span> <span>{</span>
-  <span>asynchronousRequest</span><span>(</span><span>'First'</span><span>,</span> <span>function</span> <span>first</span><span>(</span><span>error<span>,</span> response</span><span>)</span> <span>{</span>
-    <span>if</span> <span>(</span>error<span>)</span> <span>{</span>
-      console<span>.</span><span>log</span><span>(</span>error<span>)</span>
-      <span>return</span>
-    <span>}</span>
-    console<span>.</span><span>log</span><span>(</span>response<span>.</span>body<span>)</span>
-    <span>asynchronousRequest</span><span>(</span><span>'Second'</span><span>,</span> <span>function</span> <span>second</span><span>(</span><span>error<span>,</span> response</span><span>)</span> <span>{</span>
-      <span>if</span> <span>(</span>error<span>)</span> <span>{</span>
-        console<span>.</span><span>log</span><span>(</span>error<span>)</span>
-        <span>return</span>
-      <span>}</span>
-      console<span>.</span><span>log</span><span>(</span>response<span>.</span>body<span>)</span>
-      <span>asynchronousRequest</span><span>(</span><span>null</span><span>,</span> <span>function</span> <span>third</span><span>(</span><span>error<span>,</span> response</span><span>)</span> <span>{</span>
-        <span>if</span> <span>(</span>error<span>)</span> <span>{</span>
-          console<span>.</span><span>log</span><span>(</span>error<span>)</span>
-          <span>return</span>
-        <span>}</span>
-        console<span>.</span><span>log</span><span>(</span>response<span>.</span>body<span>)</span>
-      <span>}</span><span>)</span>
-    <span>}</span><span>)</span>
-  <span>}</span><span>)</span>
-<span>}</span>
-
-<span>// Execute </span>
-<span>callbackHell</span><span>(</span><span>)</span>
-</code></pre>
-<p>In this code, you must make every function account for a possible <code>response</code> and a possible <code>error</code>, making the function <code>callbackHell</code> visually confusing.</p>
-<p>Running this code will give you the following:</p>
-<pre><code><p>Output</p>
-First 9
-Second 3
-Error: Whoa! Something went wrong.
-    at asynchronousRequest (&lt;anonymous&gt;:4:21)
-    at second (&lt;anonymous&gt;:29:7)
-    at &lt;anonymous&gt;:9:13
-</code></pre>
-<p>This way of handling asynchronous code is difficult to follow. As a result, the concept of <em>promises</em> was introduced in ES6. This is the focus of the next section.</p>
-<h2 id="promises">Promises</h2>
-<p>A <em>promise</em> represents the completion of an asynchronous function. It is an object that might return a value in the future. It accomplishes the same basic goal as a callback function, but with many additional features and a more readable syntax. As a JavaScript developer, you will likely spend more time consuming promises than creating them, as it is usually asynchronous Web APIs that return a promise for the developer to consume. This tutorial will show you how to do both.</p>
-<h3 id="creating-a-promise">Creating a Promise</h3>
-<p>You can initialize a promise with the <code>new Promise</code> syntax, and you must initialize it with a function. The function that gets passed to a promise has <code>resolve</code> and <code>reject</code> parameters. The <code>resolve</code> and <code>reject</code> functions handle the success and failure of an operation, respectively.</p>
-<p>Write the following line to declare a promise:</p>
-<pre><code><span>// Initialize a promise</span>
-<span>const</span> promise <span>=</span> <span>new</span> <span>Promise</span><span>(</span><span>(</span><span>resolve<span>,</span> reject</span><span>)</span> <span>=&gt;</span> <span>{</span><span>}</span><span>)</span>
-</code></pre>
-<p>If you inspect the initialized promise in this state with your web browser’s console, you will find it has a <code>pending</code> status and <code>undefined</code> value:</p>
-<pre><code><p>Output</p>__proto__: Promise
-[[PromiseStatus]]: <mark>"pending"</mark>
-[[PromiseValue]]: <mark>undefined</mark>
-</code></pre>
-<p>So far, nothing has been set up for the promise, so it’s going to sit there in a <code>pending</code> state forever. The first thing you can do to test out a promise is fulfill the promise by resolving it with a value:</p>
-<pre><code><span>const</span> promise <span>=</span> <span>new</span> <span>Promise</span><span>(</span><span>(</span><span>resolve<span>,</span> reject</span><span>)</span> <span>=&gt;</span> <span>{</span>
-  <mark><span>resolve</span><span>(</span><span>'We did it!'</span><span>)</span></mark>
-<span>}</span><span>)</span>
-</code></pre>
-<p>Now, upon inspecting the promise, you’ll find that it has a status of <code>fulfilled</code>, and a <code>value</code> set to the value you passed to <code>resolve</code>:</p>
-<pre><code><p>Output</p>__proto__: Promise
-[[PromiseStatus]]: "fulfilled"
-[[PromiseValue]]: "We did it!"
-</code></pre>
-<p>As stated in the beginning of this section, a promise is an object that may return a value. After being successfully fulfilled, the <code>value</code> goes from <code>undefined</code> to being populated with data.</p>
-<p>A promise can have three possible states: pending, fulfilled, and rejected.</p>
-<ul>
-<li><strong>Pending</strong> - Initial state before being resolved or rejected</li>
-<li><strong>Fulfilled</strong> - Successful operation, promise has resolved</li>
-<li><strong>Rejected</strong> - Failed operation, promise has rejected</li>
-</ul>
-<p>After being fulfilled or rejected, a promise is settled.</p>
-<p>Now that you have an idea of how promises are created, let’s look at how a developer may consume these promises.</p>
-<h3 id="consuming-a-promise">Consuming a Promise</h3>
-<p>The promise in the last section has fulfilled with a value, but you also want to be able to access the value. Promises have a method called <code>then</code> that will run after a promise reaches <code>resolve</code> in the code. <code>then</code> will return the promise’s value as a parameter.</p>
-<p>This is how you would return and log the <code>value</code> of the example promise:</p>
-<pre><code>promise<span>.</span><span>then</span><span>(</span><span>(</span><span>response</span><span>)</span> <span>=&gt;</span> <span>{</span>
-  console<span>.</span><span>log</span><span>(</span>response<span>)</span>
-<span>}</span><span>)</span>
-</code></pre>
-<p>The promise you created had a <code>[[PromiseValue]]</code> of <code>We did it!</code>. This value is what will be passed into the anonymous function as <code>response</code>:</p>
-<pre><code><p>Output</p>We did it!
-</code></pre>
-<p>So far, the example you created did not involve an asynchronous Web API—it only explained how to create, resolve, and consume a native JavaScript promise. Using <code>setTimeout</code>, you can test out an asynchronous request.</p>
-<p>The following code simulates data returned from an asynchronous request as a promise:</p>
-<pre><code><span>const</span> promise <span>=</span> <span>new</span> <span>Promise</span><span>(</span><span>(</span><span>resolve<span>,</span> reject</span><span>)</span> <span>=&gt;</span> <span>{</span>
-  <span>setTimeout</span><span>(</span><span>(</span><span>)</span> <span>=&gt;</span> <span>resolve</span><span>(</span><span>'Resolving an asynchronous request!'</span><span>)</span><span>,</span> <span>2000</span><span>)</span>
-<span>}</span><span>)</span>
-
-<span>// Log the result</span>
-promise<span>.</span><span>then</span><span>(</span><span>(</span><span>response</span><span>)</span> <span>=&gt;</span> <span>{</span>
-  console<span>.</span><span>log</span><span>(</span>response<span>)</span>
-<span>}</span><span>)</span>
-</code></pre>
-<p>Using the <code>then</code> syntax ensures that the <code>response</code> will be logged only when the <code>setTimeout</code> operation is completed after <code>2000</code> milliseconds. All this is done without nesting callbacks.</p>
-<p>Now after two seconds, it will resolve the promise value and it will get logged in <code>then</code>:</p>
-<pre><code><p>Output</p>Resolving an asynchronous request!
-</code></pre>
-<p>Promises can also be chained to pass along data to more than one asynchronous operation. If a value is returned in <code>then</code>, another <code>then</code> can be added that will fulfill with the return value of the previous <code>then</code>:</p>
-<pre><code><span>// Chain a promise</span>
-promise
-  <span>.</span><span>then</span><span>(</span><span>(</span><span>firstResponse</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    <span>// Return a new value for the next then</span>
-    <span>return</span> firstResponse <span>+</span> <span>' And chaining!'</span>
-  <span>}</span><span>)</span>
-  <span>.</span><span>then</span><span>(</span><span>(</span><span>secondResponse</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    console<span>.</span><span>log</span><span>(</span>secondResponse<span>)</span>
-  <span>}</span><span>)</span>
-</code></pre>
-<p>The fulfilled response in the second <code>then</code> will log the return value:</p>
-<pre><code><p>Output</p>Resolving an asynchronous request! And chaining!
-</code></pre>
-<p>Since <code>then</code> can be chained, it allows the consumption of promises to appear more synchronous than callbacks, as they do not need to be nested. This will allow for more readable code that can be maintained and verified easier.</p>
-<h3 id="error-handling">Error Handling</h3>
-<p>So far, you have only handled a promise with a successful <code>resolve</code>, which puts the promise in a <code>fulfilled</code> state. But frequently with an asynchronous request you also have to handle an error—if the API is down, or a malformed or unauthorized request is sent. A promise should be able to handle both cases. In this section, you will create a function to test out both the success and error case of creating and consuming a promise.</p>
-<p>This <code>getUsers</code> function will pass a flag to a promise, and return the promise:</p>
-<pre><code><span>function</span> <span>getUsers</span><span>(</span><span>onSuccess</span><span>)</span> <span>{</span>
-  <span>return</span> <span>new</span> <span>Promise</span><span>(</span><span>(</span><span>resolve<span>,</span> reject</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    <span>setTimeout</span><span>(</span><span>(</span><span>)</span> <span>=&gt;</span> <span>{</span>
-      <span>// Handle resolve and reject in the asynchronous API</span>
-    <span>}</span><span>,</span> <span>1000</span><span>)</span>
-  <span>}</span><span>)</span>
-<span>}</span>
-</code></pre>
-<p>Set up the code so that if <code>onSuccess</code> is <code>true</code>, the timeout will fulfill with some data. If <code>false</code>, the function will reject with an error:</p>
-<pre><code><span>function</span> <span>getUsers</span><span>(</span><span>onSuccess</span><span>)</span> <span>{</span>
-  <span>return</span> <span>new</span> <span>Promise</span><span>(</span><span>(</span><span>resolve<span>,</span> reject</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    <span>setTimeout</span><span>(</span><span>(</span><span>)</span> <span>=&gt;</span> <span>{</span>
-      <span>// Handle resolve and reject in the asynchronous API</span>
-      <mark><span>if</span> <span>(</span>onSuccess<span>)</span> <span>{</span></mark>
-        <mark><span>resolve</span><span>(</span><span>[</span></mark>
-          <mark><span>{</span><span>id</span><span>:</span> <span>1</span><span>,</span> <span>name</span><span>:</span> <span>'Jerry'</span><span>}</span><span>,</span></mark>
-          <mark><span>{</span><span>id</span><span>:</span> <span>2</span><span>,</span> <span>name</span><span>:</span> <span>'Elaine'</span><span>}</span><span>,</span></mark>
-          <mark><span>{</span><span>id</span><span>:</span> <span>3</span><span>,</span> <span>name</span><span>:</span> <span>'George'</span><span>}</span><span>,</span></mark>
-        <mark><span>]</span><span>)</span></mark>
-      <mark><span>}</span> <span>else</span> <span>{</span></mark>
-        <mark><span>reject</span><span>(</span><span>'Failed to fetch data!'</span><span>)</span></mark>
-      <mark><span>}</span></mark>
-    <span>}</span><span>,</span> <span>1000</span><span>)</span>
-  <span>}</span><span>)</span>
-<span>}</span>
-</code></pre>
-<p>For the successful result, you return <a href="https://www.digitalocean.com/community/tutorials/understanding-objects-in-javascript">JavaScript objects</a> that represent sample user data.</p>
-<p>In order to handle the error, you will use the <code>catch</code> instance method. This will give you a failure callback with the <code>error</code> as a parameter.</p>
-<p>Run the <code>getUser</code> command with <code>onSuccess</code> set to <code>false</code>, using the <code>then</code> method for the success case and the <code>catch</code> method for the error:</p>
-<pre><code><span>// Run the getUsers function with the false flag to trigger an error</span>
-<span>getUsers</span><span>(</span><span>false</span><span>)</span>
-  <span>.</span><span>then</span><span>(</span><span>(</span><span>response</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    console<span>.</span><span>log</span><span>(</span>response<span>)</span>
-  <span>}</span><span>)</span>
-  <span>.</span><span>catch</span><span>(</span><span>(</span><span>error</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    console<span>.</span><span>error</span><span>(</span>error<span>)</span>
-  <span>}</span><span>)</span>
-</code></pre>
-<p>Since the error was triggered, the <code>then</code> will be skipped and the <code>catch</code> will handle the error:</p>
-<pre><code><p>Output</p>Failed to fetch data!
-</code></pre>
-<p>If you switch the flag and <code>resolve</code> instead, the <code>catch</code> will be ignored, and the data will return instead:</p>
-<pre><code><span>// Run the getUsers function with the true flag to resolve successfully</span>
-<span>getUsers</span><span>(</span><span>true</span><span>)</span>
-  <span>.</span><span>then</span><span>(</span><span>(</span><span>response</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    console<span>.</span><span>log</span><span>(</span>response<span>)</span>
-  <span>}</span><span>)</span>
-  <span>.</span><span>catch</span><span>(</span><span>(</span><span>error</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    console<span>.</span><span>error</span><span>(</span>error<span>)</span>
-  <span>}</span><span>)</span>
-</code></pre>
-<p>This will yield the user data:</p>
-<pre><code><p>Output</p>(3) [{…}, {…}, {…}]
-0: {id: 1, name: "Jerry"}
-1: {id: 2, name: "Elaine"}
-3: {id: 3, name: "George"}
-</code></pre>
-<p>For reference, here is a table with the handler methods on <code>Promise</code> objects:</p>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>then()</code></td>
-<td>Handles a <code>resolve</code>. Returns a promise, and calls <code>onFulfilled</code> function asynchronously</td>
-</tr>
-<tr>
-<td><code>catch()</code></td>
-<td>Handles a <code>reject</code>. Returns a promise, and calls <code>onRejected</code> function asynchronously</td>
-</tr>
-<tr>
-<td><code>finally()</code></td>
-<td>Called when a promise is settled. Returns a promise, and calls <code>onFinally</code> function asynchronously</td>
-</tr>
-</tbody>
-</table>
-<p>Promises can be confusing, both for new developers and experienced programmers that have never worked in an asynchronous environment before. However as mentioned, it is much more common to consume promises than create them. Usually, a browser’s Web API or third party library will be providing the promise, and you only need to consume it.</p>
-<p>In the final promise section, this tutorial will cite a common use case of a Web API that returns promises: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">the Fetch API</a>.</p>
-<h3 id="using-the-fetch-api-with-promises">Using the Fetch API with Promises</h3>
-<p>One of the most useful and frequently used Web APIs that returns a promise is the Fetch API, which allows you to make an asynchronous resource request over a network. <code>fetch</code> is a two-part process, and therefore requires chaining <code>then</code>. This example demonstrates hitting the GitHub API to fetch a user’s data, while also handling any potential error:</p>
-<pre><code><span>// Fetch a user from the GitHub API</span>
-<span>fetch</span><span>(</span><span>'https://api.github.com/users/octocat'</span><span>)</span>
-  <span>.</span><span>then</span><span>(</span><span>(</span><span>response</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    <span>return</span> response<span>.</span><span>json</span><span>(</span><span>)</span>
-  <span>}</span><span>)</span>
-  <span>.</span><span>then</span><span>(</span><span>(</span><span>data</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    console<span>.</span><span>log</span><span>(</span>data<span>)</span>
-  <span>}</span><span>)</span>
-  <span>.</span><span>catch</span><span>(</span><span>(</span><span>error</span><span>)</span> <span>=&gt;</span> <span>{</span>
-    console<span>.</span><span>error</span><span>(</span>error<span>)</span>
-  <span>}</span><span>)</span>
-</code></pre>
-<p>The <code>fetch</code> request is sent to the <code>https://api.github.com/users/octocat</code> URL, which asynchronously waits for a response. The first <code>then</code> passes the response to an anonymous function that formats the response as <a href="https://www.digitalocean.com/community/tutorials/how-to-work-with-json-in-javascript">JSON data</a>, then passes the JSON to a second <code>then</code> that logs the data to the console. The <code>catch</code> statement logs any error to the console.</p>
-<p>Running this code will yield the following:</p>
-<pre><code><p>Output</p>login: "octocat",
-id: 583231,
-avatar_url: "https://avatars3.githubusercontent.com/u/583231?v=4"
-blog: "https://github.blog"
-company: "@github"
-followers: 3203
-...
-</code></pre>
-<p>This is the data requested from <code>https://api.github.com/users/octocat</code>, rendered in JSON format.</p>
-<p>This section of the tutorial showed that promises incorporate a lot of improvements for dealing with asynchronous code. But, while using <code>then</code> to handle asynchronous actions is easier to follow than the pyramid of callbacks, some developers still prefer a synchronous format of writing asynchronous code. To address this need, <a href="https://www.ecma-international.org/ecma-262/7.0/index.html">ECMAScript 2016 (ES7)</a> introduced <code>async</code> functions and the <code>await</code> keyword to make working with promises easier.</p>
-<h2 id="async-functions-with-async-await">Async Functions with <code>async/await</code></h2>
-<p>An <em><code>async</code> function</em> allows you to handle asynchronous code in a manner that appears synchronous. <code>async</code> functions still use promises under the hood, but have a more traditional JavaScript syntax. In this section, you will try out examples of this syntax.</p>
-<p>You can create an <code>async</code> function by adding the <code>async</code> keyword before a function:</p>
-<pre><code><span>// Create an async function</span>
-<mark><span>async</span></mark> <span>function</span> <span>getUser</span><span>(</span><span>)</span> <span>{</span>
-  <span>return</span> <span>{</span><span>}</span>
-<span>}</span>
-</code></pre>
-<p>Although this function is not handling anything asynchronous yet, it behaves differently than a traditional function. If you execute the function, you’ll find that it returns a promise with a <code>[[PromiseStatus]]</code> and <code>[[PromiseValue]]</code> instead of a return value.</p>
-<p>Try this out by logging a call to the <code>getUser</code> function:</p>
-<pre><code>console<span>.</span><span>log</span><span>(</span><span>getUser</span><span>(</span><span>)</span><span>)</span>
-</code></pre>
-<p>This will give the following:</p>
-<pre><code><p>Output</p>__proto__: Promise
-[[PromiseStatus]]: "fulfilled"
-[[PromiseValue]]: Object
-</code></pre>
-<p>This means you can handle an <code>async</code> function with <code>then</code> in the same way you could handle a promise. Try this out with the following code:</p>
-<pre><code><span>getUser</span><span>(</span><span>)</span><span>.</span><span>then</span><span>(</span><span>(</span><span>response</span><span>)</span> <span>=&gt;</span> console<span>.</span><span>log</span><span>(</span>response<span>)</span><span>)</span>
-</code></pre>
-<p>This call to <code>getUser</code> passes the return value to an anonymous function that logs the value to the console.</p>
-<p>You will receive the following when you run this program:</p>
-<pre><code><p>Output</p>{}
-</code></pre>
-<p>An <code>async</code> function can handle a promise called within it using the <code>await</code> operator. <code>await</code> can be used within an <code>async</code> function and will wait until a promise settles before executing the designated code.</p>
-<p>With this knowledge, you can rewrite the Fetch request from the last section using <code>async</code>/<code>await</code> as follows:</p>
-<pre><code><span>// Handle fetch with async/await</span>
-<span>async</span> <span>function</span> <span>getUser</span><span>(</span><span>)</span> <span>{</span>
-  <span>const</span> response <span>=</span> <mark><span>await</span></mark> <span>fetch</span><span>(</span><span>'https://api.github.com/users/octocat'</span><span>)</span>
-  <span>const</span> data <span>=</span> <mark><span>await</span></mark> response<span>.</span><span>json</span><span>(</span><span>)</span>
-
-  console<span>.</span><span>log</span><span>(</span>data<span>)</span>
-<span>}</span>
-
-<span>// Execute async function</span>
-<span>getUser</span><span>(</span><span>)</span>
-</code></pre>
-<p>The <code>await</code> operators here ensure that the <code>data</code> is not logged before the request has populated it with data.</p>
-<p>Now the final <code>data</code> can be handled inside the <code>getUser</code> function, without any need for using <code>then</code>. This is the output of logging <code>data</code>:</p>
-<pre><code><p>Output</p>login: "octocat",
-id: 583231,
-avatar_url: "https://avatars3.githubusercontent.com/u/583231?v=4"
-blog: "https://github.blog"
-company: "@github"
-followers: 3203
-...
-</code></pre>
-<p><strong>Note:</strong> In many environments, <code>async</code> is necessary to use <code>await</code>—however, some new versions of browsers and Node allow using top-level <code>await</code>, which allows you to bypass creating an async function to wrap the <code>await</code> in.</p>
-<p>Finally, since you are handling the fulfilled promise within the asynchronous function, you can also handle the error within the function. Instead of using the <code>catch</code> method with <code>then</code>, you will use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch"><code>try</code>/<code>catch</code></a> pattern to handle the exception.</p>
-<p>Add the following highlighted code:</p>
-<pre><code><span>// Handling success and errors with async/await</span>
-<span>async</span> <span>function</span> <span>getUser</span><span>(</span><span>)</span> <span>{</span>
-  <mark><span>try</span> <span>{</span></mark>
-    <span>// Handle success in try</span>
-    <span>const</span> response <span>=</span> <span>await</span> <span>fetch</span><span>(</span><span>'https://api.github.com/users/octocat'</span><span>)</span>
-    <span>const</span> data <span>=</span> <span>await</span> response<span>.</span><span>json</span><span>(</span><span>)</span>
-
-    console<span>.</span><span>log</span><span>(</span>data<span>)</span>
-  <mark><span>}</span> <span>catch</span> <span>(</span>error<span>)</span> <span>{</span></mark>
-    <span>// Handle error in catch</span>
-    <mark>console<span>.</span><span>error</span><span>(</span>error<span>)</span></mark>
-  <mark><span>}</span></mark>
-<span>}</span>
-</code></pre>
-<p>The program will now skip to the <code>catch</code> block if it receives an error and log that error to the console.</p>
-<p>Modern asynchronous JavaScript code is most often handled with <code>async</code>/<code>await</code> syntax, but it is important to have a working knowledge of how promises work, especially as promises are capable of additional features that cannot be handled with <code>async</code>/<code>await</code>, like combining promises with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all"><code>Promise.all()</code></a>.</p>
-
-<h2 id="conclusion">Conclusion</h2>
-<p>Because Web APIs often provide data asynchronously, learning how to handle the result of asynchronous actions is an essential part of being a JavaScript developer. In this article, you learned how the host environment uses the event loop to handle the order of execution of code with the <em>stack</em> and <em>queue</em>. You also tried out examples of three ways to handle the success or failure of an asynchronous event, with callbacks, promises, and <code>async</code>/<code>await</code> syntax. Finally, you used the Fetch Web API to handle asynchronous actions.</p>
-<p>For more information about how the browser handles parallel events, read <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop">Concurrency model and the event loop</a> on the Mozilla Developer Network. If you’d like to learn more about JavaScript, return to our <a href="https://www.digitalocean.com/community/tutorial_series/how-to-code-in-javascript">How To Code in JavaScript</a> series.</p>
-</div></div>
+<p><strong>T</strong><span>he criticism leveled at TED foreshadowed a backlash against the technocratic elite that would continue to pick up steam in the following years. Twitter had failed to bring democracy to the Middle East. It became clear that social media was only free because our personal data was being mined and sold to advertisers. Obama was not the political savior many had hoped him to be. The banks had been bailed out, but most regular people were still suffering from the fallout of the financial crisis. </span><span>For a generation coming of age, upward mobility, social equality, and the utopian promises of technology were revealed as mere fantasies. Inspiresting content in general was becoming less relevant, more cringe — a signifier of liberal ineptitude. On Tumblr and Twitter, there was a meme where you’d write some incredibly banal or absurd observation and then add: “Thanks for coming to my TED talk.”</span></p>
+<p><span>Meanwhile, the TED talks continued, endlessly re-articulating tech’s promises without any serious critical reflection. Indeed, t</span><span>hose associated with TED — the curators and the speakers — still appeared authentically attached to the futures they were articulating, despite evidence that these visions were illusory. In 2014, for instance, Elizabeth Holmes gave a talk at a medical-themed TED conference about the technology that her company, Theranos, was using to make blood tests more efficient. By the time she appeared at TED, many inside the company already understood that the technology was not working as it was supposed to. And yet Holmes willingly got on stage and sold the story, and TED promoted it, further propelling Theranos to its peak $10 billion valuation.&nbsp;</span></p>
+<p><span>Of course, Holmes’s fraud wasn’t TED’s fault, directly. But the public speaking platform’s philosophy, which conflated telling a story about an idea with its realization, fostered a certain myopic self-belief in people like Holmes that they could create the world ex nihilo with willpower and well-crafted oratory alone. The TED philosophy encouraged boldness of vision, but also denial of reality. As such, it was a magnet for narcissistic, recognition-seeking characters and their Theranos-like projects. Other questionably ambitious and ultimately doomed projects promoted through the TED platform include: Shai Agassi’s electric car idea, Better Place; Pranav Mistry’s SixthSense technology, which was supposed to make our devices obsolete by integrating computers with our bodies; and Peter Molyneux’s video game, Milo, The Virtual Boy, in which players interacted with an artificially intelligent eleven-year-old. I recently heard a business journalist say that when he’s short on story ideas, he’ll just look for people who have given TED talks and “figure out what they’re lying about.”</span></p>
+<p><span>I became directly acquainted with the TED philosophy in 2015 — the year Holmes went under, the year Gates gave his pandemic talk. </span><span>A friend was scheduled to appear at a TEDx in Sydney but had at the last minute decided against it and asked if I would do it in her place. I agreed and put together a talk about some of the research I was doing at the time on computer-generated poetry. The talk was later featured on the TED website. I got lots of new followers on Twitter and some emails, including one inviting me to an all-expenses-paid trip to a university in Switzerland where I would serve as a “creative A.I.” expert. I told the university I was no such thing, but the administrators there didn’t care.&nbsp;</span></p>
+<p><span>I went to the conference, the point of which seemed to be for young people to explain their inspiresting ideas to wealthier, older people. In the evenings, everyone gathered at the “$200,000 whiskey bar,” as it had been described numerous times in emails leading up to the conference, and the ideas would begin to flow. I was treated to many off-the-cuff TED-style pitches. An Israeli guy who was using drones (interesting) to monitor forests (inspiring). A Singaporean woman who was saving global bee populations (interesting) by putting beehives on the roofs of public housing and teaching the kids who lived there how to be apiarists and sell their own public-housing-branded honey (inspiring). The most popular young person was a French woman who was using machine learning (the most interesting thing of all) to help refugees (the most inspiring cause of all?). She called her idea “tech-fugees.”&nbsp; </span><span>Many of us were feeling anxious or uncertain or nihilistic about the coming decades, if not the coming months</span><span>. The week before, Donald Trump had become the presumptive Republican nominee in the United States. Yet the</span><span> TED progeny continued to offer bold, tech-centric predictions with unfaltering confidence.</span></p>
+<p><span>And they have continued to do so. Indeed, if TED’s cultural high-water mark was during the Obama years, grand utopian fantasies are still spun by the technologists and tech-believers, despite all of their past failures and deceptions. </span><span>Jeff Bezos recently </span><span>predicted, for instance, that humans will soon live in space, and when we do, Earth itself will become a vacation destination, like a national park. It is a garish, puerile prediction, to be sure, but it is undeniably visionary — as are the crypto, AI, metaverse, geo-engineering, space-bound futures promoted by many tech leaders and their adoring acolytes. </span><span>Amid seemingly intractable problems here on Earth, a vision of the future can resemble a life raft, and in the absence of viable alternatives, substanceless promises of space travel, crypto-utopias, and eternal life in the cloud may become the only things to look forward to.</span></p>
+<p><span>TED of course can’t be held solely responsible for the increasingly eschatological pronouncements of this cohort. That would be, in a way, to buy into its hype too much. But as the most visible and influential public speaking platform of the first two decades of the twenty-first century, it has been deeply implicated in broadcasting and championing the Silicon Valley version of the future. TED is probably best understood as the propaganda arm of an ascendant technocracy. It helped refine prediction into a rhetorical art well-suited to these aspiring world conquerors — even the ones who fail.</span></p>
+			    </div><p>Oscar Schwartz is a writer and journalist. He lives in Melbourne, Australia.</p></div>

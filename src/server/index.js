@@ -9,10 +9,14 @@ const { JSDOM } = require('jsdom');
 const app = express();
 const port = 3001;
 
-
+const styles = require('./styles'); // Load CSS styles from ./styles.js
 
 function cleanParsedArticle(output) {
     return output.split('\n').join('<br/>')
+}
+
+function addStyles() {
+    fs.writeFile('./public/sammelband.html', styles.styles, { flag: 'a+' }, err => {if (err) throw err;});
 }
 
 async function fetchFromURL(urls) {
@@ -30,6 +34,8 @@ async function fetchFromURL(urls) {
 }
 
 function writeToFile(parsedArticles) {
+    fs.unlinkSync('./public/sammelband.html');
+    addStyles();
     for (item of parsedArticles) {
         fs.writeFile('./public/sammelband.html', item, { flag: 'a+' }, err => {if (err) throw err;});
     }

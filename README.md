@@ -1,6 +1,6 @@
 # Sammelband
 
-Offline read-it-later.
+Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/Sammelband). A read-them-later service, if you will.
 
 ## TODO
 

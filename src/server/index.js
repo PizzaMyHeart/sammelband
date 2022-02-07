@@ -7,8 +7,10 @@ const { Readability } = require('@mozilla/readability');
 const { JSDOM } = require('jsdom');
 const session = require('express-session');
 const { exec } = require('child_process');
+const wkhtmltopdf = require('wkhtmltopdf');
 
 const app = express();
+
 
 
 app.use(['/', '/submit', '/download'], session({
@@ -51,12 +53,20 @@ async function fetchFromURL(urls) {
 
 function pandoc(to, id) {
     console.log('pandoc()');
-    let filepath = path.join(__dirname, './public', `sammelband-${id}.pdf`)
+    let filepath = path.join(__dirname, './public', `sammelband-${id}.pdf`);
     exec(`pandoc -t html5 ${filepath}`, (error, stdout, stderr) => {
         if (error) console.log(error);
         if (stderr) console.log(stderr);
         console.log(`stdout: ${stdout}`);
     });
+}
+
+function htmlToPDF(id) {
+    console.log('htmlToPDF()');
+    let filepath = path.join(__dirname, './public', `sammelband-${id}`);
+    //wkhtmltopdf(fs.readFileSync(filepath + '.html', 'utf-8'), { output: filepath + '.pdf'}); 
+    // ^ This doesn't work. Might be better off without the node wrapper.
+    exec(`wkhtmltopdf --encoding utf-8 ${filepath + '.html'} ${filepath + '.pdf'}`);
 }
 
 function writeToFile(parsedArticles, id) {
@@ -115,7 +125,8 @@ var postHandler = function (req, res, next) {
     console.log(urls);
     fetchFromURL(urls)
         .then(documents => parseDocuments(documents))
-        .then(parsedArticles => writeToFile(parsedArticles, req.session.id));
+        .then(parsedArticles => writeToFile(parsedArticles, req.session.id))
+        .then(() => htmlToPDF(req.session.id));
 
     res.end();
     

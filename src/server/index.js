@@ -20,6 +20,7 @@ app.use(['/', '/submit', '/download'], session({
     cookie: {secure: false}
 }))
 app.use(express.json());
+
 app.use(cors({ credentials: true, origin: true }));
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -120,6 +121,7 @@ function parseFromURL(url) {
 */
 var postHandler = function (req, res, next) {
     console.log('getHTMLDocumtent()');
+    console.log(req.body);
     console.log(req.session.id);
     const urls = req.body.urls.split('\n');
     console.log(urls);
@@ -159,6 +161,7 @@ app.get('/download', (req, res) => {
 });
 
 app.get('/delete', (req, res) => {
+    console.log('deleting sammelband');
     console.log(req.session.id);
     fs.unlinkSync(path.join(__dirname, './public', `sammelband-${req.session.id}.html`));
     console.log('Sammelband deleted');

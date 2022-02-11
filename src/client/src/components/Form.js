@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 function Form() {
     const [urls, setUrls] = useState('');
 
-    const { register } = useForm();
+    const { register, handleSubmit } = useForm();
 
     /*
     const onSubmit = e => {
@@ -38,7 +38,9 @@ function Form() {
             },
             body: JSON.stringify({
                 urls: data['urls'],
-                colorTheme: data['color-theme']
+                colorTheme: data['color-theme'],
+                font: data['font'],
+                format: data['format']
             })
         })
     }
@@ -53,7 +55,7 @@ function Form() {
 
     return ( 
         <>
-            <form onSubmit={ onSubmit }>
+            <form onSubmit={ handleSubmit(onSubmit) }>
                 <label>
                     URLs:
                     <textarea 
@@ -63,19 +65,19 @@ function Form() {
                         />
                 </label>
                 <div>
-                    <input type="radio" value="dark" name="color-theme"/> Dark mode
-                    <input type="radio" value="light" name="color-theme"/> Light mode
+                    <input type="radio" value="dark" name="color-theme" {...register('color-theme')}/> Dark mode
+                    <input type="radio" value="light" name="color-theme" {...register('color-theme')}/> Light mode
                 </div>
                 <div>
-                    <input type="radio" value="serif" name="font"/> Serif
-                    <input type="radio" value="sans-serif" name="font"/> Sans-serif
+                    <input type="radio" value="serif" name="font" {...register('font')}/> Serif
+                    <input type="radio" value="sans-serif" name="font" {...register('font')}/> Sans-serif
                 </div>
                 <div> 
-                    <input type="radio" value="html" name="format"/> HTML
-                    <input type="radio" value="pdf" name="format"/> PDF 
-                    <input type="radio" value="epub" name="format"/> EPUB
-                    <input type="radio" value="markdown" name="format"/> Markdown 
-                    <input type="radio" value="txt" name="format"/> TXT 
+                    <input type="radio" value="html" name="format" {...register('format')}/> HTML
+                    <input type="radio" value="pdf" name="format" {...register('format')}/> PDF 
+                    <input type="radio" value="epub" name="format" {...register('format')}/> EPUB
+                    <input type="radio" value="markdown" name="format" {...register('format')}/> Markdown 
+                    <input type="radio" value="txt" name="format" {...register('format')}/> TXT 
                 </div>
                     
 

@@ -17,3 +17,5 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 - [X] Add reset button (delete existing HTML file)
 - [ ] HTML-to-EPUB
 - [ ] Upload CSV of URLs (e.g. from bookmarks)
+- [ ] Axios retry on error
+

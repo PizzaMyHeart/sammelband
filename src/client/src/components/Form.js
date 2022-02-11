@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 function Form() {
     const [urls, setUrls] = useState('');
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, setError, formState: { errors } } = useForm();
 
     /*
     const onSubmit = e => {
@@ -54,19 +54,24 @@ function Form() {
     }
 
     return ( 
-        <>
-            <form onSubmit={ handleSubmit(onSubmit) }>
+        <> 
+            {/* Needs handleSubmit to actually send request */}
+            <form onSubmit={ handleSubmit(onSubmit) }> 
                 <label>
                     URLs:
                     <textarea 
                         id="url-input" 
-                        onChange={ e => {setUrls(e.target.value)} } 
-                        {...register('urls')}
+                        //onChange={ e => {setUrls(e.target.value)} } 
+                        {...register('urls',{
+                            required: true,
+                            pattern: {value: /^https?:\/\/.*\..+/, message: 'Please enter at least one valid URL'}
+                        })}
                         />
+                    { errors.urls && <p>{errors.urls.message}</p>}                    
                 </label>
                 <div>
-                    <input type="radio" value="dark" name="color-theme" {...register('color-theme')}/> Dark mode
-                    <input type="radio" value="light" name="color-theme" {...register('color-theme')}/> Light mode
+                    <input type="radio" value="dark" name="color-theme" {...register('color-theme', {required: 'Required'})}/> Dark mode
+                    <input type="radio" value="light" name="color-theme" {...register('color-theme', {required: 'Required'})}/> Light mode
                 </div>
                 <div>
                     <input type="radio" value="serif" name="font" {...register('font')}/> Serif

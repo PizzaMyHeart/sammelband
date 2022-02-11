@@ -75,8 +75,9 @@ function writeToFile(parsedArticles, id) {
     let filepath = `./public/sammelband-${id}.html`;
     // Add styles to top of html file
     fs.writeFile(filepath, styles.styles, { flag: 'a+' }, err => {if (err) throw err;});
-    for (item of parsedArticles) {
-        fs.writeFile(filepath, item, { flag: 'a+' }, err => {if (err) throw err;});
+    for (article of parsedArticles) {
+        let content = `<h1>Title: ${article.title}</h1><br>${article.content}<br>---<br>`;
+        fs.writeFile(filepath, content, { flag: 'a+' }, err => {if (err) throw err;});
     }
 
 }
@@ -92,7 +93,7 @@ function parseDocuments(documents) {
         let article = reader.parse();
         console.log('Parsed:...')
         //console.log(article);
-        parsedArticles.push(article.content);
+        parsedArticles.push(article);
     })
     //console.log('parsedArticles', parsedArticles);
     return parsedArticles;

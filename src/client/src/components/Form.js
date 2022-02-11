@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 function Form() {
     const [urls, setUrls] = useState('');
 
-    
+    const { register } = useForm();
 
-    
+    /*
     const onSubmit = e => {
         let payload = {
             urls: urls,
@@ -24,8 +24,8 @@ function Form() {
             body: JSON.stringify(payload)
         })
     }
-    
-    /* 
+    */
+     
     // react-hook-form version
     const onSubmit = data => {
         console.log(data['urls']);
@@ -42,7 +42,7 @@ function Form() {
             })
         })
     }
-    */
+    
     const deleteFile = () => {
         fetch('/delete', {
             credentials: 'same-origin',
@@ -59,7 +59,7 @@ function Form() {
                     <textarea 
                         id="url-input" 
                         onChange={ e => {setUrls(e.target.value)} } 
-                        /*{...register('urls')}*/
+                        {...register('urls')}
                         />
                 </label>
                 <div>

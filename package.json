@@ -16,6 +16,6 @@
     "express": "^4.17.2",
     "express-session": "^1.17.2",
     "jsdom": "^19.0.0",
-    "react-hook-form": "^7.26.0"
+    "wkhtmltopdf": "^0.4.0"
   }
 }

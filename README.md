@@ -9,6 +9,7 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 - [ ] Add options to form for user style preferences
 - [ ] Add titles to each parsed article
 - [X] Separate user requests using express-session
+- [ ] Implement session store for production
 - [ ] Implement email function
 - [ ] Add notifications using socket.io
 - [ ] Form validation

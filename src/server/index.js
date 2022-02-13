@@ -28,15 +28,6 @@ const port = 3001;
 
 const styles = require('./styles'); // Load CSS styles from ./styles.js
 
-
-
-
-function cleanParsedArticle(output) {
-    return output.split('\n').join('<br/>')
-}
-
-
-
 async function fetchFromURL(urls) {
     let documents = [];
     for (let url of urls) {
@@ -52,15 +43,6 @@ async function fetchFromURL(urls) {
 
 }
 
-function pandoc(to, id) {
-    console.log('pandoc()');
-    let filepath = path.join(__dirname, './public', `sammelband-${id}.pdf`);
-    exec(`pandoc -t html5 ${filepath}`, (error, stdout, stderr) => {
-        if (error) console.log(error);
-        if (stderr) console.log(stderr);
-        console.log(`stdout: ${stdout}`);
-    });
-}
 
 function convertFromHTML(format, id) {
     switch(format) {
@@ -121,27 +103,15 @@ function parseDocuments(documents) {
     return parsedArticles;
 }
 
-// mercury-parser version
-/*
-function parseFromURL(url) {
-    console.log('parseFromURL()');
-
-    //let reader = new Readability();
-    
-    mercury.parse(url)
-    .then(result => {
-        console.log(result);
-        parsed = cleanParsedArticle(result.content);
-        let parsedArticles = [];
-        parsedArticles.push(parsed);
-        //console.log(parsedArticles);
-        for (item of parsedArticles) {
-            fs.writeFile('./public/sammelband.html', item, { flag: 'a+' }, err => {if (err) throw err;});
-        };
-    });
-    
+function download(res, id) {
+    res.download(
+        path.join(__dirname, './public', `sammelband-${id}.html`), 
+        'sammelband.html',
+        err => {if (err) console.log(err)}
+        );
+    console.log('Sammelband downloaded');
 }
-*/
+
 var postHandler = function (req, res, next) {
     console.log('getHTMLDocumtent()');
     console.log(req.body);
@@ -173,14 +143,7 @@ app.post('/submit', (req, res) => {
 });
 
 app.get('/download', (req, res) => {
-    console.log(req.session.id);
-    //res.set('Access-Control-Allow-Origin', '*');
-    res.download(
-        path.join(__dirname, './public', `sammelband-${req.session.id}.html`), 
-        'sammelband.html',
-        err => {if (err) console.log(err)}
-        );
-    console.log('Sammelband downloaded');
+   download(res, req.session.id);
 });
 
 app.get('/delete', (req, res) => {

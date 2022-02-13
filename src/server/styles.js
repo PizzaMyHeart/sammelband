@@ -1,15 +1,20 @@
 module.exports = {
+    head: `
+      <style>
+      /*!
+      * Gutenberg
+      *
+      * MIT Fabien Sa
+      * https://github.com/BafS/Gutenberg
+      */
+    /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+    /* Document
+        ========================================================================== */
+    `,
+    tail: `
+      </style>
+    `,
     sansSerif: `
-        <style>
-        /*!
-        * Gutenberg
-        *
-        * MIT Fabien Sa
-        * https://github.com/BafS/Gutenberg
-        */
-       /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-       /* Document
-          ========================================================================== */
        /**
         * 1. Correct the line height in all browsers.
         * 2. Prevent adjustments of font size after orientation changes in iOS.
@@ -575,19 +580,8 @@ module.exports = {
        .no-reformat acronym:after,
        .no-reformat a:after {
          content: ''; }
-        </style>
     `,
     serif: `
-    <style>
-    /*!
-    * Gutenberg
-    *
-    * MIT Fabien Sa
-    * https://github.com/BafS/Gutenberg
-    */
-   /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-   /* Document
-      ========================================================================== */
    /**
     * 1. Correct the line height in all browsers.
     * 2. Prevent adjustments of font size after orientation changes in iOS.
@@ -1186,6 +1180,5 @@ module.exports = {
        padding-left: 1rem; }
        blockquote p:first-letter {
          font-weight: bold; }
-    </style>
     `
 }

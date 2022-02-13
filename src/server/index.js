@@ -72,9 +72,7 @@ function htmlToPDF(id) {
 
 function applyStyle(font) {
     console.log(`Style: ${font}`);
-    if (font == 'sansSerif') {
-        return styles.sansSerif
-    } else return styles.serif
+    return styles.head + ((font=='sansSerif') ? styles.sansSerif : styles.serif) + styles.tail;
 }
 
 function writeToFile(parsedArticles, req) {

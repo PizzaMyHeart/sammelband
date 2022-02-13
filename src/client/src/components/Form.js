@@ -105,8 +105,8 @@ function Form() {
                 { success && <p>Sammelband ready</p> }
                 { deleted && <p>Sammelband deleted</p>}
             </div>
-            <button onClick={ deleteFile } id="deleteBtn">Delete</button>
-            <DownloadBtn disabled={!success}/>
+            <button onClick={ deleteFile } id="deleteBtn" disabled={!success || deleted }>Delete</button>
+            <DownloadBtn disabled={!success || deleted }/>
         </>
     )
 }

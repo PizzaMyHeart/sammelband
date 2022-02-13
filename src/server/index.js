@@ -156,7 +156,7 @@ app.get('/download', (req, res) => {
     res.download(
         path.join(__dirname, './public', `sammelband-${req.session.id}.html`), 
         'sammelband.html',
-        err => console.log(err)
+        err => {if (err) console.log(err)}
         );
     console.log('Sammelband downloaded');
 });

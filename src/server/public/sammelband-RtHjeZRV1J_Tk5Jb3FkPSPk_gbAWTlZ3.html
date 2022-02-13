@@ -1,0 +1,582 @@
+
+        <style>
+        /*!
+        * Gutenberg
+        *
+        * MIT Fabien Sa
+        * https://github.com/BafS/Gutenberg
+        */
+       /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+       /* Document
+          ========================================================================== */
+       /**
+        * 1. Correct the line height in all browsers.
+        * 2. Prevent adjustments of font size after orientation changes in iOS.
+        */
+       html {
+         line-height: 1.15;
+         /* 1 */
+         -webkit-text-size-adjust: 100%;
+         /* 2 */ }
+       
+       /* Sections
+          ========================================================================== */
+       /**
+        * Remove the margin in all browsers.
+        */
+       body {
+         margin: 0; }
+       
+       /**
+        * Render the main element consistently in IE.
+        */
+       main {
+         display: block; }
+       
+       /**
+        * Correct the font size and margin on h1 elements within section and
+        * article contexts in Chrome, Firefox, and Safari.
+        */
+       h1 {
+         font-size: 2em;
+         margin: 0.67em 0; }
+       
+       /* Grouping content
+          ========================================================================== */
+       /**
+        * 1. Add the correct box sizing in Firefox.
+        * 2. Show the overflow in Edge and IE.
+        */
+       hr {
+         box-sizing: content-box;
+         /* 1 */
+         height: 0;
+         /* 1 */
+         overflow: visible;
+         /* 2 */ }
+       
+       /**
+        * 1. Correct the inheritance and scaling of font size in all browsers.
+        * 2. Correct the odd em font sizing in all browsers.
+        */
+       pre {
+         font-family: monospace, monospace;
+         /* 1 */
+         font-size: 1em;
+         /* 2 */ }
+       
+       /* Text-level semantics
+          ========================================================================== */
+       /**
+        * Remove the gray background on active links in IE 10.
+        */
+       a {
+         background-color: transparent; }
+       
+       /**
+        * 1. Remove the bottom border in Chrome 57-
+        * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+        */
+       abbr[title] {
+         border-bottom: none;
+         /* 1 */
+         text-decoration: underline;
+         /* 2 */
+         text-decoration: underline dotted;
+         /* 2 */ }
+       
+       /**
+        * Add the correct font weight in Chrome, Edge, and Safari.
+        */
+       b,
+       strong {
+         font-weight: bolder; }
+       
+       /**
+        * 1. Correct the inheritance and scaling of font size in all browsers.
+        * 2. Correct the odd em font sizing in all browsers.
+        */
+       code,
+       kbd,
+       samp {
+         font-family: monospace, monospace;
+         /* 1 */
+         font-size: 1em;
+         /* 2 */ }
+       
+       /**
+        * Add the correct font size in all browsers.
+        */
+       small {
+         font-size: 80%; }
+       
+       /**
+        * Prevent sub and sup elements from affecting the line height in
+        * all browsers.
+        */
+       sub,
+       sup {
+         font-size: 75%;
+         line-height: 0;
+         position: relative;
+         vertical-align: baseline; }
+       
+       sub {
+         bottom: -0.25em; }
+       
+       sup {
+         top: -0.5em; }
+       
+       /* Embedded content
+          ========================================================================== */
+       /**
+        * Remove the border on images inside links in IE 10.
+        */
+       img {
+         border-style: none; }
+       
+       /* Forms
+          ========================================================================== */
+       /**
+        * 1. Change the font styles in all browsers.
+        * 2. Remove the margin in Firefox and Safari.
+        */
+       button,
+       input,
+       optgroup,
+       select,
+       textarea {
+         font-family: inherit;
+         /* 1 */
+         font-size: 100%;
+         /* 1 */
+         line-height: 1.15;
+         /* 1 */
+         margin: 0;
+         /* 2 */ }
+       
+       /**
+        * Show the overflow in IE.
+        * 1. Show the overflow in Edge.
+        */
+       button,
+       input {
+         /* 1 */
+         overflow: visible; }
+       
+       /**
+        * Remove the inheritance of text transform in Edge, Firefox, and IE.
+        * 1. Remove the inheritance of text transform in Firefox.
+        */
+       button,
+       select {
+         /* 1 */
+         text-transform: none; }
+       
+       /**
+        * Correct the inability to style clickable types in iOS and Safari.
+        */
+       button,
+       [type="button"],
+       [type="reset"],
+       [type="submit"] {
+         -webkit-appearance: button; }
+       
+       /**
+        * Remove the inner border and padding in Firefox.
+        */
+       button::-moz-focus-inner,
+       [type="button"]::-moz-focus-inner,
+       [type="reset"]::-moz-focus-inner,
+       [type="submit"]::-moz-focus-inner {
+         border-style: none;
+         padding: 0; }
+       
+       /**
+        * Restore the focus styles unset by the previous rule.
+        */
+       button:-moz-focusring,
+       [type="button"]:-moz-focusring,
+       [type="reset"]:-moz-focusring,
+       [type="submit"]:-moz-focusring {
+         outline: 1px dotted ButtonText; }
+       
+       /**
+        * Correct the padding in Firefox.
+        */
+       fieldset {
+         padding: 0.35em 0.75em 0.625em; }
+       
+       /**
+        * 1. Correct the text wrapping in Edge and IE.
+        * 2. Correct the color inheritance from fieldset elements in IE.
+        * 3. Remove the padding so developers are not caught out when they zero out
+        *    fieldset elements in all browsers.
+        */
+       legend {
+         box-sizing: border-box;
+         /* 1 */
+         color: inherit;
+         /* 2 */
+         display: table;
+         /* 1 */
+         max-width: 100%;
+         /* 1 */
+         padding: 0;
+         /* 3 */
+         white-space: normal;
+         /* 1 */ }
+       
+       /**
+        * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+        */
+       progress {
+         vertical-align: baseline; }
+       
+       /**
+        * Remove the default vertical scrollbar in IE 10+.
+        */
+       textarea {
+         overflow: auto; }
+       
+       /**
+        * 1. Add the correct box sizing in IE 10.
+        * 2. Remove the padding in IE 10.
+        */
+       [type="checkbox"],
+       [type="radio"] {
+         box-sizing: border-box;
+         /* 1 */
+         padding: 0;
+         /* 2 */ }
+       
+       /**
+        * Correct the cursor style of increment and decrement buttons in Chrome.
+        */
+       [type="number"]::-webkit-inner-spin-button,
+       [type="number"]::-webkit-outer-spin-button {
+         height: auto; }
+       
+       /**
+        * 1. Correct the odd appearance in Chrome and Safari.
+        * 2. Correct the outline style in Safari.
+        */
+       [type="search"] {
+         -webkit-appearance: textfield;
+         /* 1 */
+         outline-offset: -2px;
+         /* 2 */ }
+       
+       /**
+        * Remove the inner padding in Chrome and Safari on macOS.
+        */
+       [type="search"]::-webkit-search-decoration {
+         -webkit-appearance: none; }
+       
+       /**
+        * 1. Correct the inability to style clickable types in iOS and Safari.
+        * 2. Change font properties to inherit in Safari.
+        */
+       ::-webkit-file-upload-button {
+         -webkit-appearance: button;
+         /* 1 */
+         font: inherit;
+         /* 2 */ }
+       
+       /* Interactive
+          ========================================================================== */
+       /*
+        * Add the correct display in Edge, IE 10+, and Firefox.
+        */
+       details {
+         display: block; }
+       
+       /*
+        * Add the correct display in all browsers.
+        */
+       summary {
+         display: list-item; }
+       
+       /* Misc
+          ========================================================================== */
+       /**
+        * Add the correct display in IE 10+.
+        */
+       template {
+         display: none; }
+       
+       /**
+        * Add the correct display in IE 10.
+        */
+       [hidden] {
+         display: none; }
+       
+       * {
+         -moz-box-sizing: border-box;
+         -webkit-box-sizing: border-box;
+         box-sizing: border-box; }
+       
+       *,
+       *:before,
+       *:after,
+       p:first-letter,
+       div:first-letter,
+       blockquote:first-letter,
+       li:first-letter,
+       p:first-line,
+       div:first-line,
+       blockquote:first-line,
+       li:first-line {
+         background: transparent !important;
+         box-shadow: none !important;
+         text-shadow: none !important; }
+       
+       html {
+         font-size: 16px;
+         margin: 0;
+         padding: 0; }
+       
+       body {
+         -moz-osx-font-smoothing: grayscale;
+         -webkit-font-smoothing: antialiased;
+         background: #fff !important;
+         color: #000 !important;
+         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+         font-size: 1rem;
+         line-height: 1.5;
+         margin: 0 auto;
+         text-rendering: optimizeLegibility; }
+       
+       p,
+       blockquote,
+       table,
+       ul,
+       ol,
+       dl {
+         margin-bottom: 1.5rem;
+         margin-top: 0; }
+       
+       p:last-child,
+       ul:last-child,
+       ol:last-child {
+         margin-bottom: 0; }
+       
+       h1,
+       h2,
+       h3,
+       h4,
+       h5,
+       h6 {
+         color: #000;
+         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+         line-height: 1.2;
+         margin-bottom: 0.75rem;
+         margin-top: 0; }
+       
+       h1 {
+         font-size: 2.5rem; }
+       
+       h2 {
+         font-size: 2rem; }
+       
+       h3 {
+         font-size: 1.75rem; }
+       
+       h4 {
+         font-size: 1.5rem; }
+       
+       h5 {
+         font-size: 1.25rem; }
+       
+       h6 {
+         font-size: 1rem; }
+       
+       a, a:visited {
+         color: #000;
+         text-decoration: underline;
+         word-wrap: break-word; }
+       
+       table {
+         border-collapse: collapse; }
+       
+       thead {
+         display: table-header-group; }
+       
+       table,
+       th,
+       td {
+         border-bottom: 1px solid #000; }
+       
+       td,
+       th {
+         padding: 8px 16px;
+         page-break-inside: avoid; }
+       
+       code,
+       pre,
+       kbd {
+         border: 1px solid #bbb;
+         font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+         font-size: 85%; }
+       
+       code,
+       kbd {
+         padding: 3px; }
+       
+       pre {
+         margin-bottom: 1.5rem;
+         padding: 10px 12px; }
+         pre code,
+         pre kbd {
+           border: 0; }
+       
+       ::-webkit-input-placeholder {
+         color: transparent; }
+       
+       :-moz-placeholder {
+         color: transparent; }
+       
+       ::-moz-placeholder {
+         color: transparent; }
+       
+       :-ms-input-placeholder {
+         color: transparent; }
+       
+       blockquote {
+         border: 0;
+         border-left: 5px solid #bbb;
+         margin-left: 1px;
+         padding: 12px 1.5rem; }
+         [dir='rtl'] blockquote {
+           border-left: 0;
+           border-right: 5px solid #bbb;
+           margin-left: 0;
+           margin-right: 1px; }
+         blockquote:first-child {
+           margin-top: 0; }
+         blockquote p:last-child,
+         blockquote ul:last-child,
+         blockquote ol:last-child {
+           margin-bottom: 0; }
+         blockquote footer {
+           display: block;
+           font-size: 80%; }
+       
+       img {
+         border: 0;
+         display: block;
+         max-width: 100% !important;
+         vertical-align: middle; }
+       
+       hr {
+         border: 0;
+         border-bottom: 2px solid #bbb;
+         height: 0;
+         margin: 2.25rem 0;
+         padding: 0; }
+       
+       dt {
+         font-weight: bold; }
+       
+       dd {
+         margin: 0;
+         margin-bottom: 0.75rem; }
+       
+       abbr[title],
+       acronym[title] {
+         border: 0;
+         text-decoration: none; }
+       
+       table,
+       blockquote,
+       pre,
+       code,
+       figure,
+       li,
+       hr,
+       ul,
+       ol,
+       a,
+       tr {
+         page-break-inside: avoid; }
+       
+       h2,
+       h3,
+       h4,
+       p,
+       a {
+         orphans: 3;
+         widows: 3; }
+       
+       h1,
+       h2,
+       h3,
+       h4,
+       h5,
+       h6 {
+         page-break-after: avoid;
+         page-break-inside: avoid; }
+       
+       h1 + p,
+       h2 + p,
+       h3 + p {
+         page-break-before: avoid; }
+       
+       img {
+         page-break-after: auto;
+         page-break-before: auto;
+         page-break-inside: avoid; }
+       
+       pre {
+         white-space: pre-wrap !important;
+         word-wrap: break-word; }
+       
+       body {
+         padding-bottom: 2.54cm;
+         padding-left: 1.8cm;
+         padding-right: 1.8cm;
+         padding-top: 2.54cm; }
+       
+       a[href^='http']:after, a[href^='ftp']:after {
+         content: " (" attr(href) ")";
+         font-size: 80%; }
+       
+       a[href$='.jpg']:after, a[href$='.jpeg']:after, a[href$='.gif']:after, a[href$='.png']:after {
+         display: none; }
+       
+       abbr[title]:after,
+       acronym[title]:after {
+         content: " (" attr(title) ")"; }
+       
+       .page-break,
+       .break-before,
+       .page-break-before {
+         page-break-before: always; }
+       
+       .break-after,
+       .page-break-after {
+         page-break-after: always; }
+       
+       .avoid-break-inside {
+         page-break-inside: avoid; }
+       
+       .no-print {
+         display: none; }
+       
+       a.no-reformat:after {
+         content: ''; }
+       
+       abbr[title].no-reformat:after,
+       acronym[title].no-reformat:after {
+         content: ''; }
+       
+       .no-reformat abbr:after,
+       .no-reformat acronym:after,
+       .no-reformat a:after {
+         content: ''; }
+        </style>
+    <h1>Title: HTTP/3: Everything you need to know about the next-generation web protocol</h1><br><div id="readability-page-1" class="page"><div>
+                    <!-- Article Start -->
+                    <p>QUIC march</p><p><img src="/cms/images/c9/a1/4c1c-article-201027-http3-body-text.jpg" alt="HTTP3, everything you need to know about the next-gen web protocol" title="Image credit: Surapol USanakul / Shutterstock / PortSwigger Ltd"></p><p>Security researchers have only just <a href="https://portswigger.net/daily-swig/black-hat-2020-new-http-request-smuggling-variants-levied-against-modern-web-servers" target="_blank">gotten their teeth into HTTP/2</a>, but the movers and shakers of the web are already spinning out an update: HTTP/3.</p><p>The technology offers performance gains and security benefits, but only if we get over the many deployment issues that lie ahead for what one expert tells us is best considered as an evolutionary rather than revolutionary change to how the web works.</p><h3>What is HTTP/3?</h3><p>HTTP/3 is a major revision of the Hypertext Transfer Protocol (HTTP), the technology that underpins the transfer of information on the web.</p><p>HTTP/3 runs over <a href="https://tools.ietf.org/html/draft-ietf-quic-transport-22#section-1" target="_blank" rel="nofollow">QUIC</a> – an <a href="https://portswigger.net/daily-swig/encryption" target="_blank">encrypted</a> general-purpose transport protocol that multiplexes multiple streams of data on a single connection.</p><p>QUIC was initially developed by Google. The protocol utilizes space congestion control over User Datagram Protocol (UDP).</p><h3>What is the relationship between HTTP, HTTP/2, and HTTP/3?</h3><p>While HTTP is really ‘HTTP-over-TCP’ and HTTP/2 might be described as ‘HTTP-over-TCP’ then HTTP/3 might be best described as ‘HTTP/2-over-QUIC’.</p><p>During the <a href="https://portswigger.net/daily-swig/black-hat" target="_blank">Black Hat</a> Asia 2020 virtual conference, Google engineer Nick Harper explained in some depth how QUIC and HTTP/3 compare to HTTP/2.</p><p><span>RELATED</span> <a href="https://portswigger.net/daily-swig/black-hat-asia-need-for-global-security-perspectives-underlined-at-virtual-event" target="_blank">Black Hat Asia: Need for global security perspectives underlined at virtual event</a></p><p>Harper argued that the HTTP/3 protocol stack has “equivalent security as HTTP/2”, adding that HTTP/3’s use of QUIC improves performance while QUIC enhances <a href="https://portswigger.net/daily-swig/privacy" target="_blank">privacy</a>.</p><p>HTTP/3 is largely similar to HTTP/2 in high-level features, though their implementation differs, Robin Marx, a PhD researcher specializing in web performance at Hasselt University, Belgium, told <i>The Daily Swig</i>.</p><p><img src="/cms/images/b6/d8/e8cb-article-201002-gruss-body-text.jpg" alt="HTTP3 web protocol will have security benefits" title="Image credit: spainter_vfx / Shutterstock"><span>HTTP/3 might be best described as ‘HTTP/2-over-QUIC’</span></p><br><h3>What are the benefits of the HTTP/3 protocol?</h3><p>The switch to QUIC goes a long way towards resolving a major problem of HTTP/2, namely ‘head of line blocking’.</p><p>Because the parallel nature of HTTP/2’s multiplexing is not visible to TCP’s loss recovery mechanisms, a lost or reordered packet causes all active transactions to stall regardless of whether a particular transaction was impacted by the lost packet or not.</p><p>Since QUIC provides native multiplexing, lost packets only impact the streams where data has been dropped.</p><p>The practical effect of the upgrade to HTTP/3 is to reduce the latency of poor or lossy internet connections.</p><p><span>RECOMMENDED</span> <a href="https://portswigger.net/daily-swig/coronavirus-how-to-work-from-home-securely-during-a-period-of-isolation" target="_blank">Coronavirus: How to work from home securely during a period of isolation</a></p><p>QUIC is almost entirely encrypted, meaning security should also be significantly improved with HTTP/3.</p><p>This built-in encryption means fewer opportunities for <a href="https://portswigger.net/daily-swig/mitm" target="_blank">manipulator-in-the-middle</a>&nbsp;(MitM) attacks, while QUIC also includes other features that help protect against denial of service exploits, according to Marx.</p><p>QUIC combines its cryptographic and transport handshakes in a way that allows connection to a new server in a single round trip. The same technology allows an interrupted connection to be quickly resumed, with the client sending encrypted application data in its first flight.</p><p>QUIC uses TLS 1.3 as the building blocks for its cryptographic handshake.</p><h3>How well supported is HTTP/3?</h3><p>As of October 2020, the <a href="https://tools.ietf.org/html/draft-ietf-quic-http-31" target="_blank" rel="nofollow">HTTP/3 protocol is an internet draft standard</a> and has multiple implementations.</p><p>Nearly 8% of the top 10 million websites support HTTP/3, according to the <a href="https://w3techs.com/technologies/details/ce-http3" target="_blank" rel="nofollow">latest figures from W3Techs</a>.</p><p>HTTP/3 has non-default support in stable versions of the Chrome (since December 2019) and Firefox (since January 2020) <a href="https://portswigger.net/daily-swig/browsers" target="_blank">browsers</a>.</p><h3>What advantages will be gained from rolling out HTTP/3?</h3><p>Backers of HTTP/3 reckon that the technology will offer faster website load time and better performance, particularly on loss-prone networks, compared to earlier technologies.</p><p>Achiel van der Mandele, product manager at Cloudflare, explained: “Simply put, we believe that HTTP/3 will make the internet better for everyone. HTTP/3 is the successor to HTTP/2, offering improved performance when loading websites.</p><p>“Users of HTTP/3 will benefit from faster connection setup and better performance on low-quality networks with high amounts of packet loss. Both of these improvements ensure that websites load faster and more reliably,” Mandele told <span>The Daily Swig</span>.</p><p>Marx was more cautious in talking up the benefits of HTTP/3.</p><p>“Performance should also benefit, though not by that much in practice,” he said. “The head-of-line blocking removal doesn’t matter *that* much for [things like] web page loading.</p><p>“Most gains will be from the shorter handshake setup times,” he explained, adding that HTTP/3 and QUIC represent an “evolution, not a revolution”.</p><p>“Performance will be better, but not in a super-noticeable way for things like web browsing,” Marx said. “Security should be better and protect against several attack types.”</p><p><img src="/cms/images/cf/e1/fb2a-article-200611-tls-body-text.jpg" alt="HTTP3 may be difficult to implement, but does have security benefits" title="Image credit: Majcot / Shutterstock"><span>HTTP/3 is said to offer faster website loading time and better performance</span></p><h3>What challenges lie ahead for deploying HTTP/3?</h3><p>Rustam Lalkaka, director of product at Cloudflare, offered <span>The Daily Swig</span> a list of obstacles to be overcome in deploying HTTP/3. This includes getting the technology to work with load balancers and deep packet inspection devices (so called ‘<a href="https://portswigger.net/daily-swig/https-everywhere-cloudflare-planning-improvements-to-middleware-detection-utility" target="_blank">middleboxes</a>’), as well as building up browser support:</p><ul><li><span>Software built to support QUIC and HTTP/3 is still new and rapidly evolving</span>. “We’ve been heartened to see strong cross-industry partnerships working well to address interoperability issues as they arise. We expect to continue finding and fixing issues as the standard and various implementations mature.”</li><li><span>Transit providers between networks (or in some cases even ISPs) may run <a href="https://en.wikipedia.org/wiki/Middlebox" target="_blank" rel="nofollow">middleboxes</a> that have historically been hostile to UDP traffic</span>. “To unlock the full benefits of QUIC and allow all clients to use it, some networks with hostile middleboxes may need to make configuration adjustments.”</li><li><span>Enabling QUIC for many server operators is complicated</span>. “For example, for customers of Cloudflare, enabling HTTP/3 is straightforward: just hit the HTTP/3 toggle on the dashboard and anyone visiting their site with a compatible browser will access it over the new protocol.”</li><li><span>Client support is still not totally mainstream</span>. “Google <a href="https://portswigger.net/daily-swig/Chrome" target="_blank">Chrome</a> has recently enabled HTTP/3 on QUIC for ~95% of their browsers; we expect other major browser vendors to follow suit now that the HTTP/3 with QUIC IETF standard has entered its final draft. Firefox and <a href="https://portswigger.net/daily-swig/safari" target="_blank">Safari</a> have support in earlier stages of maturity.”</li></ul><p>Cloudflare explained how it was preparing for HTTP/3 in a detailed <a href="https://blog.cloudflare.com/http3-the-past-present-and-future/" target="_blank" rel="nofollow">technical blog post</a> that serves as a good introduction to the technology.</p><p>Marx added that some networks will “consciously block QUIC because firewalls” can, for example, no longer track connection setup or QUIC transport header information.</p><p>“Packet numbers, acknowledgements, options... are all encrypted in QUIC,” Marx explained. “QUIC only works when encrypted and browsers currently don't work too well with self-signed certificates or ‘in-house’ root certificates.”</p><p>Load balancers need to be adjusted to deal with QUIC’s connection IDs and connection migration features.</p><p>Advanced features like 0-RTT (round trip time) have a strong security aspect, involving the creation of Session Ticket Encryption keys and protection against&nbsp;replay attacks, Marx added.</p><h3>When will QUIC and HTTP/3 become mainstream technologies?</h3><p>QUIC discovery is complex, since HTTP/2 connections cannot simply be upgraded to QUIC the same way HTTP/1.1 is upgraded to HTTP/2. This is because QUIC runs over UDP and not TCP.</p><p>Given this implementation barrier, Marx said that over the next few years HTTP/3 is “probably something you get when using a content delivery network or external service provider, not something you’ll be setting up on your own servers (for most people)”.</p><p>A <a href="https://www.youtube.com/watch?v=pq_xk_Pecu4&amp;feature=youtu.be&amp;t=989" target="_blank" rel="nofollow">conference talk</a> and related <a href="https://calendar.perfplanet.com/2018/quic-and-http-3-too-big-to-fail/" target="_blank" rel="nofollow">blog post</a> by Marx on preparing for HTTP/3-over-QUIC, delivered at the O’Reilly Velocity Berlin conference last year, discusses many of the practical issues ahead in deploying the technology.</p><p>Marx concluded: “QUIC is still a very powerful protocol and many of the performance gains will come down the line as the protocol is much easier than TCP to evolve/tweak and new best practices will emerge.</p><p>“Still, it is highly complex, and it will take time for the wider community to really understand how it works and how to use it.”</p><p><span>YOU MIGHT ALSO LIKE</span> <a href="https://portswigger.net/daily-swig/http-2-pinged-by-ddos-vulnerabilities">HTTP/2 pinged by DDoS vulnerabilities</a></p>
+                    <!-- Article End -->
+                </div></div><br>---<br>

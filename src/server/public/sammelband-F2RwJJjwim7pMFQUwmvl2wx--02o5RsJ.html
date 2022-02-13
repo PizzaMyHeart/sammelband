@@ -1,0 +1,592 @@
+Title: Example Domain
+
+<div id="readability-page-1" class="page"><div>
+    
+    <p>This domain is for use in illustrative examples in documents. You may use this
+    domain in literature without prior coordination or asking for permission.</p>
+    <p><a href="https://www.iana.org/domains/example">More information...</a></p>
+</div></div>
+---
+
+        <style>
+        /*!
+        * Gutenberg
+        *
+        * MIT Fabien Sa
+        * https://github.com/BafS/Gutenberg
+        */
+       /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+       /* Document
+          ========================================================================== */
+       /**
+        * 1. Correct the line height in all browsers.
+        * 2. Prevent adjustments of font size after orientation changes in iOS.
+        */
+       html {
+         line-height: 1.15;
+         /* 1 */
+         -webkit-text-size-adjust: 100%;
+         /* 2 */ }
+       
+       /* Sections
+          ========================================================================== */
+       /**
+        * Remove the margin in all browsers.
+        */
+       body {
+         margin: 0; }
+       
+       /**
+        * Render the main element consistently in IE.
+        */
+       main {
+         display: block; }
+       
+       /**
+        * Correct the font size and margin on h1 elements within section and
+        * article contexts in Chrome, Firefox, and Safari.
+        */
+       h1 {
+         font-size: 2em;
+         margin: 0.67em 0; }
+       
+       /* Grouping content
+          ========================================================================== */
+       /**
+        * 1. Add the correct box sizing in Firefox.
+        * 2. Show the overflow in Edge and IE.
+        */
+       hr {
+         box-sizing: content-box;
+         /* 1 */
+         height: 0;
+         /* 1 */
+         overflow: visible;
+         /* 2 */ }
+       
+       /**
+        * 1. Correct the inheritance and scaling of font size in all browsers.
+        * 2. Correct the odd em font sizing in all browsers.
+        */
+       pre {
+         font-family: monospace, monospace;
+         /* 1 */
+         font-size: 1em;
+         /* 2 */ }
+       
+       /* Text-level semantics
+          ========================================================================== */
+       /**
+        * Remove the gray background on active links in IE 10.
+        */
+       a {
+         background-color: transparent; }
+       
+       /**
+        * 1. Remove the bottom border in Chrome 57-
+        * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+        */
+       abbr[title] {
+         border-bottom: none;
+         /* 1 */
+         text-decoration: underline;
+         /* 2 */
+         text-decoration: underline dotted;
+         /* 2 */ }
+       
+       /**
+        * Add the correct font weight in Chrome, Edge, and Safari.
+        */
+       b,
+       strong {
+         font-weight: bolder; }
+       
+       /**
+        * 1. Correct the inheritance and scaling of font size in all browsers.
+        * 2. Correct the odd em font sizing in all browsers.
+        */
+       code,
+       kbd,
+       samp {
+         font-family: monospace, monospace;
+         /* 1 */
+         font-size: 1em;
+         /* 2 */ }
+       
+       /**
+        * Add the correct font size in all browsers.
+        */
+       small {
+         font-size: 80%; }
+       
+       /**
+        * Prevent sub and sup elements from affecting the line height in
+        * all browsers.
+        */
+       sub,
+       sup {
+         font-size: 75%;
+         line-height: 0;
+         position: relative;
+         vertical-align: baseline; }
+       
+       sub {
+         bottom: -0.25em; }
+       
+       sup {
+         top: -0.5em; }
+       
+       /* Embedded content
+          ========================================================================== */
+       /**
+        * Remove the border on images inside links in IE 10.
+        */
+       img {
+         border-style: none; }
+       
+       /* Forms
+          ========================================================================== */
+       /**
+        * 1. Change the font styles in all browsers.
+        * 2. Remove the margin in Firefox and Safari.
+        */
+       button,
+       input,
+       optgroup,
+       select,
+       textarea {
+         font-family: inherit;
+         /* 1 */
+         font-size: 100%;
+         /* 1 */
+         line-height: 1.15;
+         /* 1 */
+         margin: 0;
+         /* 2 */ }
+       
+       /**
+        * Show the overflow in IE.
+        * 1. Show the overflow in Edge.
+        */
+       button,
+       input {
+         /* 1 */
+         overflow: visible; }
+       
+       /**
+        * Remove the inheritance of text transform in Edge, Firefox, and IE.
+        * 1. Remove the inheritance of text transform in Firefox.
+        */
+       button,
+       select {
+         /* 1 */
+         text-transform: none; }
+       
+       /**
+        * Correct the inability to style clickable types in iOS and Safari.
+        */
+       button,
+       [type="button"],
+       [type="reset"],
+       [type="submit"] {
+         -webkit-appearance: button; }
+       
+       /**
+        * Remove the inner border and padding in Firefox.
+        */
+       button::-moz-focus-inner,
+       [type="button"]::-moz-focus-inner,
+       [type="reset"]::-moz-focus-inner,
+       [type="submit"]::-moz-focus-inner {
+         border-style: none;
+         padding: 0; }
+       
+       /**
+        * Restore the focus styles unset by the previous rule.
+        */
+       button:-moz-focusring,
+       [type="button"]:-moz-focusring,
+       [type="reset"]:-moz-focusring,
+       [type="submit"]:-moz-focusring {
+         outline: 1px dotted ButtonText; }
+       
+       /**
+        * Correct the padding in Firefox.
+        */
+       fieldset {
+         padding: 0.35em 0.75em 0.625em; }
+       
+       /**
+        * 1. Correct the text wrapping in Edge and IE.
+        * 2. Correct the color inheritance from fieldset elements in IE.
+        * 3. Remove the padding so developers are not caught out when they zero out
+        *    fieldset elements in all browsers.
+        */
+       legend {
+         box-sizing: border-box;
+         /* 1 */
+         color: inherit;
+         /* 2 */
+         display: table;
+         /* 1 */
+         max-width: 100%;
+         /* 1 */
+         padding: 0;
+         /* 3 */
+         white-space: normal;
+         /* 1 */ }
+       
+       /**
+        * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+        */
+       progress {
+         vertical-align: baseline; }
+       
+       /**
+        * Remove the default vertical scrollbar in IE 10+.
+        */
+       textarea {
+         overflow: auto; }
+       
+       /**
+        * 1. Add the correct box sizing in IE 10.
+        * 2. Remove the padding in IE 10.
+        */
+       [type="checkbox"],
+       [type="radio"] {
+         box-sizing: border-box;
+         /* 1 */
+         padding: 0;
+         /* 2 */ }
+       
+       /**
+        * Correct the cursor style of increment and decrement buttons in Chrome.
+        */
+       [type="number"]::-webkit-inner-spin-button,
+       [type="number"]::-webkit-outer-spin-button {
+         height: auto; }
+       
+       /**
+        * 1. Correct the odd appearance in Chrome and Safari.
+        * 2. Correct the outline style in Safari.
+        */
+       [type="search"] {
+         -webkit-appearance: textfield;
+         /* 1 */
+         outline-offset: -2px;
+         /* 2 */ }
+       
+       /**
+        * Remove the inner padding in Chrome and Safari on macOS.
+        */
+       [type="search"]::-webkit-search-decoration {
+         -webkit-appearance: none; }
+       
+       /**
+        * 1. Correct the inability to style clickable types in iOS and Safari.
+        * 2. Change font properties to inherit in Safari.
+        */
+       ::-webkit-file-upload-button {
+         -webkit-appearance: button;
+         /* 1 */
+         font: inherit;
+         /* 2 */ }
+       
+       /* Interactive
+          ========================================================================== */
+       /*
+        * Add the correct display in Edge, IE 10+, and Firefox.
+        */
+       details {
+         display: block; }
+       
+       /*
+        * Add the correct display in all browsers.
+        */
+       summary {
+         display: list-item; }
+       
+       /* Misc
+          ========================================================================== */
+       /**
+        * Add the correct display in IE 10+.
+        */
+       template {
+         display: none; }
+       
+       /**
+        * Add the correct display in IE 10.
+        */
+       [hidden] {
+         display: none; }
+       
+       * {
+         -moz-box-sizing: border-box;
+         -webkit-box-sizing: border-box;
+         box-sizing: border-box; }
+       
+       *,
+       *:before,
+       *:after,
+       p:first-letter,
+       div:first-letter,
+       blockquote:first-letter,
+       li:first-letter,
+       p:first-line,
+       div:first-line,
+       blockquote:first-line,
+       li:first-line {
+         background: transparent !important;
+         box-shadow: none !important;
+         text-shadow: none !important; }
+       
+       html {
+         font-size: 16px;
+         margin: 0;
+         padding: 0; }
+       
+       body {
+         -moz-osx-font-smoothing: grayscale;
+         -webkit-font-smoothing: antialiased;
+         background: #fff !important;
+         color: #000 !important;
+         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+         font-size: 1rem;
+         line-height: 1.5;
+         margin: 0 auto;
+         text-rendering: optimizeLegibility; }
+       
+       p,
+       blockquote,
+       table,
+       ul,
+       ol,
+       dl {
+         margin-bottom: 1.5rem;
+         margin-top: 0; }
+       
+       p:last-child,
+       ul:last-child,
+       ol:last-child {
+         margin-bottom: 0; }
+       
+       h1,
+       h2,
+       h3,
+       h4,
+       h5,
+       h6 {
+         color: #000;
+         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+         line-height: 1.2;
+         margin-bottom: 0.75rem;
+         margin-top: 0; }
+       
+       h1 {
+         font-size: 2.5rem; }
+       
+       h2 {
+         font-size: 2rem; }
+       
+       h3 {
+         font-size: 1.75rem; }
+       
+       h4 {
+         font-size: 1.5rem; }
+       
+       h5 {
+         font-size: 1.25rem; }
+       
+       h6 {
+         font-size: 1rem; }
+       
+       a, a:visited {
+         color: #000;
+         text-decoration: underline;
+         word-wrap: break-word; }
+       
+       table {
+         border-collapse: collapse; }
+       
+       thead {
+         display: table-header-group; }
+       
+       table,
+       th,
+       td {
+         border-bottom: 1px solid #000; }
+       
+       td,
+       th {
+         padding: 8px 16px;
+         page-break-inside: avoid; }
+       
+       code,
+       pre,
+       kbd {
+         border: 1px solid #bbb;
+         font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+         font-size: 85%; }
+       
+       code,
+       kbd {
+         padding: 3px; }
+       
+       pre {
+         margin-bottom: 1.5rem;
+         padding: 10px 12px; }
+         pre code,
+         pre kbd {
+           border: 0; }
+       
+       ::-webkit-input-placeholder {
+         color: transparent; }
+       
+       :-moz-placeholder {
+         color: transparent; }
+       
+       ::-moz-placeholder {
+         color: transparent; }
+       
+       :-ms-input-placeholder {
+         color: transparent; }
+       
+       blockquote {
+         border: 0;
+         border-left: 5px solid #bbb;
+         margin-left: 1px;
+         padding: 12px 1.5rem; }
+         [dir='rtl'] blockquote {
+           border-left: 0;
+           border-right: 5px solid #bbb;
+           margin-left: 0;
+           margin-right: 1px; }
+         blockquote:first-child {
+           margin-top: 0; }
+         blockquote p:last-child,
+         blockquote ul:last-child,
+         blockquote ol:last-child {
+           margin-bottom: 0; }
+         blockquote footer {
+           display: block;
+           font-size: 80%; }
+       
+       img {
+         border: 0;
+         display: block;
+         max-width: 100% !important;
+         vertical-align: middle; }
+       
+       hr {
+         border: 0;
+         border-bottom: 2px solid #bbb;
+         height: 0;
+         margin: 2.25rem 0;
+         padding: 0; }
+       
+       dt {
+         font-weight: bold; }
+       
+       dd {
+         margin: 0;
+         margin-bottom: 0.75rem; }
+       
+       abbr[title],
+       acronym[title] {
+         border: 0;
+         text-decoration: none; }
+       
+       table,
+       blockquote,
+       pre,
+       code,
+       figure,
+       li,
+       hr,
+       ul,
+       ol,
+       a,
+       tr {
+         page-break-inside: avoid; }
+       
+       h2,
+       h3,
+       h4,
+       p,
+       a {
+         orphans: 3;
+         widows: 3; }
+       
+       h1,
+       h2,
+       h3,
+       h4,
+       h5,
+       h6 {
+         page-break-after: avoid;
+         page-break-inside: avoid; }
+       
+       h1 + p,
+       h2 + p,
+       h3 + p {
+         page-break-before: avoid; }
+       
+       img {
+         page-break-after: auto;
+         page-break-before: auto;
+         page-break-inside: avoid; }
+       
+       pre {
+         white-space: pre-wrap !important;
+         word-wrap: break-word; }
+       
+       body {
+         padding-bottom: 2.54cm;
+         padding-left: 1.8cm;
+         padding-right: 1.8cm;
+         padding-top: 2.54cm; }
+       
+       a[href^='http']:after, a[href^='ftp']:after {
+         content: " (" attr(href) ")";
+         font-size: 80%; }
+       
+       a[href$='.jpg']:after, a[href$='.jpeg']:after, a[href$='.gif']:after, a[href$='.png']:after {
+         display: none; }
+       
+       abbr[title]:after,
+       acronym[title]:after {
+         content: " (" attr(title) ")"; }
+       
+       .page-break,
+       .break-before,
+       .page-break-before {
+         page-break-before: always; }
+       
+       .break-after,
+       .page-break-after {
+         page-break-after: always; }
+       
+       .avoid-break-inside {
+         page-break-inside: avoid; }
+       
+       .no-print {
+         display: none; }
+       
+       a.no-reformat:after {
+         content: ''; }
+       
+       abbr[title].no-reformat:after,
+       acronym[title].no-reformat:after {
+         content: ''; }
+       
+       .no-reformat abbr:after,
+       .no-reformat acronym:after,
+       .no-reformat a:after {
+         content: ''; }
+        </style>
+    Title: Frequently Asked Questions - EmailThis
+
+<div id="readability-page-1" class="page"><div>
+<ul><li><a href="#what-is-email-this"><strong>What is EmailThis and how does it work?</strong></a></li><li><a data-turbolinks="false" href="#what-is-a-bookmarklet"><strong>What is a bookmarklet?</strong></a></li><li><strong><a data-turbolinks="false" href="#browser-support">Does EmailThis work on all browsers?</a></strong></li><li><strong><a data-turbolinks="false" href="#ios-android-mobile-bookmarklet">Will it work on my mobile/tablet? Can I use it save web pages from my iPhone/Android device?</a></strong></li><li><strong><a data-turbolinks="false" href="#free">Is it free? What's the catch?</a></strong></li><li><strong><a data-turbolinks="false" href="#privacy">Can I trust you with my email?</a></strong></li><li><strong><a data-turbolinks="false" href="#instapaper-readability-alternative">How is it different from Instapaper / Readability?</a></strong></li><li><strong><a data-turbolinks="false" href="#webpage-text-extraction">How smart is the article extractor? Does it work on all web pages?</a></strong></li><li><strong><a data-turbolinks="false" href="#gmail-labels">I don't want emails from EmailThis cluttering my primary inbox. Can I move it to a separate folder?</a></strong></li><li><strong><a data-turbolinks="false" href="#bug-report">I think I found a bug. How do I report it?</a></strong></li><li><strong><a data-turbolinks="false" href="/pages/faqs#support">It doesn't work / I can't install it on my browser. Can you help me out?</a></strong></li><li><strong><a data-turbolinks="false" href="#chrome-extension">Do you have a Chrome/Firefox/Safari browser extension?</a></strong></li><li><a data-turbolinks="false" href="#who"><strong>Who is behind this project?</strong></a></li></ul><hr><h3 id="what-is-email-this">What is EmailThis and how does it work?</h3><p>With <u>one-click</u>, you can save any web page or article to your email inbox. EmailThis will remove ads, banners, distractions, and clutter from web pages and send you a nicely formatted email with just the text and essential images.&nbsp;</p><p>You can then open up your email client and read your saved articles whenever and wherever you want.</p><p>To use EmailThis, you will need to install our browser extension or add the EmailThis bookmarklet. Browser extension is a tiny piece of software that you can add to your web browser to enhance its capabilities. Our browser extensions can be installed from the following links -&nbsp;</p><ul><li><a href="https://chrome.google.com/webstore/detail/email-this/lgblkllcjgihfnlefhnnpppndbbjallh" rel="noopener noreferrer" target="_blank">EmailThis for <strong>Chrome browser</strong></a></li><li><a href="https://addons.mozilla.org/en-US/firefox/addon/emailthis" rel="noopener noreferrer" target="_blank">EmailThis for <strong>Firefox browser</strong></a></li><li><a href="https://addons.opera.com/en/extensions/details/email-this/" rel="noopener noreferrer" target="_blank">EmailThis for <strong>Opera browser</strong></a></li></ul><p>For all other browsers (e.g.: <strong>Microsoft Edge</strong> or <strong>Safari</strong>), you can add our <strong>bookmarklet</strong> to your browser's Bookmarks bar. Adding our bookmarklet is really easy, it only takes a minute. Please scroll down to read more about bookmarklets and how to install them.</p><p>EmailThis <strong>works on all browsers&nbsp;</strong>and <strong>all devices</strong> - Mac, PC, Android phones/tablets &amp; iOS devices. For more information, please refer to our <a href="/web-page-to-email/how-to-save">getting started guide</a>.</p><h3 id="what-is-a-bookmarklet">What is a bookmarklet?</h3><p>Bookmarklets are tiny programs that you can add to your browser's Bookmarks Bar in order to add new features &amp; functionality to the browser. When clicked, a bookmarklet can perform a wide variety of tasks such as running a search query, comparing prices across shopping websites, extracting data from a table etc.&nbsp;</p><p>In the case of EmailThis, our bookmarklet discards all ads and distractions from an article or web page &amp; creates a readable view with only the important text and images of that page.</p><p>Please use this link to <a href="https://www.emailthis.me/#bookmarklet">add the EmailThis bookmarklet to your browser</a>.</p><h3 id="browser-support">Does EmailThis work on all browsers?</h3><p>Yes, it works on all browsers, irrespective of your operating system (Mac, Windows, Linux etc). All you need to do is drag the EmailThis bookmarklet to your browser's Bookmarks Bar.</p><p>A quick note, some browsers might have the Bookmarks Bar hidden by default. You can <strong>show the Bookmarks Bar</strong> by using the following keyboard shortcuts - &nbsp;</p><p><strong>Mac:</strong></p><p>Chrome, Safari, Opera, Internet Explorer (IE) or Edge browsers: <kbd>Command + Shift + B</kbd></p><p>Firefox:<span>&nbsp;</span><kbd>Command + B</kbd></p><p><strong>PC:</strong></p><p>Chrome, Safari, Opera, Internet Explorer (IE) or Edge browsers: <kbd>Control + Shift + B</kbd></p><p>Firefox: <kbd>Control + B</kbd></p><p>I have also written short visual guides on <a href="/web-page-to-email/how-to-save">how to use EmailThis</a> on different platforms and devices.</p><h3 id="ios-android-mobile-bookmarklet">Will it work on my mobile/tablet? Can I use it save web pages from my iPhone/Android device?</h3><p>Yes, you can use EmailThis to save web pages and articles when browsing using a mobile device.</p><p>If you are using an Android device, since there is no Bookmarks Bar, you need to use the Address Bar to save web pages. If you find an interesting article, click the address bar and type "EmailThis". You'll see an option which starts with "javascript://". Tap that option and EmailThis will send you an email with that article/web page.&nbsp;</p><p>Please check the <a href="/web-page-to-email/how-to-save">how to save web pages guide</a> for a much clearer idea.</p><h3 id="free">Is it free? What's the catch?</h3><p>Yes, Email This is a free service. You are welcome to install our bookmarklet or browser extension for free and save articles for later reading.</p><p>However, running a web application costs money. I want to be able to continue developing and maintaining Email This for many more years and for that, I need your support.</p><p>If you find continued utility, please consider purchasing the <a href="https://www.emailthis.me/premium"><strong>Premium Plan</strong></a>. This allows you to save unlimited bookmarks, send PDF/DOCX/images and other files as email attachments and gives you access to the latest updates.</p><p>If you are not convinced about EmailThis and the Premium plan, do read some of the <a href="https://www.emailthis.me/testimonials" rel="noopener noreferrer" target="_blank">testimonials and reviews given by our users</a>.</p><h3 id="privacy">Can I trust you with my email?</h3><p>Yes! Your privacy and security are my top priority. Your email will only be used to send you the articles that you save or to communicate some absolutely critical updates regarding EmailThis.</p><p>Also, this website itself uses SSL encryption to secure the connection between your browser and our server.&nbsp;</p><h3 id="instapaper-readability-alternative">How is it different from Instapaper, Readability, Evernote and Pocket?</h3><p>Unfortunately, Readability closed down on September 30, 2016, and is no longer available.</p><p>Instapaper is a wonderful tool. I started using it first when Marco Arment was the sole developer building it. Since then, it has been acquired by Pinterest. While it has apps and extensions for almost all platforms, my only gripe with it is that you either need to install a separate app or login to my Instapaper account to access all your saved links. I use multiple devices to read - a MacBook at work, an Android mobile or an iPad at home/during commute/breaks. With Instapaper, I need to install the app on all my devices and have it sync my bookmarks. Also, if for some reason, Instapaper goes down, I need to worry about backing up and exporting my bookmarks.</p><p>With EmailThis, it is much simpler. This service will simply send you an email with the contents of the article that you find interesting. Since an email client is something that comes built-in with most devices, there is <strong>no need to install any additional applications</strong>.</p><p><strong>Emails are automatically synced to your email clients, so you can read your articles even when you are offline</strong>.</p><p>I am sure Instapaper will be around for a long time. After the Pinterest acquisition, they have blogged about continuing the development of Instapaper and they have even made their premium features available as part of the free plan. However, if something happens to their servers or if their service is interrupted, you might have to look at ways to backup or download your bookmarks. This is not the case with EmailThis. We will simply forward all your bookmarks to your email address so <strong>you don't need to worry about backing up your bookmarks or worry about losing them</strong>.</p><p>All email services have spent a considerable amount of time to make their <strong>searching &amp; filtering capabilities</strong> top-notch. Using EmailThis, you can leverage the full power of that searching capability to find the particular bookmark/article that you are looking for.</p><p>I’d like to think that it is pretty smart ;) For most blogs, news articles, recipe websites, magazines, guides/tutorial websites etc., the extractor is able to remove ads &amp; distractions from the page, leaving only a readable view of the text and images.</p><p>However, in cases where we are not able to extract useful content from a page, we will email you the link itself which you can then open and read.</p><p>Another point to note is that if a web page is behind&nbsp;a login system, then we will not be able to extract useful content from it. In such cases also, we will email you the link itself.</p><h3 id="gmail-labels">I don't want emails from EmailThis cluttering my primary inbox. Can I move it to a separate folder?</h3><p>Sure, most email services like Gmail and Outlook have options for filtering and separating emails into separate “folders” or “labels”.</p><p>You can create a filter in Gmail/Outlook that adds a particular label to all emails from “<a href="/cdn-cgi/l/email-protection" data-cfemail="593b362d193c343830352d31302a77343c">[email&nbsp;protected]</a>". &nbsp;I have written a small visual tutorial that walks you through the process of <a href="/pages/gmail-move-email-to-labels-folder">setting up a separate label for messages in Gmail</a>.</p><h3 id="bug-report">I think I found a bug. How do I report it?</h3><p>Thanks for taking out the time to report bugs and send your suggestions. It will help me improve the product.</p><p>Please drop me an email at <a href="/cdn-cgi/l/email-protection#a2c0cac3d0c3cccbe2c7cfc3cbced6cacbd18ccfc7"><span data-cfemail="294b41485b484740694c444840455d41405a07444c">[email&nbsp;protected]</span></a>. Alternately, you can also tweet to me <a href="https://twitter.com/bharani91">@bharani91</a>.</p><h3>Ugghh! It doesn't work / I can't use it in my browser. Can you help me out?</h3><p>Sure, send an email to <a href="/cdn-cgi/l/email-protection#c8bbbdb8b8a7babc88ada5a9a1a4bca0a1bbe6a5ad"><span data-cfemail="30434540405f424470555d51595c445859431e5d55">[email&nbsp;protected]</span></a> and I'll be happy to help you out. Please do mention the browser and operating system that you are using. It will help me debug the issue.</p><h3 id="chrome-extension">Do you have a Chrome/Firefox/Safari browser extension or add-on?</h3><p>Our Chrome Extension is available on the <a href="https://chrome.google.com/webstore/detail/email-this/lgblkllcjgihfnlefhnnpppndbbjallh">Chrome Web Store</a>. I am working on extensions for Firefox, Opera &amp; Safari. <a href="https://twitter.com/bharani91">Follow me on Twitter</a> to get notified when those extensions is available.</p><h3 id="who">Who is behind this project?</h3><p><img src="https://assets.emailthis.me/uploads/images/me.png">Hi, I am Bharani. Nice to meet you.</p><p>I am a designer, full-stack web developer and amateur boxing enthusiast from Pondicherry, India.</p><p>I enjoy reading about technology, marketing, public policy and mindfulness. I am <a href="https://twitter.com/bharani91">@bharani91</a> on Twitter.</p>
+</div></div>
+---

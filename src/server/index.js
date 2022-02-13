@@ -93,6 +93,7 @@ function writeToFile(parsedArticles, req) {
     let filepath = `./public/sammelband-${id}.html`;
     // Add styles to top of html file
     console.log(req.body.color);
+    fs.writeFile(filepath, '', { flag: 'w+' }, err => {if (err) console.log(err)});
     fs.writeFile(filepath, applyStyle(req.body.color, req.body.font), { flag: 'a+' }, err => {if (err) throw err;});
     for (article of parsedArticles) {
         let content = `<h1>Title: ${article.title}</h1><br>${article.content}<br>---<br>`;
@@ -189,12 +190,23 @@ app.get('/mail', (req, res) => {
     mail(req.session.id).catch(console.error);
 })
 
+function deleteFile(res, id) {
+    console.log('deleting sammelband');
+    console.log(id);
+    fs.unlinkSync(path.join(__dirname, './public', `sammelband-${id}.html`));
+    res.send('Sammelband deleted');
+    console.log('Sammelband deleted');
+}
+
 app.get('/delete', (req, res) => {
+    /*
     console.log('deleting sammelband');
     console.log(req.session.id);
     fs.unlinkSync(path.join(__dirname, './public', `sammelband-${req.session.id}.html`));
     res.send('Sammelband deleted');
     console.log('Sammelband deleted');
+    */
+   deleteFile(res, req.session.id);
 })
 
 

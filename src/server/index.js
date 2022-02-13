@@ -193,7 +193,9 @@ app.get('/mail', (req, res) => {
 function deleteFile(res, id) {
     console.log('deleting sammelband');
     console.log(id);
-    fs.unlinkSync(path.join(__dirname, './public', `sammelband-${id}.html`));
+    fs.readdirSync(path.join(__dirname, `public/`))
+    .filter(filename => filename.includes(id))
+    .map(filename => fs.unlinkSync(path.join(__dirname, `public/${filename}`)));
     res.send('Sammelband deleted');
     console.log('Sammelband deleted');
 }

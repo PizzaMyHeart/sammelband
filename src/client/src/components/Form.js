@@ -42,6 +42,8 @@ function Form() {
     const onSubmit = data => {
         console.log(data['urls']);
         setLoading(true);
+        setSuccess(false);
+        setDeleted(true);
         fetch('/submit', {
             credentials: 'same-origin',
             method: 'POST',

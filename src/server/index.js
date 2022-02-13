@@ -7,7 +7,6 @@ const { Readability } = require('@mozilla/readability');
 const { JSDOM } = require('jsdom');
 const session = require('express-session');
 const { exec } = require('child_process');
-const wkhtmltopdf = require('wkhtmltopdf');
 
 const app = express();
 
@@ -38,7 +37,6 @@ async function fetchFromURL(urls) {
         })
         .catch(err => console.log(err));
     }
-    //console.log('Documents: ', documents);
     return documents;   
 
 }
@@ -57,8 +55,6 @@ function convertFromHTML(format, id) {
 function htmlToPDF(id) {
     console.log('htmlToPDF()');
     let filepath = path.join(__dirname, './public', `sammelband-${id}`);
-    //wkhtmltopdf(fs.readFileSync(filepath + '.html', 'utf-8'), { output: filepath + '.pdf'}); 
-    // ^ This doesn't work. Might be better off without the node wrapper.
     exec(`wkhtmltopdf --encoding utf-8 --print-media-type ${filepath + '.html'} ${filepath + '.pdf'}`);
 }
 
@@ -89,44 +85,39 @@ function writeToFile(parsedArticles, req) {
 // mozilla/readability version
 function parseDocuments(documents) {
     console.log('parseDocuments()');
-    //console.log(documents)
     let parsedArticles = [];
     documents.forEach(document => {
         let doc = new JSDOM(document);
         let reader = new Readability(doc.window.document);
         let article = reader.parse();
-        console.log('Parsed:...')
-        //console.log(article);
+        console.log('Parsed:...');
         parsedArticles.push(article);
     })
     //console.log('parsedArticles', parsedArticles);
     return parsedArticles;
 }
-
-function download(res, id) {
-    res.download(
-        path.join(__dirname, './public', `sammelband-${id}.html`), 
-        'sammelband.html',
-        err => {if (err) console.log(err)}
-        );
-    console.log('Sammelband downloaded');
+let format;
+function download(res, id, format) {
+    const filepath = path.join(__dirname, `public/sammelband-${id}.${format}`);
+    res.download(filepath, `sammelband.${format}`, err => {if (err) console.log(err)});
+    console.log(`sammelband.${format} downloaded.`)
 }
 
+
 var postHandler = function (req, res, next) {
-    console.log('getHTMLDocumtent()');
     console.log(req.body);
     console.log(req.session.id);
     const urls = req.body.urls.split('\n');
     console.log(urls);
+    format = req.body.format;
     fetchFromURL(urls)
         .then(documents => parseDocuments(documents))
         .then(parsedArticles => writeToFile(parsedArticles, req))
         .then(() => convertFromHTML(req.body.format, req.session.id));
-
+    
     res.end();
     
 }
-
 
 
 app.use('/submit', postHandler);
@@ -143,7 +134,7 @@ app.post('/submit', (req, res) => {
 });
 
 app.get('/download', (req, res) => {
-   download(res, req.session.id);
+    download(res, req.session.id, format);
 });
 
 app.get('/delete', (req, res) => {

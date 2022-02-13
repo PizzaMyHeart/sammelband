@@ -8,11 +8,15 @@ const { JSDOM } = require('jsdom');
 const session = require('express-session');
 const { exec } = require('child_process');
 const Epub = require('epub-gen');
+const nodemailer = require("nodemailer");
+
+
+
 
 const app = express();
 
 
-
+server.listen(3002, () => {console.log('socket.io server listening on "*:3002"')});
 app.use(['/', '/submit', '/download'], session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -122,6 +126,33 @@ function download(res, id, format) {
 }
 
 
+async function mail(id) {
+    console.log(`sessionID for email: ${id}`);
+
+    let transporter = await nodemailer.createTransport({
+        sendmail: true,
+        newline: 'unix',
+        path: '/usr/sbin/sendmail'
+    });
+    const body = fs.readFileSync(path.join(__dirname, `public/sammelband-${id}.html`), 'utf8', (err, data) => {
+        if (err) console.log(err);
+        console.log(data);
+        return data
+    });
+    console.log(body);
+    await transporter.sendMail({
+        from: 'ian_tan@hotmail.com', // sender address
+        to: 'ian_tan@hotmail.com', // list of receivers
+        subject: 'Hello ✔', // Subject line
+        text: 'Hello world?', // plain text body
+        html: body, // html body
+    }, (err, info) => {
+        console.log(info.envelope);
+        console.log("Message sent: %s", info.messageId);
+    });
+    
+}
+
 var postHandler = function (req, res, next) {
     console.log(req.body);
     console.log(req.session.id);
@@ -131,9 +162,10 @@ var postHandler = function (req, res, next) {
     fetchFromURL(urls)
         .then(documents => parseDocuments(documents))
         .then(parsedArticles => writeToFile(parsedArticles, req))
-        .then(() => convertFromHTML(req.body.format, req.session.id));
+        .then(() => convertFromHTML(req.body.format, req.session.id))
+        .then(() => res.send('Sammelband ready when you are.'));
     
-    res.end();
+    //res.end();
     
 }
 
@@ -154,6 +186,10 @@ app.post('/submit', (req, res) => {
 app.get('/download', (req, res) => {
     download(res, req.session.id, format);
 });
+
+app.get('/mail', (req, res) => {
+    mail(req.session.id).catch(console.error);
+})
 
 app.get('/delete', (req, res) => {
     console.log('deleting sammelband');

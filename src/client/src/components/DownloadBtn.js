@@ -9,11 +9,19 @@ function DownloadBtn() {
         })
         */
     }
+
+    const mail = () => {
+        fetch('/mail', {
+            credentials: 'same-origin',
+            method: 'GET',
+            mode: 'cors'
+        })
+    }
     return (
         <>
             <button onClick={ onClick }>Download</button>
             {/*<a href='http://localhost:3001/download'>Download</a>*/}
-            <button>Send to email (coming soon)</button>
+            <button onClick={ mail }>Send to email</button>
         </>
         
     )

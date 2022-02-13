@@ -3,9 +3,11 @@ import { useForm } from 'react-hook-form';
 
 function Form() {
     const [urls, setUrls] = useState('');
+    const [success, setSuccess] = useState(false);
 
     const { register, handleSubmit, setError, formState: { errors } } = useForm();
 
+    
     /*
     const onSubmit = e => {
         let payload = {
@@ -43,7 +45,12 @@ function Form() {
                 format: data['format']
             })
         })
+        .then(response => {
+            if (response) setSuccess(true);
+        });
     }
+
+
     
     const deleteFile = () => {
         fetch('/delete', {
@@ -87,6 +94,7 @@ function Form() {
                 <input type="submit" value="Submit" />
                 
             </form>
+            <div>{ success && <p>Success</p> }</div>
             <button onClick={ deleteFile }>Delete</button>
         </>
     )

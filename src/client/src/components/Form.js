@@ -7,7 +7,13 @@ function Form() {
     const [success, setSuccess] = useState(false);
     const [deleted, setDeleted] = useState(false);
 
-    const { register, handleSubmit, setError, formState: { errors } } = useForm();
+    const { register, handleSubmit, setError, formState: { errors } } = useForm({
+        defaultValues: {
+            'color': 'light',
+            'font': 'sansSerif',
+            'format': 'html'
+        }
+    });
 
     
     /*
@@ -84,12 +90,12 @@ function Form() {
                     { errors.urls && <p>{errors.urls.message}</p>}                    
                 </label>
                 <div>
-                    <input type="radio" value="dark" name="color" {...register('color', {required: 'Required'})}/> Dark mode
                     <input type="radio" value="light" name="color" {...register('color', {required: 'Required'})}/> Light mode
+                    <input type="radio" value="dark" name="color" {...register('color', {required: 'Required'})}/> Dark mode
                 </div>
                 <div>
-                    <input type="radio" value="serif" name="font" {...register('font')}/> Serif
                     <input type="radio" value="sansSerif" name="font" {...register('font')}/> Sans-serif
+                    <input type="radio" value="serif" name="font" {...register('font')}/> Serif
                 </div>
                 <div> 
                     <input type="radio" value="html" name="format" {...register('format')}/> HTML

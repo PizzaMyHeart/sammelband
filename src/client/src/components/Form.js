@@ -75,7 +75,7 @@ function Form() {
                 </div>
                 <div>
                     <input type="radio" value="serif" name="font" {...register('font')}/> Serif
-                    <input type="radio" value="sans-serif" name="font" {...register('font')}/> Sans-serif
+                    <input type="radio" value="sansSerif" name="font" {...register('font')}/> Sans-serif
                 </div>
                 <div> 
                     <input type="radio" value="html" name="format" {...register('format')}/> HTML

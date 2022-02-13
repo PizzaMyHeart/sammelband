@@ -70,11 +70,19 @@ function htmlToPDF(id) {
     exec(`wkhtmltopdf --encoding utf-8 ${filepath + '.html'} ${filepath + '.pdf'}`);
 }
 
-function writeToFile(parsedArticles, id) {
+function applyStyle(font) {
+    console.log(`Style: ${font}`);
+    if (font == 'sansSerif') {
+        return styles.sansSerif
+    } else return styles.serif
+}
+
+function writeToFile(parsedArticles, req) {
+    let id = req.session.id;
     //fs.unlinkSync('./public/sammelband.html');
     let filepath = `./public/sammelband-${id}.html`;
     // Add styles to top of html file
-    fs.writeFile(filepath, styles.styles, { flag: 'a+' }, err => {if (err) throw err;});
+    fs.writeFile(filepath, applyStyle(req.body.font), { flag: 'a+' }, err => {if (err) throw err;});
     for (article of parsedArticles) {
         let content = `<h1>Title: ${article.title}</h1><br>${article.content}<br>---<br>`;
         fs.writeFile(filepath, content, { flag: 'a+' }, err => {if (err) throw err;});
@@ -128,7 +136,7 @@ var postHandler = function (req, res, next) {
     console.log(urls);
     fetchFromURL(urls)
         .then(documents => parseDocuments(documents))
-        .then(parsedArticles => writeToFile(parsedArticles, req.session.id))
+        .then(parsedArticles => writeToFile(parsedArticles, req))
         .then(() => htmlToPDF(req.session.id));
 
     res.end();

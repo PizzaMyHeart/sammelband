@@ -50,6 +50,6 @@ jspm_packages/
 .yarn/install-state.gz
 .pnp.*
 
-*/public
+**/public/
 
 *.pdf

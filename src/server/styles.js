@@ -16,8 +16,15 @@ module.exports = {
     `,
     base: `
     body {
-      background: var(--body-bg);
-      color: var(--body-color);
+      background: var(--body-bg) !important;
+      color: var(--body-color) !important;
+    }
+
+    @media print {
+      body {
+        background: var(--body-bg) !important;
+        color: var(--body-color) !important;
+      }
     }
    /**
     * 1. Correct the line height in all browsers.

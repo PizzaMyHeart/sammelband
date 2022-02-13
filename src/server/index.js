@@ -62,12 +62,22 @@ function pandoc(to, id) {
     });
 }
 
+function convertFromHTML(format, id) {
+    switch(format) {
+        case 'pdf':
+            htmlToPDF(id);
+            break;
+        case 'html':
+             break;
+    }
+}
+
 function htmlToPDF(id) {
     console.log('htmlToPDF()');
     let filepath = path.join(__dirname, './public', `sammelband-${id}`);
     //wkhtmltopdf(fs.readFileSync(filepath + '.html', 'utf-8'), { output: filepath + '.pdf'}); 
     // ^ This doesn't work. Might be better off without the node wrapper.
-    exec(`wkhtmltopdf --encoding utf-8 ${filepath + '.html'} ${filepath + '.pdf'}`);
+    exec(`wkhtmltopdf --encoding utf-8 --print-media-type ${filepath + '.html'} ${filepath + '.pdf'}`);
 }
 
 function applyStyle(color, font) {
@@ -141,7 +151,7 @@ var postHandler = function (req, res, next) {
     fetchFromURL(urls)
         .then(documents => parseDocuments(documents))
         .then(parsedArticles => writeToFile(parsedArticles, req))
-        .then(() => htmlToPDF(req.session.id));
+        .then(() => convertFromHTML(req.body.format, req.session.id));
 
     res.end();
     

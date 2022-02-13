@@ -70,9 +70,14 @@ function htmlToPDF(id) {
     exec(`wkhtmltopdf --encoding utf-8 ${filepath + '.html'} ${filepath + '.pdf'}`);
 }
 
-function applyStyle(font) {
+function applyStyle(color, font) {
     console.log(`Style: ${font}`);
-    return styles.head + ((font=='sansSerif') ? styles.sansSerif : styles.serif) + styles.tail;
+    console.log(`Color: ${color}`);
+    return styles.head + 
+            styles.base + 
+            ((font=='sansSerif') ? styles.sansSerif : styles.serif) + 
+            ((color=='dark') ? styles.dark : styles.light) +
+            styles.tail;
 }
 
 function writeToFile(parsedArticles, req) {
@@ -80,7 +85,8 @@ function writeToFile(parsedArticles, req) {
     //fs.unlinkSync('./public/sammelband.html');
     let filepath = `./public/sammelband-${id}.html`;
     // Add styles to top of html file
-    fs.writeFile(filepath, applyStyle(req.body.font), { flag: 'a+' }, err => {if (err) throw err;});
+    console.log(req.body.color);
+    fs.writeFile(filepath, applyStyle(req.body.color, req.body.font), { flag: 'a+' }, err => {if (err) throw err;});
     for (article of parsedArticles) {
         let content = `<h1>Title: ${article.title}</h1><br>${article.content}<br>---<br>`;
         fs.writeFile(filepath, content, { flag: 'a+' }, err => {if (err) throw err;});

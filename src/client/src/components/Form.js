@@ -38,7 +38,7 @@ function Form() {
             },
             body: JSON.stringify({
                 urls: data['urls'],
-                colorTheme: data['color-theme'],
+                color: data['color'],
                 font: data['font'],
                 format: data['format']
             })
@@ -70,8 +70,8 @@ function Form() {
                     { errors.urls && <p>{errors.urls.message}</p>}                    
                 </label>
                 <div>
-                    <input type="radio" value="dark" name="color-theme" {...register('color-theme', {required: 'Required'})}/> Dark mode
-                    <input type="radio" value="light" name="color-theme" {...register('color-theme', {required: 'Required'})}/> Light mode
+                    <input type="radio" value="dark" name="color" {...register('color', {required: 'Required'})}/> Dark mode
+                    <input type="radio" value="light" name="color" {...register('color', {required: 'Required'})}/> Light mode
                 </div>
                 <div>
                     <input type="radio" value="serif" name="font" {...register('font')}/> Serif

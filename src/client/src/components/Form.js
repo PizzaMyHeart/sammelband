@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import DownloadBtn from './DownloadBtn';
+import Loading from './Loading';
 
 function Form() {
     const [urls, setUrls] = useState('');
     const [success, setSuccess] = useState(false);
     const [deleted, setDeleted] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const { register, handleSubmit, setError, formState: { errors } } = useForm({
         defaultValues: {
@@ -39,6 +41,7 @@ function Form() {
     // react-hook-form version
     const onSubmit = data => {
         console.log(data['urls']);
+        setLoading(true);
         fetch('/submit', {
             credentials: 'same-origin',
             method: 'POST',
@@ -54,7 +57,11 @@ function Form() {
             })
         })
         .then(response => {
-            if (response) setSuccess(true);
+            if (response) {
+                setSuccess(true);
+                setDeleted(false);
+                setLoading(false);
+            };
         });
     }
 
@@ -67,7 +74,10 @@ function Form() {
             mode: 'cors',
         })
         .then(response => {
-            if (response) setDeleted(true);
+            if (response) {
+                setDeleted(true);
+                setSuccess(false);
+            };
         })
     }
 
@@ -111,8 +121,9 @@ function Form() {
                 { success && <p>Sammelband ready</p> }
                 { deleted && <p>Sammelband deleted</p>}
             </div>
-            <button onClick={ deleteFile } id="deleteBtn" disabled={!success || deleted }>Delete</button>
+            <button onClick={ deleteFile } id="deleteBtn" disabled={ deleted || !success }>Delete</button>
             <DownloadBtn disabled={!success || deleted }/>
+            <div>{ loading && <Loading />}</div>
         </>
     )
 }

@@ -81,8 +81,6 @@ function Form() {
                     <input type="radio" value="html" name="format" {...register('format')}/> HTML
                     <input type="radio" value="pdf" name="format" {...register('format')}/> PDF 
                     <input type="radio" value="epub" name="format" {...register('format')}/> EPUB
-                    <input type="radio" value="markdown" name="format" {...register('format')}/> Markdown 
-                    <input type="radio" value="txt" name="format" {...register('format')}/> TXT 
                 </div>
                     
 

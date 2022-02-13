@@ -16,16 +16,11 @@ module.exports = {
     `,
     base: `
     body {
-      background: var(--body-bg) !important;
+      background-color: var(--body-bg) !important;
       color: var(--body-color) !important;
+      -webkit-print-color-adjust: exact;
     }
-
-    @media print {
-      body {
-        background: var(--body-bg) !important;
-        color: var(--body-color) !important;
-      }
-    }
+    
    /**
     * 1. Correct the line height in all browsers.
     * 2. Prevent adjustments of font size after orientation changes in iOS.

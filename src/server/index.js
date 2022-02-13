@@ -7,6 +7,7 @@ const { Readability } = require('@mozilla/readability');
 const { JSDOM } = require('jsdom');
 const session = require('express-session');
 const { exec } = require('child_process');
+const Epub = require('epub-gen');
 
 const app = express();
 
@@ -43,19 +44,35 @@ async function fetchFromURL(urls) {
 
 
 function convertFromHTML(format, id) {
+    let filepath = path.join(__dirname, './public', `sammelband-${id}`);
     switch(format) {
         case 'pdf':
-            htmlToPDF(id);
+            htmlToPDF(filepath);
             break;
         case 'html':
              break;
+        case 'epub':
+            htmlToEPUB(filepath);
+            break;
     }
 }
 
-function htmlToPDF(id) {
+function htmlToPDF(filepath) {
     console.log('htmlToPDF()');
-    let filepath = path.join(__dirname, './public', `sammelband-${id}`);
-    exec(`wkhtmltopdf --encoding utf-8 --print-media-type ${filepath + '.html'} ${filepath + '.pdf'}`);
+    exec(`wkhtmltopdf --encoding utf-8 --enable-local-file-access ${filepath + '.html'} ${filepath + '.pdf'}`);
+}
+
+function htmlToEPUB(filepath) {
+    console.log('htmlToEPUB()');
+    let option = {
+        title: 'Sammelband',
+        content: []
+    };
+    for (article of articles) {
+        option.content.push({title: article.title, data: article.content})
+    };
+    console.log(option);
+    new Epub(option, filepath + '.epub');
 }
 
 function applyStyle(color, font) {
@@ -81,7 +98,7 @@ function writeToFile(parsedArticles, req) {
     }
 
 }
-
+let articles;
 // mozilla/readability version
 function parseDocuments(documents) {
     console.log('parseDocuments()');
@@ -93,6 +110,7 @@ function parseDocuments(documents) {
         console.log('Parsed:...');
         parsedArticles.push(article);
     })
+    articles = [...parsedArticles];
     //console.log('parsedArticles', parsedArticles);
     return parsedArticles;
 }

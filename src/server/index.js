@@ -15,8 +15,6 @@ const nodemailer = require("nodemailer");
 
 const app = express();
 
-
-server.listen(3002, () => {console.log('socket.io server listening on "*:3002"')});
 app.use(['/', '/submit', '/download'], session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -195,6 +193,7 @@ app.get('/delete', (req, res) => {
     console.log('deleting sammelband');
     console.log(req.session.id);
     fs.unlinkSync(path.join(__dirname, './public', `sammelband-${req.session.id}.html`));
+    res.send('Sammelband deleted');
     console.log('Sammelband deleted');
 })
 

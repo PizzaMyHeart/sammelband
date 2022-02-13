@@ -1,4 +1,6 @@
-function DownloadBtn() {
+function DownloadBtn(props) {
+    let disabled = props.disabled;
+    console.log(disabled);
     const onClick = () => {
 
         window.location = 'http://localhost:3001/download'
@@ -19,7 +21,7 @@ function DownloadBtn() {
     }
     return (
         <>
-            <button onClick={ onClick }>Download</button>
+            <button onClick={ onClick } disabled={ disabled }>Download</button>
             {/*<a href='http://localhost:3001/download'>Download</a>*/}
             <button onClick={ mail }>Send to email</button>
         </>

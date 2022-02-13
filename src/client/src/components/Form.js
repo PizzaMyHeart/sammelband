@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import DownloadBtn from './DownloadBtn';
 
 function Form() {
     const [urls, setUrls] = useState('');
     const [success, setSuccess] = useState(false);
+    const [deleted, setDeleted] = useState(false);
 
     const { register, handleSubmit, setError, formState: { errors } } = useForm();
 
@@ -58,7 +60,12 @@ function Form() {
             method: 'GET',
             mode: 'cors',
         })
+        .then(response => {
+            if (response) setDeleted(true);
+        })
     }
+
+    
 
     return ( 
         <> 
@@ -94,8 +101,12 @@ function Form() {
                 <input type="submit" value="Submit" />
                 
             </form>
-            <div>{ success && <p>Success</p> }</div>
-            <button onClick={ deleteFile }>Delete</button>
+            <div>
+                { success && <p>Sammelband ready</p> }
+                { deleted && <p>Sammelband deleted</p>}
+            </div>
+            <button onClick={ deleteFile } id="deleteBtn">Delete</button>
+            <DownloadBtn disabled={!success}/>
         </>
     )
 }

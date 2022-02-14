@@ -99,7 +99,7 @@ function writeToFile(parsedArticles, req) {
         // https://github.com/BafS/Gutenberg#force-break-page
         let breakBefore;
         i == 0 ? breakBefore = '' : breakBefore = 'break-before';
-        let content = `<h1 class="${breakBefore}">Title: ${parsedArticles[i].title}</h1><br>${parsedArticles[i].content}<br>---<br>`;
+        let content = `<h1 class="${breakBefore}">Article #${i+1}: ${parsedArticles[i].title}</h1><br>${parsedArticles[i].content}<hr>`;
         fs.writeFile(filepath, content, { flag: 'a+' }, err => {if (err) console.log(err)});
     }
     return parsedArticles;

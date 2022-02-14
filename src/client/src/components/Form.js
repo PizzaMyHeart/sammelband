@@ -123,8 +123,10 @@ function Form() {
                 { success && <p>Sammelband ready</p> }
                 { deleted && <p>Sammelband deleted</p>}
             </div>
-            <button onClick={ deleteFile } id="deleteBtn" disabled={ deleted || !success }>Delete</button>
-            <DownloadBtn disabled={!success || deleted }/>
+            <div class="flex-container">
+                <button class="btn" onClick={ deleteFile } id="deleteBtn" disabled={ deleted || !success }>Delete</button>
+                <DownloadBtn disabled={!success || deleted }/>
+            </div>
             <div>{ loading && <Loading />}</div>
         </>
     )

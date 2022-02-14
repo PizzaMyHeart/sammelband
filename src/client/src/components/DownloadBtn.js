@@ -21,9 +21,9 @@ function DownloadBtn(props) {
     }
     return (
         <>
-            <button onClick={ onClick } disabled={ disabled }>Download</button>
+            <button class="btn" onClick={ onClick } disabled={ disabled }>Download</button>
             {/*<a href='http://localhost:3001/download'>Download</a>*/}
-            <button onClick={ mail }>Send to email</button>
+            <button class="btn" onClick={ mail }>Send to email</button>
         </>
         
     )

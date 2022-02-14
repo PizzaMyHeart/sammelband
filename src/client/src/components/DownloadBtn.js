@@ -1,5 +1,6 @@
 import downloadIcon from '../icons/download.svg';
 import mailIcon from '../icons/mail.svg'
+import attachmentIcon from '../icons/paperclip.svg'
 
 function DownloadBtn(props) {
     let disabled = props.disabled;
@@ -30,6 +31,9 @@ function DownloadBtn(props) {
             {/*<a href='http://localhost:3001/download'>Download</a>*/}
             <button class="btn" onClick={ mail }>
                 <img src={ mailIcon } alt="Mail icon"/>
+            </button>
+            <button class="btn">
+                <img src={ attachmentIcon } alt="Attachment icon"/>
             </button>
         </>
         

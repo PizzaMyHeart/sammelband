@@ -15,6 +15,7 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 - [X] Download button
 - [X] Add reset button (delete existing HTML file)
 - [X] HTML-to-EPUB
+- [ ] Regular cleanup of `/public` folder
 - [ ] Upload CSV of URLs (e.g. from bookmarks)
 - [ ] Axios retry on error
 - [ ] Integration with Pocket and Instapaper

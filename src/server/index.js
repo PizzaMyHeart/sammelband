@@ -10,7 +10,7 @@ const { exec } = require('child_process');
 const Epub = require('epub-gen');
 const nodemailer = require('nodemailer');
 const puppeteer = require('puppeteer');
-
+require('dotenv').config();
 
 let browser;
 
@@ -141,28 +141,28 @@ function download(res, id, format) {
 
 async function mail(id) {
     console.log(`sessionID for email: ${id}`);
+    const html = fs.readFileSync(path.join(__dirname, `public/sammelband-${id}.html`), 'utf8');
 
-    let transporter = await nodemailer.createTransport({
-        sendmail: true,
-        newline: 'unix',
-        path: '/usr/sbin/sendmail'
+    let transporter = nodemailer.createTransport({
+        pool: true,
+        host:'smtp.zoho.com',
+        port: 587,
+        secure: false,
+        auth: {
+            user: 'bound@sammelband.app',
+            pass: process.env.MAIL_PASSWORD
+        }
     });
-    const body = fs.readFileSync(path.join(__dirname, `public/sammelband-${id}.html`), 'utf8', (err, data) => {
-        if (err) console.log(err);
-        console.log(data);
-        return data
+
+
+    let info = await transporter.sendMail({
+        from: '<bound@sammelband.app>',
+        to: 'ian_tan@hotmail.com',
+        subject: 'Sammelband',
+        html: html
     });
-    console.log(body);
-    await transporter.sendMail({
-        from: 'ian_tan@hotmail.com', // sender address
-        to: 'ian_tan@hotmail.com', // list of receivers
-        subject: 'Hello ✔', // Subject line
-        text: 'Hello world?', // plain text body
-        html: body, // html body
-    }, (err, info) => {
-        console.log(info.envelope);
-        console.log("Message sent: %s", info.messageId);
-    });
+
+    console.log(`Message sent: ${info.messageId}`);
     
 }
 

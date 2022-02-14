@@ -146,8 +146,7 @@ var postHandler = function (req, res, next) {
         .then((parsedArticles) => convertFromHTML(req.body.format, req.session.id, parsedArticles))
         .then(() => res.send('Sammelband ready when you are.'))
         .catch(err => {
-            console.log(err);
-            res.send(err);
+            res.status(500).send(err);
         });
     })();
     //res.end();

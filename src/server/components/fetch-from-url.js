@@ -9,8 +9,9 @@ async function fetchFromURL(urls) {
             documents.push(res.data);
         })
         .catch(err => {
-            console.log(err.errno, err.code, err.config.url);
-            throw err.code;
+            const error = `${err.errno}\n${err.code}\n${err.config.url}`
+            console.log(error);
+            throw error;
         });
     }
     return documents;   

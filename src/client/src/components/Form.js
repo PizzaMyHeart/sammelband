@@ -9,6 +9,7 @@ function Form() {
     const [success, setSuccess] = useState(false);
     const [deleted, setDeleted] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [resError, setResError] = useState(null);
 
     const { register, handleSubmit, setError, formState: { errors } } = useForm({
         defaultValues: {
@@ -60,11 +61,16 @@ function Form() {
             })
         })
         .then(response => {
-            if (response) {
+            setDeleted(false);
+            if (response.ok) {
                 setSuccess(true);
-                setDeleted(false);
                 setLoading(false);
-            };
+                setResError(null);
+            } else {
+                setLoading(false);
+                console.log('Unsuccesful submit');
+                response.text().then(text => setResError(text));
+            }
         });
     }
 
@@ -81,7 +87,7 @@ function Form() {
                 setDeleted(true);
                 setSuccess(false);
             };
-        })
+        });
     }
 
     
@@ -123,6 +129,7 @@ function Form() {
                 <div id="messages">
                 <div>{ loading && <Loading />}</div>
                 <div>
+                    { resError && <p>{ resError }</p>}
                     { success && <p>Sammelband ready</p> }
                     { deleted && <p>Sammelband deleted</p>}
                 </div>

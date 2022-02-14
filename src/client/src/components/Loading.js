@@ -2,7 +2,7 @@ function Loading() {
 
     return (
         <>
-            <p>Loading</p>
+            <div class="lds-dual-ring"></div>
         </>
     )
 }

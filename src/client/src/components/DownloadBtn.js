@@ -29,7 +29,7 @@ function DownloadBtn(props) {
                 <img src={ downloadIcon } alt="Download icon"/>
             </button>
             {/*<a href='http://localhost:3001/download'>Download</a>*/}
-            <button class="btn" onClick={ mail }>
+            <button class="btn" onClick={ mail } disabled={ disabled }>
                 <img src={ mailIcon } alt="Mail icon"/>
             </button>
             <button class="btn">

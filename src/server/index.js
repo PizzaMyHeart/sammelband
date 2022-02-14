@@ -11,6 +11,7 @@ const Epub = require('epub-gen');
 const nodemailer = require('nodemailer');
 const puppeteer = require('puppeteer');
 require('dotenv').config();
+const fetchFromURL = require('./components/fetch-from-url')
 
 let browser;
 
@@ -30,7 +31,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 const port = 3001;
 
 const styles = require('./styles'); // Load CSS styles from ./styles.js
-
+/*
 async function fetchFromURL(urls) {
     let documents = [];
     for (let url of urls) {
@@ -44,7 +45,7 @@ async function fetchFromURL(urls) {
     return documents;   
 
 }
-
+*/
 
 function convertFromHTML(format, id) {
     let filepath = path.join(__dirname, './public', `sammelband-${id}`);

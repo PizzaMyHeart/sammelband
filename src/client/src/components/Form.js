@@ -120,6 +120,7 @@ function Form() {
                 <input type="submit" value="Submit" />
                 
             </form>
+            <div>{ loading && <Loading />}</div>
             <div>
                 { success && <p>Sammelband ready</p> }
                 { deleted && <p>Sammelband deleted</p>}
@@ -130,7 +131,7 @@ function Form() {
                 </button>
                 <DownloadBtn disabled={!success || deleted }/>
             </div>
-            <div>{ loading && <Loading />}</div>
+            
         </>
     )
 }

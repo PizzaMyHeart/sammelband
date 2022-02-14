@@ -8,7 +8,10 @@ async function fetchFromURL(urls) {
         .then(res => {
             documents.push(res.data);
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err.errno, err.code, err.config.url);
+            throw err.code;
+        });
     }
     return documents;   
 }

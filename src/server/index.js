@@ -115,15 +115,27 @@ function download(res, id, format) {
 var postHandler = function (req, res, next) {
     console.log(req.body);
     console.log(req.session.id);
-    const urls = req.body.urls.split('\n');
+    // Split the string of urls in the request, then
+    // return only the strings that
+    // 1. Start with 'http(s)://'
+    // 2. Contains a domain name (one or more alphanumeric characters)
+    // 3. Has a TLD (one or more alphanumeric characters)
+    // 4. Has any number of segments starting with forward slashes
+    // 5. End with an alphanumeric character OR a trailing slash
+    const urls = req.body.urls.split('\n').filter(url => /^https?:\/\/.*\.\w+(\/.*\w||\/)*$/.test(url));
     console.log(urls);
     format = req.body.format;
+    
     fetchFromURL(urls)
-        .then(documents => parseDocuments(documents))
+        .then(documents => parseDocuments(documents), err => {
+            console.log('Axios error');
+        })
         .then(parsedArticles => writeToFile(parsedArticles, req))
         .then((parsedArticles) => convertFromHTML(req.body.format, req.session.id, parsedArticles))
         .then(() => res.send('Sammelband ready when you are.'));
+        
     
+
     //res.end();
     
 }

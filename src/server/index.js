@@ -3,13 +3,12 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const session = require('express-session');
-const { exec } = require('child_process');
 const Epub = require('epub-gen');
-const nodemailer = require('nodemailer');
 const puppeteer = require('puppeteer');
 require('dotenv').config();
 const fetchFromURL = require('./components/fetch-from-url');
 const parseDocuments = require('./components/parse-documents');
+const mail = require('./components/mail');
 
 let browser;
 
@@ -29,21 +28,6 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 const port = 3001;
 
 const styles = require('./styles'); // Load CSS styles from ./styles.js
-/*
-async function fetchFromURL(urls) {
-    let documents = [];
-    for (let url of urls) {
-        console.log(url);
-        await axios.get(url)
-        .then(res => {
-            documents.push(res.data);
-        })
-        .catch(err => console.log(err));
-    }
-    return documents;   
-
-}
-*/
 
 function convertFromHTML(format, id, documents) {
     let filepath = path.join(__dirname, './public', `sammelband-${id}`);
@@ -122,34 +106,6 @@ function download(res, id, format) {
     console.log(`sammelband.${format} downloaded.`)
 }
 
-
-async function mail(id) {
-    console.log(`sessionID for email: ${id}`);
-    const html = fs.readFileSync(path.join(__dirname, `public/sammelband-${id}.html`), 'utf8');
-
-    let transporter = nodemailer.createTransport({
-        pool: true,
-        host:'smtp.zoho.com',
-        port: 587,
-        secure: false,
-        auth: {
-            user: 'bound@sammelband.app',
-            pass: process.env.MAIL_PASSWORD
-        }
-    });
-
-
-    let info = await transporter.sendMail({
-        from: '<bound@sammelband.app>',
-        to: 'ian_tan@hotmail.com',
-        subject: 'Sammelband',
-        html: html
-    });
-
-    console.log(`Message sent: ${info.messageId}`);
-    
-}
-
 var postHandler = function (req, res, next) {
     console.log(req.body);
     console.log(req.session.id);
@@ -199,13 +155,6 @@ function deleteFile(res, id) {
 }
 
 app.get('/delete', (req, res) => {
-    /*
-    console.log('deleting sammelband');
-    console.log(req.session.id);
-    fs.unlinkSync(path.join(__dirname, './public', `sammelband-${req.session.id}.html`));
-    res.send('Sammelband deleted');
-    console.log('Sammelband deleted');
-    */
    deleteFile(res, req.session.id);
 })
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import DownloadBtn from './DownloadBtn';
 import Loading from './Loading';
+import trashIcon from '../icons/trash-2.svg'
 
 function Form() {
     const [urls, setUrls] = useState('');
@@ -124,7 +125,9 @@ function Form() {
                 { deleted && <p>Sammelband deleted</p>}
             </div>
             <div class="flex-container">
-                <button class="btn" onClick={ deleteFile } id="deleteBtn" disabled={ deleted || !success }>Delete</button>
+                <button class="btn" onClick={ deleteFile } id="deleteBtn" disabled={ deleted || !success }>
+                    <img src={ trashIcon } alt="Trash can icon"/>
+                </button>
                 <DownloadBtn disabled={!success || deleted }/>
             </div>
             <div>{ loading && <Loading />}</div>

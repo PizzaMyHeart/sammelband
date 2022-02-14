@@ -146,7 +146,7 @@ var postHandler = function (req, res, next) {
         
     */
     (async () => {
-        const urls = processUrls(req.body.urls);
+        const [urls, badUrls] = processUrls(req.body.urls);
         await fetchFromURL(urls)
         .catch(err => {
             console.log(err);
@@ -155,7 +155,11 @@ var postHandler = function (req, res, next) {
         .then(documents => parseDocuments(documents))
         .then(parsedArticles => writeToFile(parsedArticles, req))
         .then((parsedArticles) => convertFromHTML(req.body.format, req.session.id, parsedArticles))
-        .then(() => res.send('Sammelband ready when you are.'))
+        .then(() => {
+            let body = {malformedUrl: null, ready: true};
+            if (badUrls.length > 0) body.malformedUrl = badUrls;
+            res.send(body);
+        })
         .catch(err => {
             res.status(500).send(err);
         });

@@ -2,8 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-const { Readability } = require('@mozilla/readability');
-const { JSDOM } = require('jsdom');
 const session = require('express-session');
 const { exec } = require('child_process');
 const Epub = require('epub-gen');
@@ -47,7 +45,7 @@ async function fetchFromURL(urls) {
 }
 */
 
-function convertFromHTML(format, id) {
+function convertFromHTML(format, id, documents) {
     let filepath = path.join(__dirname, './public', `sammelband-${id}`);
     switch(format) {
         case 'pdf':
@@ -56,7 +54,7 @@ function convertFromHTML(format, id) {
         case 'html':
              break;
         case 'epub':
-            htmlToEPUB(filepath);
+            htmlToEPUB(filepath, documents);
             break;
     }
 }
@@ -79,14 +77,14 @@ function htmlToPDF(filepath) {
     })();
 }
 
-function htmlToEPUB(filepath) {
+function htmlToEPUB(filepath, documents) {
     console.log('htmlToEPUB()');
     let option = {
         title: 'Sammelband',
         content: []
     };
-    for (article of articles) {
-        option.content.push({title: article.title, data: article.content})
+    for (document of documents) {
+        option.content.push({title: document.title, data: document.content})
     };
     console.log(option);
     new Epub(option, filepath + '.epub');
@@ -114,25 +112,9 @@ function writeToFile(parsedArticles, req) {
         let content = `<h1>Title: ${article.title}</h1><br>${article.content}<br>---<br>`;
         fs.writeFile(filepath, content, { flag: 'a+' }, err => {if (err) throw err;});
     }
-
-}
-/*
-let articles;
-// mozilla/readability version
-function parseDocuments(documents) {
-    console.log('parseDocuments()');
-    let parsedArticles = [];
-    documents.forEach(document => {
-        let doc = new JSDOM(document);
-        let reader = new Readability(doc.window.document);
-        let article = reader.parse();
-        console.log('Parsed:...');
-        parsedArticles.push(article);
-    })
-    articles = [...parsedArticles];
     return parsedArticles;
 }
-*/
+
 let format;
 function download(res, id, format) {
     const filepath = path.join(__dirname, `public/sammelband-${id}.${format}`);
@@ -177,7 +159,7 @@ var postHandler = function (req, res, next) {
     fetchFromURL(urls)
         .then(documents => parseDocuments(documents))
         .then(parsedArticles => writeToFile(parsedArticles, req))
-        .then(() => convertFromHTML(req.body.format, req.session.id))
+        .then((parsedArticles) => convertFromHTML(req.body.format, req.session.id, parsedArticles))
         .then(() => res.send('Sammelband ready when you are.'));
     
     //res.end();

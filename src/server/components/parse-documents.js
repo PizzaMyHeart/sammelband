@@ -1,7 +1,6 @@
 const { Readability } = require('@mozilla/readability');
 const { JSDOM } = require('jsdom');
 
-let articles;
 // mozilla/readability version
 /*
 Given an array of HTML document strings, run each string through the @mozilla/readability 
@@ -17,7 +16,6 @@ function parseDocuments(documents) {
         console.log('Parsed:...');
         parsedArticles.push(article);
     })
-    articles = [...parsedArticles];
     return parsedArticles;
 }
 

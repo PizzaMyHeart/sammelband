@@ -663,7 +663,7 @@ module.exports = {
     `,
     dark: `
       :root {
-        --body-bg: #000000;
+        --body-bg: #1c1b22;
         --body-color: #ffffff;
       }
     `,

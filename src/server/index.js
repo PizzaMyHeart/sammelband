@@ -125,7 +125,7 @@ var postHandler = function (req, res, next) {
     const urls = req.body.urls.split('\n').filter(url => /^https?:\/\/.*\.\w+(\/.*\w||\/)*$/.test(url));
     console.log(urls);
     format = req.body.format;
-    
+    /*
     fetchFromURL(urls)
         .then(documents => parseDocuments(documents), err => {
             console.log('Axios error');
@@ -134,8 +134,22 @@ var postHandler = function (req, res, next) {
         .then((parsedArticles) => convertFromHTML(req.body.format, req.session.id, parsedArticles))
         .then(() => res.send('Sammelband ready when you are.'));
         
-    
-
+    */
+    (async () => {
+        await fetchFromURL(urls)
+        .catch(err => {
+            console.log(err);
+            throw err;
+        })
+        .then(documents => parseDocuments(documents))
+        .then(parsedArticles => writeToFile(parsedArticles, req))
+        .then((parsedArticles) => convertFromHTML(req.body.format, req.session.id, parsedArticles))
+        .then(() => res.send('Sammelband ready when you are.'))
+        .catch(err => {
+            console.log(err);
+            res.send(err);
+        });
+    })();
     //res.end();
     
 }

@@ -92,9 +92,15 @@ function writeToFile(parsedArticles, req) {
     console.log(req.body.color);
     fs.writeFile(filepath, '', { flag: 'w+' }, err => {if (err) console.log(err)});
     fs.writeFile(filepath, applyStyle(req.body.color, req.body.font), { flag: 'a+' }, err => {if (err) throw err;});
-    for (article of parsedArticles) {
-        let content = `<h1>Title: ${article.title}</h1><br>${article.content}<br>---<br>`;
-        fs.writeFile(filepath, content, { flag: 'a+' }, err => {if (err) throw err;});
+    
+    for (let i = 0; i < parsedArticles.length; i++) {
+        // "break-before" is a Gutenberg CSS class that places the element on a new page
+        // We don't want the first article to be broken onto a new page
+        // https://github.com/BafS/Gutenberg#force-break-page
+        let breakBefore;
+        i == 0 ? breakBefore = '' : breakBefore = 'break-before';
+        let content = `<h1 class="${breakBefore}">Title: ${parsedArticles[i].title}</h1><br>${parsedArticles[i].content}<br>---<br>`;
+        fs.writeFile(filepath, content, { flag: 'a+' }, err => {if (err) console.log(err)});
     }
     return parsedArticles;
 }

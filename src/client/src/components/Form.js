@@ -119,13 +119,18 @@ function Form() {
                     
 
                 <input type="submit" value="Submit" />
+
+                <div id="messages">
+                <div>{ loading && <Loading />}</div>
+                <div>
+                    { success && <p>Sammelband ready</p> }
+                    { deleted && <p>Sammelband deleted</p>}
+                </div>
+            </div>
                 
             </form>
-            <div>{ loading && <Loading />}</div>
-            <div>
-                { success && <p>Sammelband ready</p> }
-                { deleted && <p>Sammelband deleted</p>}
-            </div>
+            
+            
             <div class="flex-container">
                 <button class="btn" onClick={ deleteFile } id="deleteBtn" disabled={ deleted || !success }>
                     <img src={ trashIcon } alt="Trash can icon"/>

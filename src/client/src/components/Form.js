@@ -10,6 +10,7 @@ function Form() {
     const [deleted, setDeleted] = useState(false);
     const [loading, setLoading] = useState(false);
     const [resError, setResError] = useState(null);
+    const [badUrls, setBadUrls] = useState(null);
 
     const { register, handleSubmit, setError, formState: { errors } } = useForm({
         defaultValues: {
@@ -46,6 +47,7 @@ function Form() {
         setLoading(true);
         setSuccess(false);
         setDeleted(true);
+        setBadUrls(null);
         fetch('/submit', {
             credentials: 'same-origin',
             method: 'POST',
@@ -66,10 +68,16 @@ function Form() {
                 setSuccess(true);
                 setLoading(false);
                 setResError(null);
+                return response.json()
             } else {
                 setLoading(false);
                 console.log('Unsuccesful submit');
                 response.text().then(text => setResError(text));
+            }
+        })
+        .then(data => {
+            if (data.malformedUrl) {
+                setBadUrls(data.malformedUrl);
             }
         });
     }
@@ -130,6 +138,7 @@ function Form() {
                 <div>{ loading && <Loading />}</div>
                 <div>
                     { resError && <p>{ resError }</p>}
+                    { badUrls && <p>Invalid URLs not processed: { badUrls }</p> }
                     { success && <p>Sammelband ready</p> }
                     { deleted && <p>Sammelband deleted</p>}
                 </div>

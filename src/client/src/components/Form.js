@@ -94,6 +94,7 @@ function Form() {
                     URLs:
                     <textarea 
                         id="url-input" 
+                        placeholder="Enter one URL per line (including http(s) prefix)"
                         //onChange={ e => {setUrls(e.target.value)} } 
                         {...register('urls',{
                             required: true,

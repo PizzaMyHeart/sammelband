@@ -1,5 +1,4 @@
 const express = require('express');
-const axios = require('axios');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
@@ -11,7 +10,8 @@ const Epub = require('epub-gen');
 const nodemailer = require('nodemailer');
 const puppeteer = require('puppeteer');
 require('dotenv').config();
-const fetchFromURL = require('./components/fetch-from-url')
+const fetchFromURL = require('./components/fetch-from-url');
+const parseDocuments = require('./components/parse-documents');
 
 let browser;
 
@@ -116,6 +116,7 @@ function writeToFile(parsedArticles, req) {
     }
 
 }
+/*
 let articles;
 // mozilla/readability version
 function parseDocuments(documents) {
@@ -129,9 +130,9 @@ function parseDocuments(documents) {
         parsedArticles.push(article);
     })
     articles = [...parsedArticles];
-    //console.log('parsedArticles', parsedArticles);
     return parsedArticles;
 }
+*/
 let format;
 function download(res, id, format) {
     const filepath = path.join(__dirname, `public/sammelband-${id}.${format}`);

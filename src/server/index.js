@@ -6,6 +6,7 @@ const session = require('express-session');
 const Epub = require('epub-gen');
 const puppeteer = require('puppeteer');
 require('dotenv').config();
+const processUrls = require('./components/process-urls');
 const fetchFromURL = require('./components/fetch-from-url');
 const parseDocuments = require('./components/parse-documents');
 const mail = require('./components/mail');
@@ -122,8 +123,17 @@ var postHandler = function (req, res, next) {
     // 3. Has a TLD (one or more alphanumeric characters)
     // 4. Has any number of segments starting with forward slashes
     // 5. End with an alphanumeric character OR a trailing slash
-    const urls = req.body.urls.split('\n').filter(url => /^https?:\/\/.*\.\w+(\/.*\w||\/)*$/.test(url));
+    /*
+    let urls = req.body.urls.split('\n');
+    const originalUrls = [...urls];
+    urls = urls.filter(url => /^https?:\/\/.*\.\w+(\/.*\w||\/)*$/.test(url));
+    const badUrls = originalUrls.filter(url => !urls.includes(url));
+    if (badUrls.length > 0) {
+        console.log(`Bad URLs: ${badUrls}`);
+        //throw `Bad URL: ${badUrls}`;
+    }
     console.log(urls);
+    */
     format = req.body.format;
     /*
     fetchFromURL(urls)
@@ -136,6 +146,7 @@ var postHandler = function (req, res, next) {
         
     */
     (async () => {
+        const urls = processUrls(req.body.urls);
         await fetchFromURL(urls)
         .catch(err => {
             console.log(err);
@@ -154,7 +165,7 @@ var postHandler = function (req, res, next) {
 }
 
 
-app.use('/submit', postHandler);
+//app.use('/submit', postHandler);
 
 
 app.get('/', (req, res) => {
@@ -164,6 +175,7 @@ app.get('/', (req, res) => {
 
 app.post('/submit', (req, res) => {
     console.log(req.body);
+    postHandler(req, res);
     return;
 });
 

@@ -8,10 +8,11 @@ const { JSDOM } = require('jsdom');
 const session = require('express-session');
 const { exec } = require('child_process');
 const Epub = require('epub-gen');
-const nodemailer = require("nodemailer");
+const nodemailer = require('nodemailer');
+const puppeteer = require('puppeteer');
 
 
-
+let browser;
 
 const app = express();
 
@@ -61,7 +62,45 @@ function convertFromHTML(format, id) {
 
 function htmlToPDF(filepath) {
     console.log('htmlToPDF()');
-    exec(`wkhtmltopdf --encoding utf-8 --enable-local-file-access ${filepath + '.html'} ${filepath + '.pdf'}`);
+    //exec(`wkhtmltopdf --encoding utf-8 --enable-local-file-access ${filepath + '.html'} ${filepath + '.pdf'}`);
+    /*
+    browser.then(browser => {
+        const page = browser.newPage();
+        page.then(page =>{
+            page.setContent(fs.readFileSync(filepath + '.html'), 'utf8')
+            .then(() => page.emulateMediaType('screen'))
+            .then(() => {
+                page.pdf(options)
+                .then((success, err) => {
+                    console.log(success);
+                    if (err) console.log(err);
+            });
+        });
+    })
+    */
+   /*
+    const page = await browser.newPage();
+
+    
+    await page.setContent(fs.readFileSync(filepath + '.html'), 'utf8');
+    await page.emulateMediaType('screen');
+    await page.pdf(options);
+    await page.close();
+    */
+    const options = {
+        path: filepath + '.pdf',
+        printBackground: true
+    };
+    (async() => {
+        if (!browser) {
+            browser = await puppeteer.launch();
+        }
+        const page = await browser.newPage();
+        await page.setContent(fs.readFileSync(filepath + '.html', 'utf8'));
+        await page.emulateMediaType('screen');
+        await page.pdf(options);
+        await page.close();
+    })();
 }
 
 function htmlToEPUB(filepath) {

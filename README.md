@@ -17,4 +17,5 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 - [X] HTML-to-EPUB
 - [ ] Upload CSV of URLs (e.g. from bookmarks)
 - [ ] Axios retry on error
+- [ ] Integration with Pocket and Instapaper
 

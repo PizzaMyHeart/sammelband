@@ -10,7 +10,8 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 - [X] Add titles to each parsed article
 - [X] Separate user requests using express-session
 - [ ] Implement session store for production
-- [ ] Implement email function
+- [X] Implement email function
+- [ ] Send as email attachment
 - [X] Form validation
 - [X] Download button
 - [X] Add reset button (delete existing HTML file)

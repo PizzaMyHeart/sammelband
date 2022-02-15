@@ -9,6 +9,7 @@ function Buttons(props) {
         window.location = 'http://localhost:3001/download'
         /*
         fetch('/download', {
+            credentials: 'same-origin',
             method: 'GET',
             mode: 'cors'
         })
@@ -30,8 +31,9 @@ function Buttons(props) {
     }
 
     const mail = (e) => {
-        console.log(e.target.value);
-        fetch(`/mail?type=${e.target.value}`, {
+        e.preventDefault();
+        console.log(e.currentTarget.value);
+        fetch(`/mail?type=${e.currentTarget.value}`, {
             credentials: 'same-origin',
             method: 'GET',
             mode: 'cors'

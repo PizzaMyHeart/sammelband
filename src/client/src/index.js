@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import About from './routes/About';
+import Navbar from './components/Navbar';
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <header><h1>Sammelband</h1></header>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

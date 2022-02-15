@@ -6,7 +6,7 @@ async function mail(id, email, res) {
     console.log(`sessionID for email: ${id}`);
     console.log(`Sending to ${email}`);
     const html = fs.readFileSync(path.join(__dirname, `../public/sammelband-${id}.html`), 'utf8');
-
+    
     let transporter = nodemailer.createTransport({
         pool: true,
         host:'smtp.zoho.com',
@@ -25,7 +25,7 @@ async function mail(id, email, res) {
         subject: 'Sammelband',
         html: html
     });
-
+    
     console.log(`Message sent: ${info.messageId}`);
     res.send('Email sent');
     

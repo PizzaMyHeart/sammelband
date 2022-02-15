@@ -116,6 +116,7 @@ function download(res, id, format) {
 var postHandler = function (req, res) {
     console.log(req.body);
     console.log(req.session.id);
+    req.session.body = req.body;
     // Split the string of urls in the request, then
     // return only the strings that
     // 1. Start with 'http(s)://'
@@ -187,8 +188,9 @@ app.get('/download', (req, res) => {
     download(res, req.session.id, format);
 });
 
-app.post('/mail', (req, res) => {
-    mail(req.session.id, req.body.email, res).catch(console.error);
+app.get('/mail', (req, res) => {
+    console.log('req.session.body: ', req.session.body);
+    mail(req.session.id, req.session.body.email, res).catch(console.error);
 })
 
 function deleteFile(res, id) {

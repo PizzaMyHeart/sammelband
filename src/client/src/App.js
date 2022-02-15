@@ -1,4 +1,3 @@
-import DownloadBtn from './components/DownloadBtn';
 import Form from  './components/Form'
 
 function App() {

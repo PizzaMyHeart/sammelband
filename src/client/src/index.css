@@ -1,3 +1,4 @@
+/*
 :root {
   --active-brightness: 0.85;
   --border-radius: 5px;
@@ -36,7 +37,7 @@ form {
   width: 90%;
   height: 80%
 }
-
+*/
 .flex-container {
   display: flex;
   align-items: center;

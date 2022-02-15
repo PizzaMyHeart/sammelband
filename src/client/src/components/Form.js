@@ -1,45 +1,24 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import DownloadBtn from './DownloadBtn';
+import Buttons from './Buttons';
 import Loading from './Loading';
-import trashIcon from '../icons/trash-2.svg'
+
 
 function Form() {
-    const [urls, setUrls] = useState('');
     const [success, setSuccess] = useState(false);
     const [deleted, setDeleted] = useState(false);
+    const [emailSent, setEmailSent] = useState(false);
     const [loading, setLoading] = useState(false);
     const [resError, setResError] = useState(null);
     const [badUrls, setBadUrls] = useState(null);
 
-    const { register, handleSubmit, setError, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             'color': 'light',
             'font': 'sansSerif',
             'format': 'html'
         }
     });
-
-    
-    /*
-    const onSubmit = e => {
-        let payload = {
-            urls: urls,
-            test: 'test'
-        }
-        console.log(urls);
-        e.preventDefault();
-        fetch('/submit', {
-            credentials: 'same-origin',
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        })
-    }
-    */
      
     // react-hook-form version
     const onSubmit = data => {
@@ -48,6 +27,7 @@ function Form() {
         setSuccess(false);
         setDeleted(true);
         setBadUrls(null);
+        setEmailSent(false);
         fetch('/submit', {
             credentials: 'same-origin',
             method: 'POST',
@@ -82,24 +62,6 @@ function Form() {
         });
     }
 
-
-    
-    const deleteFile = () => {
-        fetch('/delete', {
-            credentials: 'same-origin',
-            method: 'GET',
-            mode: 'cors',
-        })
-        .then(response => {
-            if (response) {
-                setDeleted(true);
-                setSuccess(false);
-            };
-        });
-    }
-
-    
-
     return ( 
         <> 
             {/* Needs handleSubmit to actually send request */}
@@ -109,7 +71,6 @@ function Form() {
                     <textarea 
                         id="url-input" 
                         placeholder="Enter one URL per line (including http(s) prefix)"
-                        //onChange={ e => {setUrls(e.target.value)} } 
                         {...register('urls',{
                             required: true,
                             pattern: {value: /^https?:\/\/.*\..+/, message: 'Please enter at least one valid URL'}
@@ -146,14 +107,14 @@ function Form() {
                 
             </form>
             
-            
-            <div class="flex-container">
-                <button class="btn" onClick={ deleteFile } id="deleteBtn" disabled={ deleted || !success }>
-                    <img src={ trashIcon } alt="Trash can icon"/>
-                </button>
-                <DownloadBtn disabled={!success || deleted }/>
-            </div>
-            
+            <Buttons
+                success={ success } 
+                setSuccess={ setSuccess }
+                deleted={ deleted }
+                setDeleted={ setDeleted }
+                emailSent={ emailSent }
+                setEmailSent={ setEmailSent }
+            />        
         </>
     )
 }

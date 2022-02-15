@@ -101,12 +101,13 @@ function Form() {
                     { resError && <p>{ resError }</p>}
                     { badUrls && <p>Invalid URLs not processed: { badUrls }</p> }
                     { success && <p>Sammelband ready</p> }
-                    { deleted && <p>Sammelband deleted</p>}
+                    { deleted && <p className="fade-out">Sammelband deleted</p>}
+                    { emailSent && <p className="fade-out">Sammelband sent to your email</p>}
                 </div>
             </div>
                 
             </form>
-            
+
             <Buttons
                 success={ success } 
                 setSuccess={ setSuccess }

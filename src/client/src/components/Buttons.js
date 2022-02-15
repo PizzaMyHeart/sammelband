@@ -37,6 +37,7 @@ function Buttons(props) {
         })
         .then(response => {
             if (response) {
+                console.log('email sent');
                 props.setEmailSent(true);
             }
         })

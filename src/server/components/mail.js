@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
 
-async function mail(id) {
+async function mail(id, res) {
     console.log(`sessionID for email: ${id}`);
     const html = fs.readFileSync(path.join(__dirname, `../public/sammelband-${id}.html`), 'utf8');
 
@@ -26,6 +26,7 @@ async function mail(id) {
     });
 
     console.log(`Message sent: ${info.messageId}`);
+    res.send('Email sent');
     
 }
 

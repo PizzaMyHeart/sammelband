@@ -12,7 +12,7 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 - [X] Separate user requests using express-session
 - [ ] Implement session store for production
 - [X] Implement email function
-- [ ] Notification when email sent
+- [X] Notification when email sent
 - [ ] Send as email attachment
 - [X] Form validation
 - [X] Download button

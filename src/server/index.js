@@ -188,7 +188,7 @@ app.get('/download', (req, res) => {
 });
 
 app.get('/mail', (req, res) => {
-    mail(req.session.id).catch(console.error);
+    mail(req.session.id, res).catch(console.error);
 })
 
 function deleteFile(res, id) {

@@ -384,7 +384,7 @@ module.exports = {
      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
      line-height: 1.2;
      margin-bottom: 0.75rem;
-     margin-top: 0; }
+     margin-top: 2rem; }
    
    h1 {
      font-size: 2rem; }

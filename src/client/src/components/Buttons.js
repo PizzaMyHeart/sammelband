@@ -29,16 +29,19 @@ function Buttons(props) {
         });
     }
 
-    const mail = () => {
-        fetch('/mail', {
+    const mail = (e) => {
+        console.log(e.target.value);
+        fetch(`/mail?type=${e.target.value}`, {
             credentials: 'same-origin',
             method: 'GET',
             mode: 'cors'
         })
         .then(response => {
-            if (response) {
+            if (response.ok) {
                 console.log('email sent');
                 props.setEmailSent(true);
+            } else {
+                response.text().then(text => props.setMailError(text));
             }
         })
     }
@@ -50,10 +53,10 @@ function Buttons(props) {
             <button className="btn" onClick={ download } disabled={ !props.success }>
                 <img src={ downloadIcon } alt="Download icon"/>
             </button>
-            <button className="btn" onClick={ mail } disabled={ !props.success }>
+            <button className="btn" onClick={ mail } value="body" disabled={ !props.success }>
                 <img src={ mailIcon } alt="Mail icon"/>
             </button>
-            <button className="btn" disabled={ !props.success }>
+            <button className="btn" onClick={ mail } value="attachment" disabled={ !props.success }>
                 <img src={ attachmentIcon } alt="Attachment icon"/>
             </button>
         </>

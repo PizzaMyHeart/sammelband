@@ -76,8 +76,8 @@ function htmlToEPUB(filepath, documents) {
 }
 
 function applyStyle(color, font) {
-    console.log(`Style: ${font}`);
-    console.log(`Color: ${color}`);
+    //console.log(`Style: ${font}`);
+    //console.log(`Color: ${color}`);
     return styles.head + 
             styles.base + 
             ((font=='sansSerif') ? styles.sansSerif : styles.serif) + 
@@ -90,7 +90,7 @@ function writeToFile(parsedArticles, req) {
     //fs.unlinkSync('./public/sammelband.html');
     let filepath = `./public/sammelband-${id}.html`;
     // Add styles to top of html file
-    console.log(req.body.color);
+    //console.log(req.body.color);
     fs.writeFile(filepath, '', { flag: 'w+' }, err => {if (err) console.log(err)});
     fs.writeFile(filepath, applyStyle(req.body.color, req.body.font), { flag: 'a+' }, err => {if (err) throw err;});
     
@@ -189,8 +189,11 @@ app.get('/download', (req, res) => {
 });
 
 app.get('/mail', (req, res) => {
-    console.log('req.session.body: ', req.session.body);
-    mail(req.session.id, req.session.body.email, res).catch(console.error);
+    console.log(req.query);
+    mail(req, res).catch((err) => {
+        console.log(err);
+        res.status(500).send(err);
+    });
 })
 
 function deleteFile(res, id) {

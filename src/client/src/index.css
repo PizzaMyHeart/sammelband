@@ -38,6 +38,10 @@ form {
   height: 80%
 }
 */
+#error-messages {
+  background-color: red;
+}
+
 .flex-container {
   display: flex;
   align-items: center;

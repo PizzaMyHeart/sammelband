@@ -1,10 +1,18 @@
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
+const { transcode } = require('buffer');
 
-async function mail(id, email, res) {
+async function mail(req, res) {
+    const [id, email, type, format] = [req.session.id, 
+                                    req.session.body.email, 
+                                    req.query.type,
+                                    req.session.body.format
+                                    ];
+    if (!email) throw 'No email address supplied';
+    if (type!='body' && type!='attachment') throw 'Mail error: No email type defined.';
     console.log(`sessionID for email: ${id}`);
-    console.log(`Sending to ${email}`);
+    console.log(`Sending as ${type} to ${email}`);
     const html = fs.readFileSync(path.join(__dirname, `../public/sammelband-${id}.html`), 'utf8');
     
     let transporter = nodemailer.createTransport({
@@ -18,14 +26,23 @@ async function mail(id, email, res) {
         }
     });
 
-
-    let info = await transporter.sendMail({
-        from: '<bound@sammelband.app>',
-        to: email,
-        subject: 'Sammelband',
-        html: html
-    });
     
+    let message = {
+        from: 'Sammelbot 🤖 <bound@sammelband.app>',
+        to: email,
+        subject: 'Sammelband'
+    }
+
+    if (type == 'attachment') {
+        message.attachments = [{
+            filename: `sammelband.${format}`,
+            path: path.join(__dirname, `../public/sammelband-${id}.${format}`)
+        }];
+    } else if (type == 'body') {
+        message.html = html
+    }
+
+    let info = await transporter.sendMail(message);
     console.log(`Message sent: ${info.messageId}`);
     res.send('Email sent');
     

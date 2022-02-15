@@ -9,8 +9,9 @@ function Form() {
     const [deleted, setDeleted] = useState(false);
     const [emailSent, setEmailSent] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [resError, setResError] = useState(null);
+    const [submitError, setSubmitError] = useState(null);
     const [badUrls, setBadUrls] = useState(null);
+    const [mailError, setMailError] = useState(false);
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
@@ -48,12 +49,12 @@ function Form() {
             if (response.ok) {
                 setSuccess(true);
                 setLoading(false);
-                setResError(null);
+                setSubmitError(null);
                 return response.json()
             } else {
                 setLoading(false);
                 console.log('Unsuccesful submit');
-                response.text().then(text => setResError(text));
+                response.text().then(text => setSubmitError(text));
             }
         })
         .then(data => {
@@ -100,15 +101,18 @@ function Form() {
                 
 
                 <div id="messages">
-                <div>{ loading && <Loading />}</div>
-                <div>
-                    { resError && <p>{ resError }</p>}
-                    { badUrls && <p>Invalid URLs not processed: { badUrls }</p> }
-                    { success && <p>Sammelband ready</p> }
-                    { deleted && <p className="fade-out">Sammelband deleted</p>}
-                    { emailSent && <p className="fade-out">Sammelband sent to your email</p>}
+                    <div>{ loading && <Loading />}</div>
+                    <div id="error-messages">
+                        { submitError && <p>{ submitError }</p>}
+                        { badUrls && <p>Invalid URLs not processed: { badUrls }</p> }
+                        { mailError && <p>{ mailError }</p>}
+                    </div>
+                    <div>
+                        { success && <p>Sammelband ready</p> }
+                        { deleted && <p className="fade-out">Sammelband deleted</p>}
+                        { emailSent && <p className="fade-out">Sammelband sent to your email</p>}
+                    </div>
                 </div>
-            </div>
                 
             </form>
 
@@ -120,6 +124,7 @@ function Form() {
                 emailSent={ emailSent }
                 setEmailSent={ setEmailSent }
                 handleSubmit={ handleSubmit }
+                setMailError={ setMailError }
             />        
         </>
     )

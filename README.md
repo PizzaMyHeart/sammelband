@@ -8,9 +8,11 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 - [X] HTML-to-PDF converter
 - [X] Add options to form for user style preferences
 - [X] Add titles to each parsed article
+- [ ] Tweak Gutenberg.css
 - [X] Separate user requests using express-session
 - [ ] Implement session store for production
 - [X] Implement email function
+- [ ] Notification when email sent
 - [ ] Send as email attachment
 - [X] Form validation
 - [X] Download button
@@ -18,6 +20,5 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 - [X] HTML-to-EPUB
 - [ ] Regular cleanup of `/public` folder
 - [ ] Upload CSV of URLs (e.g. from bookmarks)
-- [ ] Axios retry on error
 - [ ] Integration with Pocket and Instapaper
 

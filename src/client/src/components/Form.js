@@ -26,7 +26,7 @@ function Form() {
         console.log(data['urls']);
         setLoading(true);
         setSuccess(false);
-        setDeleted(true);
+        setDeleted(false);
         setBadUrls(null);
         setEmailSent(false);
         fetch('/submit', {

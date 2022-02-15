@@ -3,6 +3,7 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const session = require('express-session');
+let RedisStore = require("connect-redis")(session);
 const Epub = require('epub-gen');
 const puppeteer = require('puppeteer');
 require('dotenv').config();
@@ -15,12 +16,40 @@ let browser;
 
 const app = express();
 
+
+const { createClient } = require("redis")
+let redisClient = createClient({ legacyMode: true })
+redisClient.connect().catch(console.error)
+
+
+app.use(
+    session({
+      store: new RedisStore({ client: redisClient }),
+      saveUninitialized: false,
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+    })
+  )
+
+/*
 app.use(['/', '/submit', '/download'], session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {secure: false}
 }))
+*/
+/*
+app.use(cookieParser());
+app.use(['/', '/submit', '/download'], cookieSession({
+    secret: process.env.SESSION_SECRET,
+    saveUnintialized: true,
+    resave: false,
+    cookie: {
+        secure: false
+    }
+}));
+*/
 app.use(express.json());
 
 app.use(cors({ credentials: true, origin: true }));
@@ -32,6 +61,7 @@ const styles = require('./styles'); // Load CSS styles from ./styles.js
 
 function convertFromHTML(format, id, documents) {
     let filepath = path.join(__dirname, './public', `sammelband-${id}`);
+    console.log(filepath);
     switch(format) {
         case 'pdf':
             htmlToPDF(filepath);
@@ -86,9 +116,11 @@ function applyStyle(color, font) {
 }
 
 function writeToFile(parsedArticles, req) {
+    console.log('writeToFile');
     let id = req.session.id;
     //fs.unlinkSync('./public/sammelband.html');
     let filepath = `./public/sammelband-${id}.html`;
+    console.log(`${id}\n${filepath}`);
     // Add styles to top of html file
     //console.log(req.body.color);
     fs.writeFile(filepath, '', { flag: 'w+' }, err => {if (err) console.log(err)});
@@ -108,44 +140,21 @@ function writeToFile(parsedArticles, req) {
 
 let format;
 function download(res, id, format) {
+    console.log('download()');
     const filepath = path.join(__dirname, `public/sammelband-${id}.${format}`);
-    res.download(filepath, `sammelband.${format}`, err => {if (err) console.log(err)});
-    console.log(`sammelband.${format} downloaded.`)
+    console.log(`${filepath}`)
+    res.download(filepath, `sammelband.${format}`, err => {
+        if (err) console.log(err);
+        else console.log(`sammelband.${format} downloaded.`);
+    });
+    
 }
 
 var postHandler = function (req, res) {
-    console.log(req.body);
-    console.log(req.session.id);
     req.session.body = req.body;
-    // Split the string of urls in the request, then
-    // return only the strings that
-    // 1. Start with 'http(s)://'
-    // 2. Contains a domain name (one or more alphanumeric characters)
-    // 3. Has a TLD (one or more alphanumeric characters)
-    // 4. Has any number of segments starting with forward slashes
-    // 5. End with an alphanumeric character OR a trailing slash
-    /*
-    let urls = req.body.urls.split('\n');
-    const originalUrls = [...urls];
-    urls = urls.filter(url => /^https?:\/\/.*\.\w+(\/.*\w||\/)*$/.test(url));
-    const badUrls = originalUrls.filter(url => !urls.includes(url));
-    if (badUrls.length > 0) {
-        console.log(`Bad URLs: ${badUrls}`);
-        //throw `Bad URL: ${badUrls}`;
-    }
-    console.log(urls);
-    */
+    console.log(req.session.id);
     format = req.body.format;
-    /*
-    fetchFromURL(urls)
-        .then(documents => parseDocuments(documents), err => {
-            console.log('Axios error');
-        })
-        .then(parsedArticles => writeToFile(parsedArticles, req))
-        .then((parsedArticles) => convertFromHTML(req.body.format, req.session.id, parsedArticles))
-        .then(() => res.send('Sammelband ready when you are.'));
-        
-    */
+
     (async () => {
         const [urls, badUrls] = processUrls(req.body.urls);
         await fetchFromURL(urls)
@@ -174,17 +183,19 @@ var postHandler = function (req, res) {
 
 
 app.get('/', (req, res) => {
-    console.log(req.session.id);
+    console.log(req.session.id)
     res.send('You absolute genius');
 });
 
 app.post('/submit', (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
+    console.log(req.session);
     postHandler(req, res);
     return;
 });
 
 app.get('/download', (req, res) => {
+    console.log('/download', req.session.id);
     download(res, req.session.id, format);
 });
 
@@ -197,6 +208,7 @@ app.get('/mail', (req, res) => {
 })
 
 function deleteFile(res, id) {
+    console.log('deleteFile()');
     console.log('deleting sammelband');
     console.log(id);
     fs.readdirSync(path.join(__dirname, `public/`))

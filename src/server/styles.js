@@ -387,16 +387,16 @@ module.exports = {
      margin-top: 0; }
    
    h1 {
-     font-size: 2.5rem; }
-   
-   h2 {
      font-size: 2rem; }
    
+   h2 {
+     font-size: 1.8rem; }
+   
    h3 {
-     font-size: 1.75rem; }
+     font-size: 1.6rem; }
    
    h4 {
-     font-size: 1.5rem; }
+     font-size: 1.45rem; }
    
    h5 {
      font-size: 1.25rem; }
@@ -546,10 +546,11 @@ module.exports = {
    
    body {
      padding-bottom: 2.54cm;
-     padding-left: 1.8cm;
-     padding-right: 1.8cm;
+     padding-left: 5rem;
+     padding-right: 5rem;
      padding-top: 2.54cm; }
    
+  /*
    a[href^='http']:after, a[href^='ftp']:after {
      content: " (" attr(href) ")";
      font-size: 80%; }
@@ -560,7 +561,8 @@ module.exports = {
    abbr[title]:after,
    acronym[title]:after {
      content: " (" attr(title) ")"; }
-   
+   */
+
    .page-break,
    .break-before,
    .page-break-before {
@@ -602,7 +604,7 @@ module.exports = {
         /*text-align: justify; */}
       
       h1 {
-        font-weight: 700;
+        font-weight: 400;
         letter-spacing: -1px;
         text-align: center; }
       

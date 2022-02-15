@@ -73,3 +73,20 @@ form {
     transform: rotate(360deg);
   }
 }
+/* ---- */
+
+/* Fade out animation for messages */
+.fade-out {
+  animation: fadeOut ease 5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* ---- */

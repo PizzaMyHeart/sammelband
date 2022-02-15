@@ -113,7 +113,7 @@ function download(res, id, format) {
     console.log(`sammelband.${format} downloaded.`)
 }
 
-var postHandler = function (req, res, next) {
+var postHandler = function (req, res) {
     console.log(req.body);
     console.log(req.session.id);
     // Split the string of urls in the request, then
@@ -187,8 +187,8 @@ app.get('/download', (req, res) => {
     download(res, req.session.id, format);
 });
 
-app.get('/mail', (req, res) => {
-    mail(req.session.id, res).catch(console.error);
+app.post('/mail', (req, res) => {
+    mail(req.session.id, req.body.email, res).catch(console.error);
 })
 
 function deleteFile(res, id) {

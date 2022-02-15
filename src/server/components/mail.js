@@ -2,8 +2,9 @@ const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
 
-async function mail(id, res) {
+async function mail(id, email, res) {
     console.log(`sessionID for email: ${id}`);
+    console.log(`Sending to ${email}`);
     const html = fs.readFileSync(path.join(__dirname, `../public/sammelband-${id}.html`), 'utf8');
 
     let transporter = nodemailer.createTransport({
@@ -20,7 +21,7 @@ async function mail(id, res) {
 
     let info = await transporter.sendMail({
         from: '<bound@sammelband.app>',
-        to: 'ian_tan@hotmail.com',
+        to: email,
         subject: 'Sammelband',
         html: html
     });

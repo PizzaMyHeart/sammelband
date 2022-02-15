@@ -39,7 +39,8 @@ function Form() {
                 urls: data['urls'],
                 color: data['color'],
                 font: data['font'],
-                format: data['format']
+                format: data['format'],
+                email: data['email']
             })
         })
         .then(response => {
@@ -92,8 +93,11 @@ function Form() {
                     <input type="radio" value="epub" name="format" {...register('format')}/> EPUB
                 </div>
                     
-
-                <input type="submit" value="Submit" />
+                <div>
+                    <input type="submit" value="Submit" />
+                    <input type="email" placeholder="Your email (optional)" name="email" {...register('email')}/>
+                </div>
+                
 
                 <div id="messages">
                 <div>{ loading && <Loading />}</div>
@@ -115,6 +119,7 @@ function Form() {
                 setDeleted={ setDeleted }
                 emailSent={ emailSent }
                 setEmailSent={ setEmailSent }
+                handleSubmit={ handleSubmit }
             />        
         </>
     )

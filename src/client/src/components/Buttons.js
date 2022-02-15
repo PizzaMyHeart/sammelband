@@ -29,11 +29,17 @@ function Buttons(props) {
         });
     }
 
-    const mail = () => {
+    const mail = data => {
         fetch('/mail', {
             credentials: 'same-origin',
-            method: 'GET',
-            mode: 'cors'
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: data['email']
+            })
         })
         .then(response => {
             if (response) {
@@ -50,7 +56,7 @@ function Buttons(props) {
             <button className="btn" onClick={ download } disabled={ !props.success }>
                 <img src={ downloadIcon } alt="Download icon"/>
             </button>
-            <button className="btn" onClick={ mail } disabled={ !props.success }>
+            <button className="btn" onClick={ props.handleSubmit(mail) } disabled={ !props.success }>
                 <img src={ mailIcon } alt="Mail icon"/>
             </button>
             <button className="btn" disabled={ !props.success }>

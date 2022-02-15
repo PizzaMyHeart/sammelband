@@ -589,6 +589,12 @@ module.exports = {
    .no-reformat acronym:after,
    .no-reformat a:after {
      content: ''; }
+
+  /* Margins for print layout */
+  @page {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
     `,
     sansSerif: `     
       h1,

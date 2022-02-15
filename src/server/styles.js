@@ -351,13 +351,14 @@ module.exports = {
    body {
      -moz-osx-font-smoothing: grayscale;
      -webkit-font-smoothing: antialiased;
-     /*background: #fff;*/
-     /*color: #000;*/
+     background: var(--body-bg);
+     color: var(--body-color);
      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
      font-size: 1rem;
      line-height: 1.5;
      margin: 0 auto;
-     text-rendering: optimizeLegibility; }
+     text-rendering: optimizeLegibility; 
+     text-align: start;}
    
    p,
    blockquote,
@@ -404,7 +405,7 @@ module.exports = {
      font-size: 1rem; }
    
    a, a:visited {
-     /*color: #000;*/
+     color: var(--body-color);
      text-decoration: underline;
      word-wrap: break-word; }
    
@@ -598,7 +599,7 @@ module.exports = {
       
       body {
         font-family: 'Open Sans', 'Helvetica Neue', Helvetica, arial, sans-serif;
-        text-align: justify; }
+        /*text-align: justify; */}
       
       h1 {
         font-weight: 700;
@@ -638,7 +639,7 @@ module.exports = {
       
       body {
         font-family: Georgia, "Times New Roman", Times, serif;
-        text-align: justify; }
+        /*text-align: justify; */}
       
       h1 {
         text-align: center; }

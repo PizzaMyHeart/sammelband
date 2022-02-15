@@ -7,10 +7,11 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 - [X] Add styling to parsed articles
 - [X] HTML-to-PDF converter
 - [X] Add options to form for user style preferences
+- [ ] Add user option for `text-align`
 - [X] Add titles to each parsed article
 - [ ] Tweak Gutenberg.css
 - [X] Separate user requests using express-session
-- [ ] Implement session store for production
+- [X] Implement session store for production
 - [X] Implement email function
 - [X] Notification when email sent
 - [X] Send as email attachment

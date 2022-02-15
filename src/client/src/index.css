@@ -50,6 +50,10 @@ form {
 
 .btn {
   margin: 5px;
+  /*
+  height: 5rem;
+  width: 5rem;
+  */
 }
 
 /* CSS loading spinner from loading.io */

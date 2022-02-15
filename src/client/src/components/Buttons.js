@@ -48,7 +48,7 @@ function Buttons(props) {
         })
     }
     return (
-        <>
+        <div className="flex-container">
             <button className="btn" onClick={ deleteFile } id="deleteBtn" disabled={ props.deleted || !props.success }>
                 <img src={ trashIcon } alt="Trash can icon"/>
             </button>
@@ -61,7 +61,7 @@ function Buttons(props) {
             <button className="btn" onClick={ mail } value="attachment" disabled={ !props.success }>
                 <img src={ attachmentIcon } alt="Attachment icon"/>
             </button>
-        </>
+        </div>
         
     )
 }

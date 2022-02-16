@@ -59,17 +59,17 @@ const port = 3001;
 
 const styles = require('./styles'); // Load CSS styles from ./styles.js
 
-function convertFromHTML(format, id, documents) {
+async function convertFromHTML(format, id, documents) {
     let filepath = path.join(__dirname, './public', `sammelband-${id}`);
     console.log(filepath);
     switch(format) {
         case 'pdf':
-            htmlToPDF(filepath);
+            await htmlToPDF(filepath).then(console.log);
             break;
         case 'html':
              break;
         case 'epub':
-            htmlToEPUB(filepath, documents);
+            await htmlToEPUB(filepath, documents).then(console.log);
             break;
     }
     return true; // signifies that file is ready for download
@@ -81,16 +81,20 @@ function htmlToPDF(filepath) {
         path: filepath + '.pdf',
         printBackground: true
     };
-    (async() => {
-        if (!browser) {
-            browser = await puppeteer.launch();
-        }
-        const page = await browser.newPage();
-        await page.setContent(fs.readFileSync(filepath + '.html', 'utf8'));
-        await page.emulateMediaType('screen');
-        await page.pdf(options);
-        await page.close();
-    })();
+
+    return new Promise((resolve, reject) => {
+        (async() => {
+            if (!browser) {
+                browser = await puppeteer.launch();
+            }
+            const page = await browser.newPage();
+            await page.setContent(fs.readFileSync(filepath + '.html', 'utf8'));
+            await page.emulateMediaType('screen');
+            await page.pdf(options);
+            await page.close();
+            resolve('PDF ready');
+        })();
+    })
 }
 
 function htmlToEPUB(filepath, documents) {
@@ -103,7 +107,10 @@ function htmlToEPUB(filepath, documents) {
         option.content.push({title: document.title, data: document.content})
     };
     console.log(option);
-    new Epub(option, filepath + '.epub');
+    return new Promise((resolve, reject) => {
+        new Epub(option, filepath + '.epub');
+        resolve('EPUB ready');
+    })
 }
 
 function applyStyle(color, font) {

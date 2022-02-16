@@ -602,17 +602,12 @@ module.exports = {
      content: ''; }
 
   /* Margins for print layout */
-  /*
+  
   @page {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin: 1.5rem 0;
   }
-  */
- @media print {
-   body {
-     margin: 1.5rem 0 !important;
-   }
- }
+  
+
     `,
     sansSerif: `     
       h1,

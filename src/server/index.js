@@ -11,6 +11,7 @@ const processUrls = require('./components/process-urls');
 const fetchFromURL = require('./components/fetch-from-url');
 const parseDocuments = require('./components/parse-documents');
 const mail = require('./components/mail');
+const getPocketRequestToken = require('./components/get-pocket-list');
 
 let browser;
 
@@ -202,6 +203,25 @@ app.get('/', (req, res) => {
     console.log(req.session.id)
     res.send('You absolute genius');
 });
+
+app.post('/pocket', async (req, res) => {
+    try {
+        let requestToken = await getPocketRequestToken();
+        const redirectUri = 'http://localhost:3001/pocket/callback';
+        console.log('req token: ', requestToken);
+        res.json({requestToken: requestToken});
+        /*
+        res.redirect(`https://getpocket.com/auth/authorize?
+        request_token=${requestToken}&
+        redirect_uri=${redirectUri}`);
+        */
+    }
+
+    catch (err) {
+        console.log(err);
+    }
+});
+        
 
 app.post('/submit', (req, res) => {
     //console.log(req.body);

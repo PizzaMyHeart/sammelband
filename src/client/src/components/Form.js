@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Buttons from './Buttons';
 import Loading from './Loading';
+import Pocket from './Pocket';
 
 
 function Form() {
@@ -80,6 +81,7 @@ function Form() {
                         />
                     { errors.urls && <p>{errors.urls.message}</p>}                    
                 </label>
+                <Pocket />
                 <div>
                     <input type="radio" value="light" name="color" {...register('color', {required: 'Required'})}/> Light mode
                     <input type="radio" value="dark" name="color" {...register('color', {required: 'Required'})}/> Dark mode

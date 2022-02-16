@@ -359,7 +359,7 @@ module.exports = {
      margin: 0 auto;
      text-rendering: optimizeLegibility; 
      text-align: start;    
-     max-width: 900px;
+     max-width: 700px;
     }
    
    p,
@@ -556,10 +556,7 @@ module.exports = {
      word-wrap: break-word; }
    
    body {
-     padding-bottom: 2.54cm;
-     padding-left: 5rem;
-     padding-right: 5rem;
-     padding-top: 2.54cm; }
+     padding: 1rem 0; }
    
   /*
    a[href^='http']:after, a[href^='ftp']:after {

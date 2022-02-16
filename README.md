@@ -25,6 +25,7 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 ### CSS modifications for better readability
 
 - Apply `max-width: 80ch` to `<p>` elements (consensus appears to be 50 - 90 characters for optimal line length)
-- Apply `max-width: 900px` to `<body>` to center the whole shebang
+- Apply `max-width: 700px` to `<body>` to center the whole shebang
 - Change the sans-serif header fonts from Arial Black/Arial Bold (horrendous) to plain Arial (not ideal, but available everywhere)
 - Change `text-align` from `justify` to `start` (I agree with [this sentiment](https://www.cgpgrey.com/blog/voyage-to-nowhere))
+- Change `body {padding}` to `1rem`

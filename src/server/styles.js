@@ -604,7 +604,7 @@ module.exports = {
   /* Margins for print layout */
   
   @page {
-    margin: 1.5rem 0;
+    padding: 1.5rem 0;
   }
   
 

@@ -31,6 +31,7 @@ function Buttons(props) {
     }
 
     const mail = (e) => {
+        props.setLoading(true);
         e.preventDefault();
         console.log(e.currentTarget.value);
         fetch(`/mail?type=${e.currentTarget.value}`, {
@@ -39,6 +40,7 @@ function Buttons(props) {
             mode: 'cors'
         })
         .then(response => {
+            props.setLoading(false);
             if (response.ok) {
                 console.log('email sent');
                 props.setEmailSent(true);

@@ -125,6 +125,7 @@ function Form() {
                 setEmailSent={ setEmailSent }
                 handleSubmit={ handleSubmit }
                 setMailError={ setMailError }
+                setLoading={ setLoading }
             />        
         </>
     )

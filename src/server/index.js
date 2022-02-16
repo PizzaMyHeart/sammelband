@@ -64,12 +64,12 @@ async function convertFromHTML(format, id, documents) {
     console.log(filepath);
     switch(format) {
         case 'pdf':
-            await htmlToPDF(filepath).then(console.log);
+            await htmlToPDF(filepath).then(console.log).catch(console.log);
             break;
         case 'html':
              break;
         case 'epub':
-            await htmlToEPUB(filepath, documents).then(console.log);
+            await htmlToEPUB(filepath, documents).then(console.log).catch(console.log);
             break;
     }
     return true; // signifies that file is ready for download

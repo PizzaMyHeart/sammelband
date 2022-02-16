@@ -358,7 +358,9 @@ module.exports = {
      line-height: 1.5;
      margin: 0 auto;
      text-rendering: optimizeLegibility; 
-     text-align: start;}
+     text-align: start;    
+     max-width: 900px;
+    }
    
    p,
    blockquote,
@@ -368,6 +370,15 @@ module.exports = {
    dl {
      margin-bottom: 1.5rem;
      margin-top: 0; }
+
+  /* Line length for readability */
+    p,
+    blockquote,
+    table,
+    ul,
+    ol,
+    dl {
+      max-width: 80ch;}
    
    p:last-child,
    ul:last-child,
@@ -387,7 +398,7 @@ module.exports = {
      margin-top: 2rem; }
    
    h1 {
-     font-size: 2rem; }
+     font-size: 2.25rem; }
    
    h2 {
      font-size: 1.8rem; }
@@ -591,10 +602,17 @@ module.exports = {
      content: ''; }
 
   /* Margins for print layout */
+  /*
   @page {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
+  */
+ @media print {
+   body {
+     margin: 1.5rem 0 !important;
+   }
+ }
     `,
     sansSerif: `     
       h1,
@@ -603,14 +621,14 @@ module.exports = {
       h4,
       h5,
       h6 {
-        font-family: 'Montserrat', 'Arial Black', 'Arial Bold', 'Helvetica Neue', Helvetica, sans-serif; }
+        font-family: 'Montserrat', 'Arial', 'Helvetica Neue', Helvetica, sans-serif; }
       
       body {
         font-family: 'Open Sans', 'Helvetica Neue', Helvetica, arial, sans-serif;
-        /*text-align: justify; */}
+      }
       
       h1 {
-        font-weight: 400;
+        font-weight: 700;
         letter-spacing: -1px;
         text-align: center; }
       
@@ -647,7 +665,7 @@ module.exports = {
       
       body {
         font-family: Georgia, "Times New Roman", Times, serif;
-        /*text-align: justify; */}
+      }
       
       h1 {
         text-align: center; }

@@ -7,7 +7,6 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 - [X] Add styling to parsed articles
 - [X] HTML-to-PDF converter
 - [X] Add options to form for user style preferences
-- [ ] Add user option for `text-align`
 - [X] Add titles to each parsed article
 - [ ] Tweak Gutenberg.css
 - [X] Separate user requests using express-session
@@ -23,3 +22,9 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 - [ ] Upload CSV of URLs (e.g. from bookmarks)
 - [ ] Integration with Pocket and Instapaper
 
+### CSS modifications for better readability
+
+- Apply `max-width: 80ch` to `<p>` elements (consensus appears to be 50 - 90 characters for optimal line length)
+- Apply `max-width: 900px` to `<body>` to center the whole shebang
+- Change the sans-serif header fonts from Arial Black/Arial Bold (horrendous) to plain Arial (not ideal, but available everywhere)
+- Change `text-align` from `justify` to `start` (I agree with [this sentiment](https://www.cgpgrey.com/blog/voyage-to-nowhere))

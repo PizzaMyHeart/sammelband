@@ -72,6 +72,7 @@ function convertFromHTML(format, id, documents) {
             htmlToEPUB(filepath, documents);
             break;
     }
+    return true; // signifies that file is ready for download
 }
 
 function htmlToPDF(filepath) {
@@ -136,7 +137,7 @@ function writeToFile(parsedArticles, req) {
         parsedArticles[i].byline ? author = `by ${parsedArticles[i].byline}, ` : author = '';
         parsedArticles[i].siteName ? siteName = parsedArticles[i].siteName : siteName = '';
         let content = `<h1 class="${breakBefore}">Article #${i+1}: ${parsedArticles[i].title}</h1><br>
-                        <p><i>${author}${siteName}<i></p><br>
+                        <p><i>${author}${siteName}</i></p><br>
                         ${parsedArticles[i].content}<hr>`;
         fs.writeFile(filepath, content, { flag: 'a+' }, err => {if (err) console.log(err)});
     }
@@ -170,10 +171,13 @@ var postHandler = function (req, res) {
         .then(documents => parseDocuments(documents))
         .then(parsedArticles => writeToFile(parsedArticles, req))
         .then((parsedArticles) => convertFromHTML(req.body.format, req.session.id, parsedArticles))
-        .then(() => {
-            let body = {malformedUrl: null, ready: true};
-            if (badUrls.length > 0) body.malformedUrl = badUrls;
-            res.send(body);
+        .then((fileReady) => {
+            if (fileReady) {
+                console.log('File ready');
+                let body = {malformedUrl: null, ready: true};
+                if (badUrls.length > 0) body.malformedUrl = badUrls;
+                res.send(body);
+            }
         })
         .catch(err => {
             res.status(500).send(err);
@@ -212,19 +216,19 @@ app.get('/mail', (req, res) => {
     });
 })
 
-function deleteFile(res, id) {
+function deleteFile(id) {
     console.log('deleteFile()');
     console.log('deleting sammelband');
     console.log(id);
     fs.readdirSync(path.join(__dirname, `public/`))
     .filter(filename => filename.includes(id))
     .map(filename => fs.unlinkSync(path.join(__dirname, `public/${filename}`)));
-    res.send('Sammelband deleted');
     console.log('Sammelband deleted');
 }
 
 app.get('/delete', (req, res) => {
-   deleteFile(res, req.session.id);
+   deleteFile(req.session.id);
+   res.send('Sammelband deleted');
 })
 
 

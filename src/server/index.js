@@ -11,7 +11,7 @@ const processUrls = require('./components/process-urls');
 const fetchFromURL = require('./components/fetch-from-url');
 const parseDocuments = require('./components/parse-documents');
 const mail = require('./components/mail');
-const getPocketRequestToken = require('./components/get-pocket-list');
+const { getPocketToken, getPocketList }= require('./components/pocket');
 
 let browser;
 
@@ -204,24 +204,48 @@ app.get('/', (req, res) => {
     res.send('You absolute genius');
 });
 
-app.post('/pocket', async (req, res) => {
+app.post('/pocket/request', async (req, res) => {
     try {
-        let requestToken = await getPocketRequestToken();
-        const redirectUri = 'http://localhost:3001/pocket/callback';
-        console.log('req token: ', requestToken);
-        res.json({requestToken: requestToken});
-        /*
-        res.redirect(`https://getpocket.com/auth/authorize?
-        request_token=${requestToken}&
-        redirect_uri=${redirectUri}`);
-        */
+        let response = await getPocketToken('request');
+        console.log('req token: ', response.data.code);
+        req.session.pocketRequestToken = response.data.code; // Save the user's Pocket request token
+        res.json({requestToken: response.data.code});
     }
 
     catch (err) {
         console.log(err);
     }
 });
+
+
+
+app.get('/pocket/callback', async (req, res) => {
+    console.log('callback page');
+    console.log(req.session);
+    try {
+        let response = await getPocketToken('access', req.session.pocketRequestToken);
+        console.log('Access token: ', response.data.access_token);
+        req.session.pocketAccessToken = response.data.access_token;
+        res.redirect('http://localhost:3000');
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
         
+app.get('/pocket/list', async (req, res) => {
+    try {
+        const accessToken = req.session.pocketAccessToken;
+        console.log(accessToken);
+        let response = await getPocketList(accessToken);
+        console.log(response.data);
+        res.send(response.data);
+    }
+    catch (err) {
+        console.log(err);
+
+    }
+});
 
 app.post('/submit', (req, res) => {
     //console.log(req.body);

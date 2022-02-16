@@ -1,7 +1,7 @@
 function Pocket() {
 
     const getPocketRequestToken = () => {
-        fetch('/pocket', {
+        fetch('/pocket/request', {
             method: 'POST',
             credentials: 'same-origin',
             mode: 'cors'
@@ -9,7 +9,7 @@ function Pocket() {
         .then(response => response.json())
         .then(data => {
             const requestToken = data.requestToken;
-            const url = `https://getpocket.com/auth/authorize?request_token=${requestToken}&redirect_uri=http://localhost:3000`;
+            const url = `https://getpocket.com/auth/authorize?request_token=${requestToken}&redirect_uri=http://localhost:3001/pocket/callback`;
             redirectToPocket(url);
         })
         .catch(console.log);
@@ -19,9 +19,24 @@ function Pocket() {
         window.location = url;
     }
 
+    const getPocketList = () => {
+        fetch('/pocket/list', {
+            method: 'GET',
+            credentials: 'same-origin',
+            mode: 'cors'
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.list);
+        })
+        .catch(console.log);
+    }
+ 
+
     return (
         <>
             <button onClick={ getPocketRequestToken }>Pocket</button>
+            <button onClick={ getPocketList }>Get Pocket list</button>
         </>
     )
 }

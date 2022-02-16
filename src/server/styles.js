@@ -378,24 +378,24 @@ module.exports = {
     ul,
     ol,
     dl {
-      max-width: 80ch;}
+      max-width: 80ch
+      line-height: calc(1ex / 0.32);}
    
    p:last-child,
    ul:last-child,
    ol:last-child {
      margin-bottom: 0; }
    
+   li,
    h1,
    h2,
    h3,
    h4,
    h5,
    h6 {
-     /*color: #000;*/
      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-     line-height: 1.2;
-     margin-bottom: 0.75rem;
-     margin-top: 2rem; }
+     line-height: calc(1ex / 0.32);
+     margin: calc(1ex / 0.42) 0; }
    
    h1 {
      font-size: 2.25rem; }

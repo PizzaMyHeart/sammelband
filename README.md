@@ -24,8 +24,10 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 
 ### CSS modifications for better readability
 
-- Apply `max-width: 80ch` to `<p>` elements (consensus appears to be 50 - 90 characters for optimal line length)
-- Apply `max-width: 700px` to `<body>` to center the whole shebang
-- Change the sans-serif header fonts from Arial Black/Arial Bold (horrendous) to plain Arial (not ideal, but available everywhere)
-- Change `text-align` from `justify` to `start` (I agree with [this sentiment](https://www.cgpgrey.com/blog/voyage-to-nowhere))
-- Change `body {padding}` to `1rem`
+- Apply `max-width: 80ch` to `<p>` elements (consensus appears to be 50 - 90 characters for optimal line length).
+- Set `line-height: calc(1ex / 0.32)` to text elements ([Smashing Magazine article](https://www.smashingmagazine.com/2020/07/css-techniques-legibility/)).
+- Set `margin: calc(1ex / 0.42) 0` to headers and list items (again, thanks to [Smashing Magazine article](https://www.smashingmagazine.com/2020/07/css-techniques-legibility/)).
+- Apply `max-width: 700px` to `<body>` to center the whole shebang.
+- Change the sans-serif header fonts from Arial Black/Arial Bold (horrendous) to plain Arial (not ideal, but available everywhere).
+- Change `text-align` from `justify` to `start` (I agree with [this sentiment](https://www.cgpgrey.com/blog/voyage-to-nowhere)).
+- Authoring HTML email is 💩&mdash;I've left the CSS as a `<style/>` tag and only removed the left and right margins on `<body>`.

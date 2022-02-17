@@ -2,8 +2,9 @@ import { useState } from 'react';
 
 function Pocket(props) {
 
-    const [pocketLoggedIn, setPocketLoggedIn] = useState(props.pocketLoggedIn);
-    //console.log('Pocket logged in: ', pocketLoggedIn);
+    //const [pocketLoggedIn, setPocketLoggedIn] = useState(props.pocketLoggedIn);
+
+    console.log('Pocket logged in: ', props.pocketLoggedIn);
     const getPocketRequestToken = () => {
         fetch('/api/pocket/request', {
             method: 'POST',
@@ -47,7 +48,7 @@ function Pocket(props) {
             If logged in to pocket, show the getPocketList button but not the getPocketRequestToken button
             And vice-versa
             */}
-            { pocketLoggedIn
+            { props.pocketLoggedIn
                 ? <button type="button" onClick={ getPocketList }>Get Pocket list</button>
                 : <button type="button" onClick={ getPocketRequestToken }>Pocket</button>
             }

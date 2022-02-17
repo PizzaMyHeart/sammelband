@@ -27,7 +27,7 @@ function UrlField(props) {
             <input type="checkbox" 
                         name="urls"
                         value={ props.url }
-                        {...props.register('urls', {onChange: (e) => console.log(e.target.value)})} />
+                        {...props.register('urls')} />
 
             <input type="url" id={ props.id } onChange={ e => handleChange(e) }></input>
         </div>

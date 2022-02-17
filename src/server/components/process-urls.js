@@ -5,6 +5,7 @@ function processUrls(urlArray) {
     // 3. Has a TLD (one or more alphanumeric characters)
     // 4. Has any number of segments starting with forward slashes
     // 5. End with an alphanumeric character OR a trailing slash
+    if (typeof urlArray == 'string') urlArray = [urlArray];
     const originalUrls = [...urlArray];
     let cleanUrls = urlArray.filter(url => /^https?:\/\/.*\.\w+(\/.*\w||\/)*$/.test(url));
     const badUrls = originalUrls.filter(url => !cleanUrls.includes(url));

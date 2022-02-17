@@ -22,8 +22,7 @@ function UrlField(props) {
                         value={ props.url }
                         {...props.register('urls')} />
 
-            <input type="url" id={ props.id } onChange={ e => handleChange(e) }></input>    
-            <button type="button" onClick={props.insertUrlFields}>Insert URL field</button>
+            <input type="url" id={ props.id } onChange={ e => handleChange(e) }></input>
         </div>
     )
 };

@@ -1,14 +1,14 @@
 function Pocket(props) {
     const getPocketRequestToken = () => {
-        fetch('/pocket/request', {
+        fetch('/api/pocket/request', {
             method: 'POST',
-            credentials: 'same-origin',
+            credentials: 'include',
             mode: 'cors'
         })
         .then(response => response.json())
         .then(data => {
             const requestToken = data.requestToken;
-            const url = `https://getpocket.com/auth/authorize?request_token=${requestToken}&redirect_uri=http://localhost:3001/pocket/callback`;
+            const url = `https://getpocket.com/auth/authorize?request_token=${requestToken}&redirect_uri=http://localhost:3001/api/pocket/callback`;
             redirectToPocket(url);
         })
         .catch(console.log);
@@ -19,9 +19,9 @@ function Pocket(props) {
     }
 
     const getPocketList = (e) => {
-        fetch('/pocket/list', {
+        fetch('/api/pocket/list', {
             method: 'GET',
-            credentials: 'same-origin',
+            credentials: 'include',
             mode: 'cors'
         })
         .then(response => response.json())

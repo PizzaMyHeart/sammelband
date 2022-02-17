@@ -33,8 +33,8 @@ function Form() {
         setDeleted(false);
         setBadUrls(null);
         setEmailSent(false);
-        fetch('/submit', {
-            credentials: 'same-origin',
+        fetch('/api/submit', {
+            credentials: 'include',
             method: 'POST',
             mode: 'cors',
             headers: {

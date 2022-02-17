@@ -53,7 +53,10 @@ app.use(['/', '/submit', '/download'], cookieSession({
 */
 app.use(express.json());
 
-app.use(cors({ credentials: true, origin: true }));
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 const port = 3001;
@@ -199,12 +202,18 @@ var postHandler = function (req, res) {
 //app.use('/submit', postHandler);
 
 
-app.get('/', (req, res) => {
-    console.log(req.session.id)
-    res.send('You absolute genius');
+app.get('/api', (req, res) => {
+    console.log('Session ID: ', req.session.id);
+    let body = {
+        pocketLoggedIn: false
+    }
+    console.log(req.session.pocketAccessToken==true);
+    if(req.session.pocketAccessToken) body.pocketLoggedIn = true;
+    res.json(body);
 });
 
-app.post('/pocket/request', async (req, res) => {
+app.post('/api/pocket/request', async (req, res) => {
+    console.log('Session ID: ', req.session.id);
     try {
         let response = await getPocketToken('request');
         console.log('req token: ', response.data.code);
@@ -219,9 +228,9 @@ app.post('/pocket/request', async (req, res) => {
 
 
 
-app.get('/pocket/callback', async (req, res) => {
+app.get('/api/pocket/callback', async (req, res) => {
     console.log('callback page');
-    console.log(req.session);
+    console.log('Session ID: ', req.session.id);
     try {
         let response = await getPocketToken('access', req.session.pocketRequestToken);
         console.log('Access token: ', response.data.access_token);
@@ -233,12 +242,13 @@ app.get('/pocket/callback', async (req, res) => {
     }
 });
         
-app.get('/pocket/list', async (req, res) => {
+app.get('/api/pocket/list', async (req, res) => {
+    console.log('Session ID: ', req.session.id);
     try {
         const accessToken = req.session.pocketAccessToken;
         console.log(accessToken);
         let response = await getPocketList(accessToken);
-        console.log(response.data);
+        //console.log(response.data);
         res.send(response.data);
     }
     catch (err) {
@@ -247,18 +257,20 @@ app.get('/pocket/list', async (req, res) => {
     }
 });
 
-app.post('/submit', (req, res) => {
+app.post('/api/submit', (req, res) => {
+    console.log('Session ID: ', req.session.id);
     console.log(req.body);
     //console.log(req.session);
     postHandler(req, res);
 });
 
-app.get('/download', (req, res) => {
-    console.log('/download', req.session.id);
+app.get('/api/download', (req, res) => {
+    console.log('Session ID: ', req.session.id);
     download(res, req.session.id, format);
 });
 
-app.get('/mail', (req, res) => {
+app.get('/api/mail', (req, res) => {
+    console.log('Session ID: ', req.session.id);
     console.log(req.query);
     mail(req, res).catch((err) => {
         console.log(err);
@@ -276,9 +288,10 @@ function deleteFile(id) {
     console.log('Sammelband deleted');
 }
 
-app.get('/delete', (req, res) => {
-   deleteFile(req.session.id);
-   res.send('Sammelband deleted');
+app.get('/api/delete', (req, res) => {
+    console.log('Session ID: ', req.session.id);
+    deleteFile(req.session.id);
+    res.send('Sammelband deleted');
 })
 
 

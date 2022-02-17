@@ -6,10 +6,10 @@ import trashIcon from '../icons/trash-2.svg'
 function Buttons(props) {
     const download = () => {
 
-        window.location = 'http://localhost:3001/download'
+        window.location = 'http://localhost:3001/api/download'
         /*
         fetch('/download', {
-            credentials: 'same-origin',
+            credentials: 'include',
             method: 'GET',
             mode: 'cors'
         })
@@ -17,8 +17,8 @@ function Buttons(props) {
     }
 
     const deleteFile = () => {
-        fetch('/delete', {
-            credentials: 'same-origin',
+        fetch('/api/delete', {
+            credentials: 'include',
             method: 'GET',
             mode: 'cors',
         })
@@ -35,7 +35,7 @@ function Buttons(props) {
         e.preventDefault();
         console.log(e.currentTarget.value);
         fetch(`/mail?type=${e.currentTarget.value}`, {
-            credentials: 'same-origin',
+            credentials: 'include',
             method: 'GET',
             mode: 'cors'
         })

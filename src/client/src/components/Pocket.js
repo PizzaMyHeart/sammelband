@@ -1,5 +1,4 @@
-function Pocket() {
-
+function Pocket(props) {
     const getPocketRequestToken = () => {
         fetch('/pocket/request', {
             method: 'POST',
@@ -27,7 +26,11 @@ function Pocket() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data.list);
+            if (data) {
+                props.setPocketList(data.list);
+                console.log(data.list);
+            }
+            
         })
         .catch(console.log);
     }

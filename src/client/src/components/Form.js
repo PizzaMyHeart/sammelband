@@ -13,6 +13,7 @@ function Form() {
     const [submitError, setSubmitError] = useState(null);
     const [badUrls, setBadUrls] = useState(null);
     const [mailError, setMailError] = useState(false);
+    const [pocketList, setPocketList] = useState(null);
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
@@ -81,7 +82,10 @@ function Form() {
                         />
                     { errors.urls && <p>{errors.urls.message}</p>}                    
                 </label>
-                <Pocket />
+                <Pocket 
+                    pocketList={ pocketList }
+                    setPocketList= { setPocketList }
+                />
                 <div>
                     <input type="radio" value="light" name="color" {...register('color', {required: 'Required'})}/> Light mode
                     <input type="radio" value="dark" name="color" {...register('color', {required: 'Required'})}/> Dark mode

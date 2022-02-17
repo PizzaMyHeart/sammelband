@@ -49,7 +49,15 @@ function Pocket(props) {
                     return (
                     <div>
                         <input type="checkbox"></input>
-                        <label>{props.pocketList[key]['given_title']}</label>
+                        <label>
+                            <a 
+                            href={ props.pocketList[key]['given_url']} 
+                            target="_blank" rel="noopener noreferrer">
+                                { (props.pocketList[key]['given_title']) 
+                                    ? (props.pocketList[key]['given_title']) 
+                                    : (props.pocketList[key]['resolved_title']) }
+                            </a>
+                        </label>
                     </div>
                     )
                 })}

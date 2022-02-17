@@ -204,11 +204,11 @@ var postHandler = function (req, res) {
 
 app.get('/api', (req, res) => {
     console.log('Session ID: ', req.session.id);
-    let body = {
-        pocketLoggedIn: false
-    }
-    console.log(req.session.pocketAccessToken==true);
-    if(req.session.pocketAccessToken) body.pocketLoggedIn = true;
+    let body = {};
+    console.log(req.session.pocketAccessToken);
+    if (req.session.pocketAccessToken) body.pocketLoggedIn = true;
+    else if(!req.session.pocketAccessToken) body.pocketLoggedIn = false;
+    console.log(body);
     res.json(body);
 });
 

@@ -2,11 +2,12 @@ import Form from  './components/Form';
 import Navbar from './components/Navbar';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import About from './routes/About';
-import { useState } from 'react';
+import { useState, useLayoutEffect } from 'react';
 
 
 function App() {
   const [ pocketLoggedIn, setPocketLoggedIn ] = useState(false);
+
   const firstLoad = () => {
     console.log('firstload()');
     fetch('/api', {
@@ -16,12 +17,14 @@ function App() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data.pocketLoggedIn);
+      console.log(data);
+      console.log('Pocket logged in: ', data.pocketLoggedIn);
       if (data.pocketLoggedIn) setPocketLoggedIn(true);
-      else setPocketLoggedIn(false);
+      else if (!data.pocketLoggedIn) setPocketLoggedIn(false);
     })
     .catch(err => console.log(err));
   }
+  
   firstLoad();
 
 

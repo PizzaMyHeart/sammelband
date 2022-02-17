@@ -16,15 +16,17 @@ function Form(props) {
     const [badUrls, setBadUrls] = useState(null);
     const [mailError, setMailError] = useState(false);
     const [pocketList, setPocketList] = useState(null);
-    const [pocketLoggedIn, setPocketLoggedIn] = useState(props.pocketLoggedIn);
+    const [pocketLoggedIn, setPocketLoggedIn] = [props.pocketLoggedIn, props.setPocketLoggedIn]
 
-    const { register, handleSubmit, control, formState: { errors } } = useForm({
+    const { register, handleSubmit, watch, setValue, control, formState: { errors } } = useForm({
         defaultValues: {
             'color': 'light',
             'font': 'sansSerif',
             'format': 'html'
         }
     });
+
+    const watchUrls = watch('urls');
      
     // react-hook-form version
     const onSubmit = data => {
@@ -77,7 +79,9 @@ function Form(props) {
             <form onSubmit={ handleSubmit(onSubmit) }> 
                 <label>
                     URLs:
-                    <UrlContainer register={ register } />
+                    <UrlContainer register={ register } watchUrls={ watchUrls } watch={ watch }
+                    setValue={ setValue }
+                    />
                     {/*
                     <textarea 
                         id="url-input" 

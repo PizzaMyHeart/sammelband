@@ -3,6 +3,9 @@ import UrlField from './UrlField';
 
 function UrlContainer(props) {
     const [userUrls, setUserUrls] = useState({1: ''});
+    const watchUrls = props.watchUrls;
+    const watch = props.watch;
+    const setValue = props.setValue;
 
     const insertUrlField = () => {
         let newUrls = {...userUrls};
@@ -17,7 +20,7 @@ function UrlContainer(props) {
             <button type="button" onClick={ insertUrlField }>+</button>
                 {
                     Object.keys(userUrls).map(key => {
-                        console.log(key);
+                        //console.log(key);
                         return (
                             <UrlField 
                                 key={ key }
@@ -26,6 +29,9 @@ function UrlContainer(props) {
                                 setUserUrls={ setUserUrls }
                                 url={ userUrls[key] }
                                 register={props.register}
+                                watch={ watch }
+                                watchUrls={ watchUrls }
+                                setValue={ setValue }
                             />
                         )
                         })

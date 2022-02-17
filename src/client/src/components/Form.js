@@ -7,7 +7,7 @@ import Pocket from './Pocket';
 import UrlContainer from './UrlContainer';
 
 
-function Form() {
+function Form(props) {
     const [success, setSuccess] = useState(false);
     const [deleted, setDeleted] = useState(false);
     const [emailSent, setEmailSent] = useState(false);
@@ -16,6 +16,7 @@ function Form() {
     const [badUrls, setBadUrls] = useState(null);
     const [mailError, setMailError] = useState(false);
     const [pocketList, setPocketList] = useState(null);
+    const [pocketLoggedIn, setPocketLoggedIn] = useState(props.pocketLoggedIn);
 
     const { register, handleSubmit, control, formState: { errors } } = useForm({
         defaultValues: {
@@ -93,6 +94,8 @@ function Form() {
                 <Pocket 
                     pocketList={ pocketList }
                     setPocketList={ setPocketList }
+                    pocketLoggedIn= { pocketLoggedIn }
+                    setPocketLoggedIn={ setPocketLoggedIn }
                     register={ register } /* For pocket URL submission */
                 />
                 <div>

@@ -17,6 +17,8 @@ function App() {
     .then(response => response.json())
     .then(data => {
       console.log(data.pocketLoggedIn);
+      if (data.pocketLoggedIn) setPocketLoggedIn(true);
+      else setPocketLoggedIn(false);
     })
     .catch(err => console.log(err));
   }
@@ -30,7 +32,7 @@ function App() {
       <h1>Sammelband</h1>
 
       <Routes>
-        <Route path="/" element={ <Form />} />
+        <Route path="/" element={ <Form pocketLoggedIn={ pocketLoggedIn } setPocketLoggedIn={ setPocketLoggedIn }/>} />
         <Route path="/about" element={ <About />}/>
       </Routes>
   

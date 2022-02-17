@@ -1,4 +1,9 @@
+import { useState } from 'react';
+
 function Pocket(props) {
+
+    const [pocketLoggedIn, setPocketLoggedIn] = useState(props.pocketLoggedIn);
+
     const getPocketRequestToken = () => {
         fetch('/api/pocket/request', {
             method: 'POST',
@@ -38,8 +43,12 @@ function Pocket(props) {
 
     return (
         <>
-            <button type="button" onClick={ getPocketRequestToken }>Pocket</button>
-            <button type="button" onClick={ getPocketList }>Get Pocket list</button>
+            { /* 
+            If logged in to pocket, show the getPocketList button but not the getPocketRequestToken button
+            And vice-versa
+            */}
+            { !pocketLoggedIn && <button type="button" onClick={ getPocketRequestToken }>Pocket</button> }
+            { pocketLoggedIn && <button type="button" onClick={ getPocketList }>Get Pocket list</button> }
             <div className="scrolling-div">
                 { props.pocketList && Object.keys(props.pocketList).map(key => {
                     return (

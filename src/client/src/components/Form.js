@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { DevTool } from "@hookform/devtools";
 import Buttons from './Buttons';
 import Loading from './Loading';
 import Pocket from './Pocket';
+import UrlContainer from './UrlContainer';
 
 
 function Form() {
@@ -15,7 +17,7 @@ function Form() {
     const [mailError, setMailError] = useState(false);
     const [pocketList, setPocketList] = useState(null);
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, control, formState: { errors } } = useForm({
         defaultValues: {
             'color': 'light',
             'font': 'sansSerif',
@@ -25,7 +27,7 @@ function Form() {
      
     // react-hook-form version
     const onSubmit = data => {
-        console.log(data['urls']);
+        console.log(data);
         setLoading(true);
         setSuccess(false);
         setDeleted(false);
@@ -63,28 +65,35 @@ function Form() {
             if (data.malformedUrl) {
                 setBadUrls(data.malformedUrl);
             }
-        });
+        })
+        .catch(err => console.log(err));
     }
 
     return ( 
         <> 
+            <DevTool control={control} />
             {/* Needs handleSubmit to actually send request */}
             <form onSubmit={ handleSubmit(onSubmit) }> 
                 <label>
                     URLs:
+                    <UrlContainer register={ register } />
+                    {/*
                     <textarea 
                         id="url-input" 
                         placeholder="Enter one URL per line (including http(s) prefix)"
+                        name="urls"
                         {...register('urls',{
-                            required: true,
                             pattern: {value: /^https?:\/\/.*\..+/, message: 'Please enter at least one valid URL'}
-                        })}
+                            })
+                        }
                         />
+                    */}
                     { errors.urls && <p>{errors.urls.message}</p>}                    
                 </label>
                 <Pocket 
                     pocketList={ pocketList }
-                    setPocketList= { setPocketList }
+                    setPocketList={ setPocketList }
+                    register={ register } /* For pocket URL submission */
                 />
                 <div>
                     <input type="radio" value="light" name="color" {...register('color', {required: 'Required'})}/> Light mode

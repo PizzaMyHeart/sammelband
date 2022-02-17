@@ -111,15 +111,15 @@ nav > li {
 }
 /* ---- */
 
-#pocket-list-container {
+.scrolling-div {
   overflow-y: scroll;
   height: 10em;
 }
 
-#pocket-list-container > * {
+.scrolling-div > * {
   display: flex;
 }
 
-#pocket-list-container input {
+.scrolling-div input {
   margin-right: 1em;
 }

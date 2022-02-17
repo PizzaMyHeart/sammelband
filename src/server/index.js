@@ -248,10 +248,9 @@ app.get('/pocket/list', async (req, res) => {
 });
 
 app.post('/submit', (req, res) => {
-    //console.log(req.body);
-    console.log(req.session);
+    console.log(req.body);
+    //console.log(req.session);
     postHandler(req, res);
-    return;
 });
 
 app.get('/download', (req, res) => {

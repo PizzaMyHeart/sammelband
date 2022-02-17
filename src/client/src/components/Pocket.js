@@ -18,7 +18,7 @@ function Pocket(props) {
         window.location = url;
     }
 
-    const getPocketList = () => {
+    const getPocketList = (e) => {
         fetch('/pocket/list', {
             method: 'GET',
             credentials: 'same-origin',
@@ -38,20 +38,19 @@ function Pocket(props) {
 
     return (
         <>
-            <button onClick={ getPocketRequestToken }>Pocket</button>
-            <button onClick={ getPocketList }>Get Pocket list</button>
-            <div id="pocket-list-container">
-                <div>
-                    <input type="checkbox"></input>
-                    <label>Article title - URL</label>
-                </div>
+            <button type="button" onClick={ getPocketRequestToken }>Pocket</button>
+            <button type="button" onClick={ getPocketList }>Get Pocket list</button>
+            <div className="scrolling-div">
                 { props.pocketList && Object.keys(props.pocketList).map(key => {
                     return (
-                    <div>
-                        <input type="checkbox"></input>
+                    <div key={ key }>
+                        <input type="checkbox" 
+                        name="urls"
+                        value={ props.pocketList[key]['resolved_url'] }
+                        {...props.register('urls')} />
                         <label>
                             <a 
-                            href={ props.pocketList[key]['given_url']} 
+                            href={ props.pocketList[key]['resolved_url']} 
                             target="_blank" rel="noopener noreferrer">
                                 { (props.pocketList[key]['given_title']) 
                                     ? (props.pocketList[key]['given_title']) 

@@ -109,3 +109,17 @@ nav {
 nav > li {
   list-style: none;
 }
+/* ---- */
+
+#pocket-list-container {
+  overflow-y: scroll;
+  height: 10em;
+}
+
+#pocket-list-container > * {
+  display: flex;
+}
+
+#pocket-list-container input {
+  margin-right: 1em;
+}

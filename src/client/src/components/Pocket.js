@@ -40,6 +40,20 @@ function Pocket(props) {
         <>
             <button onClick={ getPocketRequestToken }>Pocket</button>
             <button onClick={ getPocketList }>Get Pocket list</button>
+            <div id="pocket-list-container">
+                <div>
+                    <input type="checkbox"></input>
+                    <label>Article title - URL</label>
+                </div>
+                { props.pocketList && Object.keys(props.pocketList).map(key => {
+                    return (
+                    <div>
+                        <input type="checkbox"></input>
+                        <label>{props.pocketList[key]['given_title']}</label>
+                    </div>
+                    )
+                })}
+            </div>
         </>
     )
 }

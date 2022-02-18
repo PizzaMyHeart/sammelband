@@ -3,9 +3,6 @@ import UrlField from './UrlField';
 
 function UrlContainer(props) {
     const [userUrls, setUserUrls] = [props.userUrls, props.setUserUrls]
-    const watchUrls = props.watchUrls;
-    const watch = props.watch;
-    const setValue = props.setValue;
 
     const insertUrlField = () => {
         let newUrls = {...userUrls};
@@ -33,10 +30,6 @@ function UrlContainer(props) {
                                 userUrls={ userUrls }
                                 setUserUrls={ setUserUrls }
                                 url={ userUrls[key] }
-                                register={props.register}
-                                watch={ watch }
-                                watchUrls={ watchUrls }
-                                setValue={ setValue }
                                 handleCheckboxChange= { handleCheckboxChange }
                             />
                         )

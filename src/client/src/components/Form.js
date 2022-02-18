@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import Buttons from './Buttons';
 import Loading from './Loading';
 import Pocket from './Pocket';
@@ -17,33 +16,30 @@ function Form(props) {
     const [pocketList, setPocketList] = useState(null);
     const [pocketLoggedIn, setPocketLoggedIn] = [props.pocketLoggedIn, props.setPocketLoggedIn]
 
+    // Form data
     const [userUrls, setUserUrls] = useState({0: ''});
     const [pocketUrls, setPocketUrls] = useState([]);
+    const [color, setColor] = useState('light');
+    const [font, setFont] = useState('sansSerif');
+    const [format, setFormat] = useState('html');
+    const [email, setEmail] = useState('');
 
-    const { register, handleSubmit, watch, setValue, control, formState: { errors } } = useForm({
-        defaultValues: {
-            'color': 'light',
-            'font': 'sansSerif',
-            'format': 'html'
-        }
-    });
 
     
     const allUrls = Object.values(userUrls).concat(pocketUrls);
-    console.log(allUrls);
+
     
 
-    // react-hook-form version
-    const onSubmit = data => {
-        console.log(data);
-        
+   
+    const handleSubmit = (e) => {    
+        e.preventDefault(); // <--- This is essential    
         setLoading(true);
         setSuccess(false);
         setDeleted(false);
         setBadUrls(null);
         setEmailSent(false);
         fetch('/api/submit', {
-            credentials: 'include',
+            credentials: 'same-origin',
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -51,10 +47,10 @@ function Form(props) {
             },
             body: JSON.stringify({
                 urls: allUrls,
-                color: data['color'],
-                font: data['font'],
-                format: data['format'],
-                email: data['email']
+                color: color,
+                font: font,
+                format: format,
+                email: email
             })
         })
         .then(response => {
@@ -78,10 +74,28 @@ function Form(props) {
         .catch(err => console.log(err));
     }
 
+    const setRadioValues = (e) => {
+        const value = e.target.value
+        console.log(value);
+        switch(e.target.name) {
+            case 'color':
+                setColor(value);
+                break;
+            case 'font':
+                setFont(value);
+                break;
+            case 'format':
+                setFormat(value);
+                break;
+
+            // no default
+        } 
+        
+    }
+
     return ( 
         <> 
-            {/* Needs handleSubmit to actually send request */}
-            <form onSubmit={ handleSubmit(onSubmit) }> 
+            <form onSubmit={ handleSubmit }> 
                 <label>
                     URLs:
                     <UrlContainer 
@@ -98,8 +112,7 @@ function Form(props) {
                             })
                         }
                         />
-                    */}
-                    { errors.urls && <p>{errors.urls.message}</p>}                    
+                    */}                  
                 </label>
                 <Pocket 
                     pocketList={ pocketList }
@@ -110,22 +123,26 @@ function Form(props) {
                     setPocketUrls={ setPocketUrls }
                 />
                 <div>
-                    <input type="radio" value="light" name="color" {...register('color', {required: 'Required'})}/> Light mode
-                    <input type="radio" value="dark" name="color" {...register('color', {required: 'Required'})}/> Dark mode
+                    <input type="radio" value="light" name="color" onChange={ setRadioValues }/> Light mode
+                    <input type="radio" value="dark" name="color" onChange={ setRadioValues }/> Dark mode
                 </div>
                 <div>
-                    <input type="radio" value="sansSerif" name="font" {...register('font')}/> Sans-serif
-                    <input type="radio" value="serif" name="font" {...register('font')}/> Serif
+                    <input type="radio" value="sansSerif" name="font" onChange={ setRadioValues }/> Sans-serif
+                    <input type="radio" value="serif" name="font" onChange={ setRadioValues }/> Serif
                 </div>
                 <div> 
-                    <input type="radio" value="html" name="format" {...register('format')}/> HTML
-                    <input type="radio" value="pdf" name="format" {...register('format')}/> PDF 
-                    <input type="radio" value="epub" name="format" {...register('format')}/> EPUB
+                    <input type="radio" value="html" name="format" onChange={ setRadioValues }/> HTML
+                    <input type="radio" value="pdf" name="format" onChange={ setRadioValues }/> PDF 
+                    <input type="radio" value="epub" name="format" onChange={ setRadioValues }/> EPUB
                 </div>
                     
                 <div>
                     <input type="submit" value="Submit" />
-                    <input type="email" placeholder="Your email (optional)" name="email" {...register('email')}/>
+                    <input 
+                        type="email" 
+                        placeholder="Your email (optional)" 
+                        name="email" 
+                        onChange={e => setEmail(e.target.value)}/>
                 </div>
                 
 
@@ -152,7 +169,6 @@ function Form(props) {
                 setDeleted={ setDeleted }
                 emailSent={ emailSent }
                 setEmailSent={ setEmailSent }
-                handleSubmit={ handleSubmit }
                 setMailError={ setMailError }
                 setLoading={ setLoading }
             />        

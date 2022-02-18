@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import * as yup from 'yup';
 import Buttons from './Buttons';
 import Loading from './Loading';
 import Pocket from './Pocket';
@@ -28,7 +29,12 @@ function Form(props) {
     
     const allUrls = Object.values(userUrls).concat(pocketUrls);
 
-    
+    // Form validation
+
+    let schema = yup.object().shape({
+        url: yup.string().url(),
+        email: yup.string().url()
+    })
 
    
     const handleSubmit = (e) => {    
@@ -123,15 +129,15 @@ function Form(props) {
                     setPocketUrls={ setPocketUrls }
                 />
                 <div>
-                    <input type="radio" value="light" name="color" onChange={ setRadioValues }/> Light mode
+                    <input type="radio" value="light" defaultChecked name="color" onChange={ setRadioValues }/> Light mode
                     <input type="radio" value="dark" name="color" onChange={ setRadioValues }/> Dark mode
                 </div>
                 <div>
-                    <input type="radio" value="sansSerif" name="font" onChange={ setRadioValues }/> Sans-serif
+                    <input type="radio" value="sansSerif" defaultChecked name="font" onChange={ setRadioValues }/> Sans-serif
                     <input type="radio" value="serif" name="font" onChange={ setRadioValues }/> Serif
                 </div>
                 <div> 
-                    <input type="radio" value="html" name="format" onChange={ setRadioValues }/> HTML
+                    <input type="radio" value="html" defaultChecked name="format" onChange={ setRadioValues }/> HTML
                     <input type="radio" value="pdf" name="format" onChange={ setRadioValues }/> PDF 
                     <input type="radio" value="epub" name="format" onChange={ setRadioValues }/> EPUB
                 </div>

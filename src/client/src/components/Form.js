@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { DevTool } from "@hookform/devtools";
 import Buttons from './Buttons';
 import Loading from './Loading';
 import Pocket from './Pocket';
@@ -29,13 +28,15 @@ function Form(props) {
         }
     });
 
-    console.log(Object.values(userUrls));
-     
+    
+    const allUrls = Object.values(userUrls).concat(pocketUrls);
+    console.log(allUrls);
     
 
     // react-hook-form version
     const onSubmit = data => {
         console.log(data);
+        
         setLoading(true);
         setSuccess(false);
         setDeleted(false);
@@ -49,7 +50,7 @@ function Form(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                urls: data['urls'],
+                urls: allUrls,
                 color: data['color'],
                 font: data['font'],
                 format: data['format'],

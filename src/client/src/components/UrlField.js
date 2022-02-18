@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function UrlField(props) {
     const [url, setUrl] = useState('');
@@ -7,7 +7,7 @@ function UrlField(props) {
     const setUserUrls = props.setUserUrls;
     const handleCheckboxChange = props.handleCheckboxChange;
 
-    
+    const inputRef = useRef(null);
     
     useEffect(() => {
         //console.log(watchUrls);
@@ -25,11 +25,11 @@ function UrlField(props) {
     }
 
     const handleDelete = () => {
-        console.log('delete');
         const keys = Object.keys(userUrls); const values = Object.values(userUrls)
         console.log(id);
         //console.log(keys, values);
-        console.log(values[id]);
+        console.log(`Delete ${values[id]}`);
+        
         const newValues = values.filter(e => e!== values[id]);
         const newKeys = [...Array(keys.length - 1).keys()]
         console.log(newKeys);
@@ -41,7 +41,13 @@ function UrlField(props) {
 
     return (
         <div>
-            <input type="url" id={ id } onChange={ e => handleChange(e) }></input>
+            <input 
+                type="url" 
+                ref={ inputRef } 
+                id={ id } 
+                onChange={ e => handleChange(e) } 
+                value={ userUrls[id] } // This will keep the value of the existing url after it
+                />
             <button type="button" onClick={ handleDelete }>Delete</button>
         </div>
     )

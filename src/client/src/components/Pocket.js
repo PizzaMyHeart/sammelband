@@ -4,7 +4,7 @@ function Pocket(props) {
 
     //const [pocketLoggedIn, setPocketLoggedIn] = useState(props.pocketLoggedIn);
 
-    console.log('Pocket logged in: ', props.pocketLoggedIn);
+    //console.log('Pocket logged in: ', props.pocketLoggedIn);
     const getPocketRequestToken = () => {
         fetch('/api/pocket/request', {
             method: 'POST',

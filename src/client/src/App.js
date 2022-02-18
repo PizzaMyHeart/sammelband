@@ -17,8 +17,8 @@ function App() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
-      console.log('Pocket logged in: ', data.pocketLoggedIn);
+      //console.log(data);
+      //console.log('Pocket logged in: ', data.pocketLoggedIn);
       if (data.pocketLoggedIn) setPocketLoggedIn(true);
       else if (!data.pocketLoggedIn) setPocketLoggedIn(false);
     })

@@ -14,6 +14,11 @@ function UrlContainer(props) {
         setUserUrls(newUrls);
     }
 
+    const handleCheckboxChange = (e) => {
+        console.log(e.target.checked);
+        console.log('checkbox')
+    }
+
     return (
         <>
             <div className="scrolling-div">
@@ -32,6 +37,7 @@ function UrlContainer(props) {
                                 watch={ watch }
                                 watchUrls={ watchUrls }
                                 setValue={ setValue }
+                                handleCheckboxChange= { handleCheckboxChange }
                             />
                         )
                         })

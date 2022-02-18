@@ -6,6 +6,7 @@ function UrlField(props) {
     const userUrls = props.userUrls;
     const setUserUrls = props.setUserUrls;
     const handleCheckboxChange = props.handleCheckboxChange;
+    const [formErrors, setFormErrors] = [props.formErrors, props.setFormErrors];
 
     const inputRef = useRef(null);
     
@@ -38,6 +39,26 @@ function UrlField(props) {
         
     }
 
+    const validateUrl = (e) => {
+        const url = e.target.value;
+        const id = e.target.id;
+        console.log(id);
+        console.log(formErrors.url);
+        const urlIsValid = RegExp(/^https?:\/\/.*\...+/).test(url);
+        if (!urlIsValid) {
+            //setFormErrors({...formErrors, url: 'Please enter a valid URL (prefixed with "http(s)"'});
+            if (!formErrors.url.includes(id)) {
+                setFormErrors({...formErrors, url: [...formErrors.url, id]});
+            }
+            
+            //setFormErrors({...formErrors, url : [...url, id] });
+            
+        } else {
+            setFormErrors({...formErrors, url: []});
+        }
+
+    }
+
 
     return (
         <div>
@@ -45,10 +66,11 @@ function UrlField(props) {
                 type="url" 
                 ref={ inputRef } 
                 id={ id } 
-                onChange={ e => handleChange(e) } 
+                onChange={ e => {handleChange(e); validateUrl(e)} } 
                 value={ userUrls[id] } // This will keep the value of the existing url after it
                 />
             <button type="button" onClick={ handleDelete }>Delete</button>
+            { (formErrors.url.length > 0 && formErrors.url.includes(id)) && <p>Please enter a valid URL.</p> }
         </div>
     )
 };

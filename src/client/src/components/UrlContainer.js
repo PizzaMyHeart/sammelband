@@ -2,7 +2,8 @@ import { useState } from 'react';
 import UrlField from './UrlField';
 
 function UrlContainer(props) {
-    const [userUrls, setUserUrls] = [props.userUrls, props.setUserUrls]
+    const [userUrls, setUserUrls] = [props.userUrls, props.setUserUrls];
+    const [formErrors, setFormErrors] = [props.formErrors, props.setFormErrors];
 
     const insertUrlField = () => {
         let newUrls = {...userUrls};
@@ -31,6 +32,8 @@ function UrlContainer(props) {
                                 setUserUrls={ setUserUrls }
                                 url={ userUrls[key] }
                                 handleCheckboxChange= { handleCheckboxChange }
+                                formErrors={ formErrors }
+                                setFormErrors={ setFormErrors }
                             />
                         )
                         })

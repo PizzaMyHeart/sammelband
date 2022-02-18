@@ -12,6 +12,10 @@ function Form(props) {
     const [emailSent, setEmailSent] = useState(false);
     const [loading, setLoading] = useState(false);
     const [submitError, setSubmitError] = useState(null);
+    const [formErrors, setFormErrors] = useState({
+        url: [], // array of ids of invalid URLs
+        email: false
+    })
     const [badUrls, setBadUrls] = useState(null);
     const [mailError, setMailError] = useState(false);
     const [pocketList, setPocketList] = useState(null);
@@ -28,7 +32,7 @@ function Form(props) {
 
     
     const allUrls = Object.values(userUrls).concat(pocketUrls);
-
+    //console.log(allUrls);
     // Form validation
 
     let schema = yup.object().shape({
@@ -39,6 +43,12 @@ function Form(props) {
    
     const handleSubmit = (e) => {    
         e.preventDefault(); // <--- This is essential    
+        // Prevent submit if no URLs are supplied
+        console.log(allUrls.length);
+        if (allUrls.length < 1) {
+            setSubmitError('Please submit at least one URL.');
+            return;
+        }
         setLoading(true);
         setSuccess(false);
         setDeleted(false);
@@ -107,6 +117,8 @@ function Form(props) {
                     <UrlContainer 
                         userUrls={ userUrls }
                         setUserUrls={ setUserUrls }
+                        formErrors={ formErrors }
+                        setFormErrors={ setFormErrors }
                     />
                     {/*
                     <textarea 

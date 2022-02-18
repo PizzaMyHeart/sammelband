@@ -34,7 +34,7 @@ function Buttons(props) {
         props.setLoading(true);
         e.preventDefault();
         console.log(e.currentTarget.value);
-        fetch(`/mail?type=${e.currentTarget.value}`, {
+        fetch(`/api/mail?type=${e.currentTarget.value}`, {
             credentials: 'include',
             method: 'GET',
             mode: 'cors'

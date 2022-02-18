@@ -66,7 +66,8 @@ function UrlField(props) {
                 type="url" 
                 ref={ inputRef } 
                 id={ id } 
-                onChange={ e => {handleChange(e); validateUrl(e)} } 
+                onChange={ e => handleChange(e) } 
+                onBlur={ e => validateUrl(e) }
                 value={ userUrls[id] } // This will keep the value of the existing url after it
                 />
             <button type="button" onClick={ handleDelete }>Delete</button>

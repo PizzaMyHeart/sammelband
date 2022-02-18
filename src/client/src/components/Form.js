@@ -31,9 +31,16 @@ function Form(props) {
 
 
     
-    const allUrls = Object.values(userUrls).concat(pocketUrls);
+    const allUrls = Object.values(userUrls).concat(pocketUrls).filter(item => item !== ''); // '' Gets saved as a url in the state array. Remove this. 
+    
     //console.log(allUrls);
     // Form validation
+    console.log(allUrls);
+    const formIsValid = (formErrors.url.length === 0 
+        && formErrors.email === false
+        && allUrls.length > 0);
+
+    console.log('Form is Valid: ', formIsValid);
 
     let schema = yup.object().shape({
         url: yup.string().url(),
@@ -44,11 +51,13 @@ function Form(props) {
     const handleSubmit = (e) => {    
         e.preventDefault(); // <--- This is essential    
         // Prevent submit if no URLs are supplied
-        console.log(allUrls.length);
+        
         if (allUrls.length < 1) {
             setSubmitError('Please submit at least one URL.');
             return;
         }
+        if (!formIsValid) return;
+        console.log(allUrls.length);
         setLoading(true);
         setSuccess(false);
         setDeleted(false);
@@ -109,6 +118,14 @@ function Form(props) {
         
     }
 
+    const validateEmail = (e) => {
+        const email = e.target.value;
+        const emailIsValid = RegExp(/^\S+@\S+\.\S\S+/).test(email);
+        !emailIsValid 
+        ? setFormErrors({...formErrors, email: true})
+        : setFormErrors({...formErrors, email: false});
+    }
+
     return ( 
         <> 
             <form onSubmit={ handleSubmit }> 
@@ -160,7 +177,10 @@ function Form(props) {
                         type="email" 
                         placeholder="Your email (optional)" 
                         name="email" 
-                        onChange={e => setEmail(e.target.value)}/>
+                        onChange={e => setEmail(e.target.value)}
+                        onBlur={e => validateEmail(e)}                        
+                        />
+                    { formErrors.email && <p>Please enter a valid email</p> }
                 </div>
                 
 

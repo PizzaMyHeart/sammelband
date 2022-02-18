@@ -8,6 +8,7 @@ function processUrls(urlArray) {
     if (typeof urlArray == 'string') urlArray = [urlArray];
     const originalUrls = [...urlArray];
     let cleanUrls = urlArray.filter(url => /^https?:\/\/.*\.\w+(\/.*\w||\/)*$/.test(url));
+    cleanUrls.map(url => url.trim()); // Remove leading and trailing whitespace
     const badUrls = originalUrls.filter(url => !cleanUrls.includes(url));
     if (badUrls.length > 0) {
         console.log(`Bad URLs: ${badUrls}`);

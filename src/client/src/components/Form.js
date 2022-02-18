@@ -18,6 +18,9 @@ function Form(props) {
     const [pocketList, setPocketList] = useState(null);
     const [pocketLoggedIn, setPocketLoggedIn] = [props.pocketLoggedIn, props.setPocketLoggedIn]
 
+    const [userUrls, setUserUrls] = useState({0: ''});
+    const [pocketUrls, setPocketUrls] = useState([]);
+
     const { register, handleSubmit, watch, setValue, control, formState: { errors } } = useForm({
         defaultValues: {
             'color': 'light',
@@ -26,8 +29,10 @@ function Form(props) {
         }
     });
 
-    const watchUrls = watch('urls');
+    console.log(Object.values(userUrls));
      
+    
+
     // react-hook-form version
     const onSubmit = data => {
         console.log(data);
@@ -74,13 +79,13 @@ function Form(props) {
 
     return ( 
         <> 
-            <DevTool control={control} />
             {/* Needs handleSubmit to actually send request */}
             <form onSubmit={ handleSubmit(onSubmit) }> 
                 <label>
                     URLs:
-                    <UrlContainer register={ register } watchUrls={ watchUrls } watch={ watch }
-                    setValue={ setValue }
+                    <UrlContainer 
+                        userUrls={ userUrls }
+                        setUserUrls={ setUserUrls }
                     />
                     {/*
                     <textarea 
@@ -100,7 +105,8 @@ function Form(props) {
                     setPocketList={ setPocketList }
                     pocketLoggedIn= { pocketLoggedIn }
                     setPocketLoggedIn={ setPocketLoggedIn }
-                    register={ register } /* For pocket URL submission */
+                    pocketUrls={ pocketUrls }
+                    setPocketUrls={ setPocketUrls }
                 />
                 <div>
                     <input type="radio" value="light" name="color" {...register('color', {required: 'Required'})}/> Light mode

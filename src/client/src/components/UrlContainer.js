@@ -2,7 +2,7 @@ import { useState } from 'react';
 import UrlField from './UrlField';
 
 function UrlContainer(props) {
-    const [userUrls, setUserUrls] = useState({1: ''});
+    const [userUrls, setUserUrls] = [props.userUrls, props.setUserUrls]
     const watchUrls = props.watchUrls;
     const watch = props.watch;
     const setValue = props.setValue;
@@ -10,7 +10,7 @@ function UrlContainer(props) {
     const insertUrlField = () => {
         let newUrls = {...userUrls};
         const urlCount = Object.keys(userUrls).length;
-        newUrls[urlCount + 1] = '';
+        newUrls[urlCount] = '';
         setUserUrls(newUrls);
     }
 

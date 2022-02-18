@@ -1,6 +1,6 @@
-import { useState } from 'react';
-
 function Pocket(props) {
+
+    const [pocketUrls, setPocketUrls] = [props.pocketUrls, props.setPocketUrls];
 
     //const [pocketLoggedIn, setPocketLoggedIn] = useState(props.pocketLoggedIn);
 
@@ -41,6 +41,14 @@ function Pocket(props) {
         .catch(console.log);
     }
  
+    const handleCheckbox = (e) => {
+        const url = e.target.value
+        console.log(url);
+        console.log(e.target.checked);
+        e.target.checked 
+        ? setPocketUrls([...pocketUrls, url]) 
+        : setPocketUrls(pocketUrls.filter(item => item !== url));
+    }
 
     return (
         <>
@@ -59,7 +67,8 @@ function Pocket(props) {
                         <input type="checkbox" 
                         name="urls"
                         value={ props.pocketList[key]['resolved_url'] }
-                        {...props.register('urls')} />
+                        onChange={ e => handleCheckbox(e) }
+                        />
                         <label>
                             <a 
                             href={ props.pocketList[key]['resolved_url']} 

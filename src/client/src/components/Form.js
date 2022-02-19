@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import * as yup from 'yup';
 import Buttons from './Buttons';
 import Loading from './Loading';
 import Pocket from './Pocket';
@@ -42,10 +41,6 @@ function Form(props) {
 
     console.log('Form is Valid: ', formIsValid);
 
-    let schema = yup.object().shape({
-        url: yup.string().url(),
-        email: yup.string().url()
-    })
 
    
     const handleSubmit = (e) => {    

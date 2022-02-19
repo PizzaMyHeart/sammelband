@@ -14,6 +14,7 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 - [X] Implement email function
 - [X] Notification when email sent
 - [X] Send as email attachment
+- [ ] Implement user authentication - will need to login to use email features
 - [X] Form validation
 - [X] Download button
 - [X] Add reset button (delete existing HTML file)

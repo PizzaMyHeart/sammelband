@@ -199,8 +199,6 @@ var postHandler = function (req, res) {
 }
 
 
-//app.use('/submit', postHandler);
-
 
 app.get('/api', (req, res) => {
     console.log('Session ID: ', req.session.id);
@@ -269,6 +267,8 @@ app.get('/api/download', (req, res) => {
     download(res, req.session.id, format);
 });
 
+
+
 app.get('/api/mail', (req, res) => {
     console.log('Session ID: ', req.session.id);
     console.log(req.query);
@@ -276,6 +276,11 @@ app.get('/api/mail', (req, res) => {
         console.log(err);
         res.status(500).send(err);
     });
+})
+
+app.get('/api/mail/verify', (req, res) => {
+    console.log('Session ID: ', req.session.id);
+
 })
 
 function deleteFile(id) {

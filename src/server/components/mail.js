@@ -1,6 +1,9 @@
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
+require('crypto');
+
+
 
 async function mail(req, res) {
     const [id, email, type, format] = [req.session.id, 

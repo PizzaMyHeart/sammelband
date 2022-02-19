@@ -1,6 +1,8 @@
 const axios = require('axios');
 
 async function fetchFromURL(urls) {
+    console.log('fetchFromURL()');
+    console.log(urls);
     let documents = [];
     for (let url of urls) {
         console.log(url);

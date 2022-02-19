@@ -13,7 +13,7 @@ const parseDocuments = require('./components/parse-documents');
 const mail = require('./components/mail');
 const { getPocketToken, getPocketList }= require('./components/pocket');
 
-let browser;
+let browser; 
 
 const app = express();
 
@@ -66,7 +66,7 @@ function htmlToPDF(filepath) {
         path: filepath + '.pdf',
         printBackground: true
     };
-
+    console.log(options);
     return new Promise((resolve, reject) => {
         (async() => {
             if (!browser) {
@@ -148,7 +148,7 @@ function download(res, id, format) {
     
 }
 
-var postHandler = function (req, res) {
+function handleSubmit (req, res) {
     req.session.body = req.body;
     console.log(req.session.id);
 
@@ -174,7 +174,6 @@ var postHandler = function (req, res) {
             res.status(500).send(err);
         });
     })();
-    //res.end();
     
 }
 
@@ -184,6 +183,7 @@ app.get('/api', (req, res) => {
     console.log('Session ID: ', req.session.id);
     let body = {};
     console.log(req.session.pocketAccessToken);
+    // Set Pocket logged in state for front-end
     if (req.session.pocketAccessToken) body.pocketLoggedIn = true;
     else if(!req.session.pocketAccessToken) body.pocketLoggedIn = false;
     console.log(body);
@@ -238,12 +238,12 @@ app.get('/api/pocket/list', async (req, res) => {
 app.post('/api/submit', (req, res) => {
     console.log('Session ID: ', req.session.id);
     console.log(req.body);
-    postHandler(req, res);
+    handleSubmit(req, res);
 });
 
 app.get('/api/download', (req, res) => {
     console.log('Session ID: ', req.session.id);
-    download(res, req.session.id, req.body.format);
+    download(res, req.session.id, req.session.body.format);
 });
 
 

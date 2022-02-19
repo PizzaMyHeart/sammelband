@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
+import trashIcon from '../icons/trash-2.svg'
 
 function UrlField(props) {
     const [url, setUrl] = useState('');
@@ -7,8 +8,6 @@ function UrlField(props) {
     const setUserUrls = props.setUserUrls;
     const handleCheckboxChange = props.handleCheckboxChange;
     const [formErrors, setFormErrors] = [props.formErrors, props.setFormErrors];
-
-    const inputRef = useRef(null);
     
     useEffect(() => {
         //console.log(watchUrls);
@@ -64,13 +63,14 @@ function UrlField(props) {
         <div>
             <input 
                 type="url" 
-                ref={ inputRef } 
                 id={ id } 
                 onChange={ e => handleChange(e) } 
                 onBlur={ e => validateUrl(e) }
                 value={ userUrls[id] } // This will keep the value of the existing url after it
                 />
-            <button type="button" onClick={ handleDelete }>Delete</button>
+            <button type="button" onClick={ handleDelete }>
+                <img src={ trashIcon } alt="Delete icon"/>
+            </button>
             { (formErrors.url.length > 0 && formErrors.url.includes(id)) && <p>Please enter a valid URL.</p> }
         </div>
     )

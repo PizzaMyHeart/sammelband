@@ -19,8 +19,8 @@ function UrlContainer(props) {
 
     return (
         <>
-            <div className="scrolling-div">
             <button type="button" onClick={ insertUrlField }>+</button>
+            <div className="scrolling-div">
                 {
                     Object.keys(userUrls).map(key => {
                         //console.log(key);

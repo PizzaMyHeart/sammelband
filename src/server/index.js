@@ -32,25 +32,6 @@ app.use(
     })
   )
 
-/*
-app.use(['/', '/submit', '/download'], session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {secure: false}
-}))
-*/
-/*
-app.use(cookieParser());
-app.use(['/', '/submit', '/download'], cookieSession({
-    secret: process.env.SESSION_SECRET,
-    saveUnintialized: true,
-    resave: false,
-    cookie: {
-        secure: false
-    }
-}));
-*/
 app.use(express.json());
 
 app.use(cors({
@@ -155,7 +136,7 @@ function writeToFile(parsedArticles, req) {
     return parsedArticles;
 }
 
-let format;
+
 function download(res, id, format) {
     console.log('download()');
     const filepath = path.join(__dirname, `public/sammelband-${id}.${format}`);
@@ -170,7 +151,6 @@ function download(res, id, format) {
 var postHandler = function (req, res) {
     req.session.body = req.body;
     console.log(req.session.id);
-    format = req.body.format;
 
     (async () => {
         const [urls, badUrls] = processUrls(req.body.urls);
@@ -258,13 +238,12 @@ app.get('/api/pocket/list', async (req, res) => {
 app.post('/api/submit', (req, res) => {
     console.log('Session ID: ', req.session.id);
     console.log(req.body);
-    //console.log(req.session);
     postHandler(req, res);
 });
 
 app.get('/api/download', (req, res) => {
     console.log('Session ID: ', req.session.id);
-    download(res, req.session.id, format);
+    download(res, req.session.id, req.body.format);
 });
 
 
@@ -278,10 +257,7 @@ app.get('/api/mail', (req, res) => {
     });
 })
 
-app.get('/api/mail/verify', (req, res) => {
-    console.log('Session ID: ', req.session.id);
 
-})
 
 function deleteFile(id) {
     console.log('deleteFile()');

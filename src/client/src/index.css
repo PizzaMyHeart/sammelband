@@ -123,3 +123,8 @@ nav > li {
 .scrolling-div input {
   margin-right: 1em;
 }
+
+/* Button icons */
+button > img {
+  margin-bottom: 0;
+}

@@ -125,24 +125,14 @@ function Form(props) {
         <> 
             <form onSubmit={ handleSubmit }> 
                 <label>
-                    URLs:
+                    URLs
+                    <div><sub>Prefixed with http(s)</sub></div>
                     <UrlContainer 
                         userUrls={ userUrls }
                         setUserUrls={ setUserUrls }
                         formErrors={ formErrors }
                         setFormErrors={ setFormErrors }
-                    />
-                    {/*
-                    <textarea 
-                        id="url-input" 
-                        placeholder="Enter one URL per line (including http(s) prefix)"
-                        name="urls"
-                        {...register('urls',{
-                            pattern: {value: /^https?:\/\/.*\..+/, message: 'Please enter at least one valid URL'}
-                            })
-                        }
-                        />
-                    */}                  
+                    />            
                 </label>
                 <Pocket 
                     pocketList={ pocketList }

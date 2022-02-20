@@ -95,7 +95,6 @@ function htmlToPDF(filepath) {
             }
             const page = await browser.newPage();
             const contents = await getHtmlContents(filepath + '.html');
-            console.log(contents);
             await page.setContent(contents);
             //await page.setContent(fs.readFileSync(filepath + '.html', 'utf8'));
             await page.emulateMediaType('screen');
@@ -283,13 +282,25 @@ app.get('/api/mail', (req, res) => {
 
 
 
-function deleteFile(id) {
+async function deleteFile(id) {
     console.log('deleteFile()');
     console.log('deleting sammelband');
     console.log(id);
+    async function listDir() {
+        try {
+            return fs.promises.readdir(path.join(__dirname, 'public/'));
+        } catch (err) {
+            console.log(err);
+        }
+    }
+   (await listDir())
+    .filter(filename => filename.includes(id))
+    .map(filename => fs.unlinkSync(path.join(__dirname, `public/${filename}`)));
+    /*
     fs.readdirSync(path.join(__dirname, `public/`))
     .filter(filename => filename.includes(id))
     .map(filename => fs.unlinkSync(path.join(__dirname, `public/${filename}`)));
+    */
     console.log('Sammelband deleted');
 }
 

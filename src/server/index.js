@@ -287,6 +287,7 @@ async function deleteFile(id) {
     console.log('deleting sammelband');
     console.log(id);
     async function listDir() {
+        // Return an array of the paths of all files in the /public directory (user-generated files)
         try {
             return fs.promises.readdir(path.join(__dirname, 'public/'));
         } catch (err) {
@@ -295,7 +296,10 @@ async function deleteFile(id) {
     }
    (await listDir())
     .filter(filename => filename.includes(id))
-    .map(filename => fs.unlinkSync(path.join(__dirname, `public/${filename}`)));
+    .map(filename => {
+        // Delete the files whose paths contain the user's session ID
+        fs.promises.unlink(path.join(__dirname, `public/${filename}`))
+    });
     /*
     fs.readdirSync(path.join(__dirname, `public/`))
     .filter(filename => filename.includes(id))
@@ -304,9 +308,9 @@ async function deleteFile(id) {
     console.log('Sammelband deleted');
 }
 
-app.get('/api/delete', (req, res) => {
+app.get('/api/delete', async (req, res) => {
     console.log('Session ID: ', req.session.id);
-    deleteFile(req.session.id);
+    await deleteFile(req.session.id);
     res.send('Sammelband deleted');
 })
 

@@ -61,6 +61,12 @@ async function convertFromHTML(format, id, documents) {
 }
 
 async function getHtmlContents(filepath) {
+    try {
+        return fs.promises.readFile(filepath, 'utf8');
+    } catch (err) {
+        throw err;
+    }
+    /*
     return new Promise((resolve, reject) =>  {
         try {
             fs.readFile(filepath, 'utf8', (err, data) => {
@@ -71,6 +77,7 @@ async function getHtmlContents(filepath) {
             throw(err)
         }
     })
+    */
 
 }
 

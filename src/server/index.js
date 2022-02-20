@@ -60,6 +60,20 @@ async function convertFromHTML(format, id, documents) {
     return true; // signifies that file is ready for download
 }
 
+async function getHtmlContents(filepath) {
+    return new Promise((resolve, reject) =>  {
+        try {
+            fs.readFile(filepath, 'utf8', (err, data) => {
+                if (err) reject(err);
+                resolve(data);
+            })
+        } catch (err) {
+            throw(err)
+        }
+    })
+
+}
+
 function htmlToPDF(filepath) {
     console.log('htmlToPDF()');
     const options = {
@@ -73,7 +87,10 @@ function htmlToPDF(filepath) {
                 browser = await puppeteer.launch();
             }
             const page = await browser.newPage();
-            await page.setContent(fs.readFileSync(filepath + '.html', 'utf8'));
+            const contents = await getHtmlContents(filepath + '.html');
+            console.log(contents);
+            await page.setContent(contents);
+            //await page.setContent(fs.readFileSync(filepath + '.html', 'utf8'));
             await page.emulateMediaType('screen');
             await page.pdf(options);
             await page.close();

@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const session = require('express-session');
 let RedisStore = require("connect-redis")(session);
+const rateLimit = require('express-rate-limit');
 const Epub = require('epub-gen');
 const puppeteer = require('puppeteer');
 require('dotenv').config();
@@ -21,6 +22,15 @@ const app = express();
 const { createClient } = require("redis")
 let redisClient = createClient({ legacyMode: true })
 redisClient.connect().catch(console.error)
+
+const rateLimiter = rateLimit({
+    windowMs: 1 * 60 * 1000, // 1-minute window
+    max: 60,
+    standardHeaders: true,
+    legacyHeaders: false
+});
+
+app.use(rateLimiter);
 
 
 app.use(

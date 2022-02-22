@@ -13,6 +13,7 @@ const fetchFromURL = require('./components/fetch-from-url');
 const parseDocuments = require('./components/parse-documents');
 const mail = require('./components/mail');
 const { getPocketToken, getPocketList }= require('./components/pocket');
+const deleteFile = require('./components/delete-file');
 
 let browser; 
 
@@ -71,11 +72,16 @@ async function convertFromHTML(format, id, documents) {
 }
 
 async function getHtmlContents(filepath) {
+    return fs.promises.readFile(filepath, 'utf8')
+               .then(contents => contents)
+               .catch(console.log);
+    /*
     try {
         return fs.promises.readFile(filepath, 'utf8');
     } catch (err) {
         throw err;
     }
+    */
     /*
     return new Promise((resolve, reject) =>  {
         try {
@@ -182,6 +188,7 @@ function download(res, id, format) {
 }
 
 function handleSubmit (req, res) {
+    // Executes when request is made to /api/submit
     req.session.body = req.body;
     console.log(req.session.id);
 
@@ -292,31 +299,7 @@ app.get('/api/mail', (req, res) => {
 
 
 
-async function deleteFile(id) {
-    console.log('deleteFile()');
-    console.log('deleting sammelband');
-    console.log(id);
-    async function listDir() {
-        // Return an array of the paths of all files in the /public directory (user-generated files)
-        try {
-            return fs.promises.readdir(path.join(__dirname, 'public/'));
-        } catch (err) {
-            console.log(err);
-        }
-    }
-   (await listDir())
-    .filter(filename => filename.includes(id))
-    .map(filename => {
-        // Delete the files whose paths contain the user's session ID
-        fs.promises.unlink(path.join(__dirname, `public/${filename}`))
-    });
-    /*
-    fs.readdirSync(path.join(__dirname, `public/`))
-    .filter(filename => filename.includes(id))
-    .map(filename => fs.unlinkSync(path.join(__dirname, `public/${filename}`)));
-    */
-    console.log('Sammelband deleted');
-}
+
 
 app.get('/api/delete', async (req, res) => {
     console.log('Session ID: ', req.session.id);

@@ -5,12 +5,11 @@ const path = require('path');
 const session = require('express-session');
 let RedisStore = require("connect-redis")(session);
 const rateLimit = require('express-rate-limit');
-const Epub = require('epub-gen');
-const puppeteer = require('puppeteer');
 require('dotenv').config();
 const processUrls = require('./components/process-urls');
 const fetchFromURL = require('./components/fetch-from-url');
 const parseDocuments = require('./components/parse-documents');
+const convertFromHTML = require('./components/convert-from-html');
 const mail = require('./components/mail');
 const { getPocketToken, getPocketList }= require('./components/pocket');
 const deleteFile = require('./components/delete-file');
@@ -55,87 +54,7 @@ const port = 3001;
 
 const styles = require('./styles'); // Load CSS styles from ./styles.js
 
-async function convertFromHTML(format, id, documents) {
-    let filepath = path.join(__dirname, './public', `sammelband-${id}`);
-    console.log(filepath);
-    switch(format) {
-        case 'pdf':
-            await htmlToPDF(filepath).then(console.log).catch(console.log);
-            break;
-        case 'html':
-             break;
-        case 'epub':
-            await htmlToEPUB(filepath, documents).then(console.log).catch(console.log);
-            break;
-    }
-    return true; // signifies that file is ready for download
-}
 
-async function getHtmlContents(filepath) {
-    return fs.promises.readFile(filepath, 'utf8')
-               .then(contents => contents)
-               .catch(console.log);
-    /*
-    try {
-        return fs.promises.readFile(filepath, 'utf8');
-    } catch (err) {
-        throw err;
-    }
-    */
-    /*
-    return new Promise((resolve, reject) =>  {
-        try {
-            fs.readFile(filepath, 'utf8', (err, data) => {
-                if (err) reject(err);
-                resolve(data);
-            })
-        } catch (err) {
-            throw(err)
-        }
-    })
-    */
-
-}
-
-function htmlToPDF(filepath) {
-    console.log('htmlToPDF()');
-    const options = {
-        path: filepath + '.pdf',
-        printBackground: true
-    };
-    console.log(options);
-    return new Promise((resolve, reject) => {
-        (async() => {
-            if (!browser) {
-                browser = await puppeteer.launch();
-            }
-            const page = await browser.newPage();
-            const contents = await getHtmlContents(filepath + '.html');
-            await page.setContent(contents);
-            //await page.setContent(fs.readFileSync(filepath + '.html', 'utf8'));
-            await page.emulateMediaType('screen');
-            await page.pdf(options);
-            await page.close();
-            resolve('PDF ready');
-        })();
-    })
-}
-
-function htmlToEPUB(filepath, documents) {
-    console.log('htmlToEPUB()');
-    let option = {
-        title: 'Sammelband',
-        content: []
-    };
-    for (document of documents) {
-        option.content.push({title: document.title, data: document.content})
-    };
-    console.log(option);
-    return new Promise((resolve, reject) => {
-        new Epub(option, filepath + '.epub');
-        resolve('EPUB ready');
-    })
-}
 
 function applyStyle(color, font) {
     //console.log(`Style: ${font}`);
@@ -150,7 +69,6 @@ function applyStyle(color, font) {
 function writeToFile(parsedArticles, req) {
     console.log('writeToFile');
     let id = req.session.id;
-    //fs.unlinkSync('./public/sammelband.html');
     let filepath = `./public/sammelband-${id}.html`;
     console.log(`${id}\n${filepath}`);
     // Add styles to top of html file
@@ -211,6 +129,7 @@ function handleSubmit (req, res) {
             }
         })
         .catch(err => {
+            console.log(err);
             res.status(500).send(err);
         });
     })();

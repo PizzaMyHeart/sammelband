@@ -6,18 +6,24 @@ const session = require('express-session');
 let RedisStore = require("connect-redis")(session);
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
+const puppeteer = require('puppeteer');
 const processUrls = require('./components/process-urls');
 const fetchFromURL = require('./components/fetch-from-url');
 const parseDocuments = require('./components/parse-documents');
-const convertFromHTML = require('./components/convert-from-html');
+const convertFromHtml = require('./components/convert-from-html');
 const mail = require('./components/mail');
 const { getPocketToken, getPocketList }= require('./components/pocket');
 const deleteFile = require('./components/delete-file');
 
-let browser; 
+
 
 const app = express();
 
+// Initialize a Puppeteer browser instance, reuse for subsequent requests
+let browser;
+(async () => {
+    browser = await puppeteer.launch()
+})();
 
 const { createClient } = require("redis")
 let redisClient = createClient({ legacyMode: true })
@@ -119,7 +125,7 @@ function handleSubmit (req, res) {
         })
         .then(documents => parseDocuments(documents))
         .then(parsedArticles => writeToFile(parsedArticles, req))
-        .then((parsedArticles) => convertFromHTML(req.body.format, req.session.id, parsedArticles))
+        .then((parsedArticles) => convertFromHtml(req.body.format, req.session.id, parsedArticles, browser))
         .then((fileReady) => {
             if (fileReady) {
                 console.log('File ready');

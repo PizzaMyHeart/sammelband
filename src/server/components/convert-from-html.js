@@ -3,14 +3,14 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 
-let browser; 
 
-async function convertFromHTML(format, id, documents) {
+
+async function convertFromHtml(format, id, documents, browser) {
     let filepath = path.join(__dirname, '../public', `sammelband-${id}`);
     console.log(filepath);
     switch(format) {
         case 'pdf':
-            await htmlToPDF(filepath).then(console.log).catch(console.log);
+            await htmlToPDF(filepath, browser).then(console.log).catch(console.log);
             break;
         case 'html':
              break;
@@ -27,7 +27,9 @@ async function getHtmlContents(filepath) {
                .catch(console.log);
 }
 
-function htmlToPDF(filepath) {
+function htmlToPDF(filepath, browser) {
+    // Converts HTML file to PDF, but checks first whether 
+    // the puppeteer browser object exists
     console.log('htmlToPDF()');
     const options = {
         path: filepath + '.pdf',
@@ -67,4 +69,4 @@ function htmlToEPUB(filepath, documents) {
     })
 }
 
-module.exports = convertFromHTML;
+module.exports = convertFromHtml;

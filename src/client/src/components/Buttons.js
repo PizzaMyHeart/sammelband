@@ -6,7 +6,7 @@ import trashIcon from '../icons/trash-2.svg'
 function Buttons(props) {
     const download = () => {
 
-        window.location = 'http://localhost:3001/api/download'
+        window.location = `${process.env.REACT_APP_API_DOMAIN}/api/download`
         /*
         fetch('/download', {
             credentials: 'include',

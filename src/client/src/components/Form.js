@@ -141,6 +141,7 @@ function Form(props) {
                     setPocketLoggedIn={ setPocketLoggedIn }
                     pocketUrls={ pocketUrls }
                     setPocketUrls={ setPocketUrls }
+                    setLoading={ setLoading }
                 />
                 <div>
                     <input type="radio" value="light" defaultChecked name="color" onChange={ setRadioValues }/> Light mode

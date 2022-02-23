@@ -1,6 +1,7 @@
 function Pocket(props) {
 
     const [pocketUrls, setPocketUrls] = [props.pocketUrls, props.setPocketUrls];
+    const setLoading = props.setLoading;
 
     //const [pocketLoggedIn, setPocketLoggedIn] = useState(props.pocketLoggedIn);
 
@@ -25,12 +26,16 @@ function Pocket(props) {
     }
 
     const getPocketList = (e) => {
+        setLoading(true);
         fetch('/api/pocket/list', {
             method: 'GET',
             credentials: 'include',
             mode: 'cors'
         })
-        .then(response => response.json())
+        .then(response => {
+            setLoading(false);
+            return response.json();
+        })
         .then(data => {
             if (data) {
                 props.setPocketList(data.list);

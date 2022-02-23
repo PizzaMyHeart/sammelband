@@ -65,11 +65,11 @@ form {
 .lds-dual-ring:after {
   content: " ";
   display: block;
-  width: 64px;
-  height: 64px;
+  width: 1.5em;
+  height: 1.5em;
   margin: 8px;
   border-radius: 50%;
-  border: 6px solid #000;
+  border: 3px solid #000;
   border-color: #000 transparent #000 transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }

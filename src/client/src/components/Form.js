@@ -166,12 +166,12 @@ function Form(props) {
                         onChange={e => setEmail(e.target.value)}
                         onBlur={e => validateEmail(e)}                        
                         />
+                    <div>{ loading && <Loading />}</div>
                     { formErrors.email && <p>Please enter a valid email</p> }
                 </div>
                 
 
                 <div id="messages">
-                    <div>{ loading && <Loading />}</div>
                     <div id="error-messages">
                         { submitError && <p>{ submitError }</p>}
                         { badUrls && <p>Invalid URLs not processed: { badUrls }</p> }

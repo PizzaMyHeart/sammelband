@@ -1,8 +1,8 @@
 import Form from  './components/Form';
 import Navbar from './components/Navbar';
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import About from './routes/About';
-import { useState, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
     .catch(err => console.log(err));
   }
   
-  firstLoad();
+  useEffect(firstLoad, []); // Run only once on component mount
 
 
   return (

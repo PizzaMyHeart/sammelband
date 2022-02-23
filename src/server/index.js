@@ -22,7 +22,20 @@ const app = express();
 // Initialize a Puppeteer browser instance, reuse for subsequent requests
 let browser;
 (async () => {
-    browser = await puppeteer.launch()
+    browser = await puppeteer.launch({
+        executablePath: '/usr/bin/chromium-browser',
+        args: [
+            '--no-sandbox', 
+            '--headless', 
+            '--disable-gpu', 
+            '--disable-features=site-per-process',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--no-first-run',
+            '--no-zygote',
+        ]
+    })
 })();
 
 const { createClient } = require("redis")

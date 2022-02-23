@@ -10,7 +10,7 @@ function App() {
 
   const firstLoad = () => {
     console.log('firstload()');
-    fetch('/api', {
+    fetch(`${process.env.REACT_APP_API_DOMAIN}/api`, {
       method: 'GET',
       credentials: 'include',
       mode: 'cors'

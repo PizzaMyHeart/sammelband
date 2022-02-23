@@ -22,11 +22,17 @@ const app = express();
 // Initialize a Puppeteer browser instance, reuse for subsequent requests
 let browser;
 (async () => {
-    browser = await puppeteer.launch()
+    browser = await puppeteer.launch({
+        executablePath: '/usr/bin/chromium-browser',
+        args: ['--no-sandbox', '--headless', '--disable-gpu']
+    })
 })();
 
-const { createClient } = require("redis")
-let redisClient = createClient({ legacyMode: true })
+const { createClient } = require('redis');
+let redisClient = createClient({
+    legacyMode: true, 
+    socket: {host: '172.19.0.2', port: 6379}
+});
 redisClient.connect().catch(console.error)
 
 const rateLimiter = rateLimit({
@@ -45,13 +51,16 @@ app.use(
       saveUninitialized: false,
       secret: process.env.SESSION_SECRET,
       resave: false,
+      cookie: { maxAge: 3600000,secure: false, httpOnly: true }
     })
   )
 
 app.use(express.json());
 
 app.use(cors({
-    origin: '*',
+    // origin needs to be set explicitly to allow fetch() calls from the front-end
+    // to include cookies in the request (credentials: include)
+    origin: 'http://localhost:3000', 
     credentials: true
 }));
 
@@ -75,8 +84,8 @@ function applyStyle(color, font) {
 function writeToFile(parsedArticles, req) {
     console.log('writeToFile');
     let id = req.session.id;
-    let filepath = `./public/sammelband-${id}.html`;
-    console.log(`${id}\n${filepath}`);
+    let filepath = path.join(__dirname, './public', `sammelband-${id}.html`);
+    console.log(`${filepath}`);
     // Add styles to top of html file
     //console.log(req.body.color);
     fs.writeFile(filepath, '', { flag: 'w+' }, err => {if (err) console.log(err)});
@@ -178,7 +187,7 @@ app.get('/api/pocket/callback', async (req, res) => {
         let response = await getPocketToken('access', req.session.pocketRequestToken);
         console.log('Access token: ', response.data.access_token);
         req.session.pocketAccessToken = response.data.access_token;
-        res.redirect('http://localhost:3000');
+        res.redirect('http://172.19.0.3:3000');
     }
     catch (err) {
         console.log(err);
@@ -208,6 +217,7 @@ app.post('/api/submit', (req, res) => {
 
 app.get('/api/download', (req, res) => {
     console.log('Session ID: ', req.session.id);
+    console.log(req.session.body.format)
     download(res, req.session.id, req.session.body.format);
 });
 
@@ -232,6 +242,10 @@ app.get('/api/delete', async (req, res) => {
     res.send('Sammelband deleted');
 })
 
+app.get('/api/test', (req, res) => {
+    console.log('/api/test');
+    res.send('Test successful');
+})
 
 app.listen(port, '0.0.0.0', () => {
     console.log(`Listening on port ${port}`);

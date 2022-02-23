@@ -58,8 +58,8 @@ function Form(props) {
         setDeleted(false);
         setBadUrls(null);
         setEmailSent(false);
-        fetch('/api/submit', {
-            credentials: 'same-origin',
+        fetch(`${process.env.REACT_APP_API_DOMAIN}/api/submit`, {
+            credentials: 'include',
             method: 'POST',
             mode: 'cors',
             headers: {

@@ -2,21 +2,35 @@ version: "3"
 
 services:
 
-  server:
+  nodejs:
+    container_name: nodejs
     build:
       context: ./server
       dockerfile: Dockerfile
+    depends_on:
+      - redis  
     ports:
       - 3001:3001
     networks:
       - sammelband-network
     volumes:
       - ./server:/usr/src/app
-    environment:
-      - CLIENT=http://localhost:3000
     command: /usr/src/app/node_modules/.bin/nodemon -L index.js
 
+  redis:
+    container_name: redis
+    image: redis:5-alpine3.15
+    command: ["redis-server", "--bind", "redis", "--port", "6379"]
+    ports:
+      - 6379:6379
+    networks: 
+      - sammelband-network
+    volumes:
+      - redis_data:/data
 
 networks:
   sammelband-network:
     driver: bridge
+
+volumes:
+  redis_data:

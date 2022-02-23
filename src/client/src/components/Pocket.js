@@ -6,7 +6,7 @@ function Pocket(props) {
 
     //console.log('Pocket logged in: ', props.pocketLoggedIn);
     const getPocketRequestToken = () => {
-        fetch('/api/pocket/request', {
+        fetch(`${process.env.REACT_APP_API_DOMAIN}/api/pocket/request`, {
             method: 'POST',
             credentials: 'include',
             mode: 'cors'
@@ -25,7 +25,7 @@ function Pocket(props) {
     }
 
     const getPocketList = (e) => {
-        fetch('/api/pocket/list', {
+        fetch(`${process.env.REACT_APP_API_DOMAIN}/api/pocket/list`, {
             method: 'GET',
             credentials: 'include',
             mode: 'cors'

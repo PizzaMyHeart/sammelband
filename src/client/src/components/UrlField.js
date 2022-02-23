@@ -60,7 +60,7 @@ function UrlField(props) {
 
 
     return (
-        <div>
+        <div className="url-field">
             <input 
                 type="url" 
                 id={ id } 

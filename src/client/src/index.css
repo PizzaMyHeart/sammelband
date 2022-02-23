@@ -114,6 +114,7 @@ nav > li {
 .scrolling-div {
   overflow-y: scroll;
   height: 10em;
+  margin: 2em 0;
 }
 
 .scrolling-div > * {
@@ -127,4 +128,17 @@ nav > li {
 /* Button icons */
 button > img {
   margin-bottom: 0;
+}
+
+input[type="email"] {
+  margin-left: 2em;
+}
+
+/* Reset url input margins */
+input[type="url"] {
+  margin-bottom: 0
+}
+
+.url-field {
+  margin-bottom: 1em
 }

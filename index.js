@@ -66,12 +66,12 @@ app.use(express.json());
 app.use(cors({
     // origin needs to be set explicitly to allow fetch() calls from the front-end
     // to include cookies in the request (credentials: include)
-    origin: 'http://localhost:3000', 
+    origin: process.env.CLIENT_DOMAIN.split(','), 
     credentials: true
 }));
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
-const port = 3001;
+const port = process.env.PORT || 3001; // for Heroku deployment
 
 const styles = require('./styles'); // Load CSS styles from ./styles.js
 

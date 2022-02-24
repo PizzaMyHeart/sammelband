@@ -71,7 +71,7 @@ app.use(cors({
 }));
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
-const port = 3001;
+const port = process.env.PORT || 3001; // for Heroku deployment
 
 const styles = require('./styles'); // Load CSS styles from ./styles.js
 

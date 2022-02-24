@@ -64,7 +64,9 @@ app.use(
 app.use(express.json());
 
 app.use(cors({
-    origin: '*',
+    // origin needs to be set explicitly to allow fetch() calls from the front-end
+    // to include cookies in the request (credentials: include)
+    origin: 'http://localhost:3000', 
     credentials: true
 }));
 
@@ -114,7 +116,7 @@ function writeToFile(parsedArticles, req) {
 
 
 function download(res, id, format) {
-    console.log('download()');
+    console.log('download()', format);
     const filepath = path.join(__dirname, `public/sammelband-${id}.${format}`);
     console.log(`${filepath}`)
     res.download(filepath, `sammelband.${format}`, err => {

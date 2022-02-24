@@ -11,7 +11,7 @@ async function mail(req, res) {
                                     req.query.type,
                                     req.session.body.format
                                     ];
-    if (!email) throw 'No email address supplied';
+    if (!email) throw 'No email address supplied. Please re-submit along with email.';
     if (type!='body' && type!='attachment') throw 'Mail error: No email type defined.';
     console.log(`sessionID for email: ${id}`);
     console.log(`Sending as ${type} to ${email}`);
@@ -26,7 +26,7 @@ async function mail(req, res) {
         secure: false,
         auth: {
             user: 'bound@sammelband.app',
-            pass: process.env.MAIL_PASSWORD
+            pass: process.env.MAIL_PASSWORD // Application password (due to 2FA)
         }
     });
 

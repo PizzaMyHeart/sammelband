@@ -66,9 +66,12 @@ app.use(express.json());
 app.use(cors({
     // origin needs to be set explicitly to allow fetch() calls from the front-end
     // to include cookies in the request (credentials: include)
-    origin: process.env.CLIENT_DOMAIN.split(','), 
+    origin: ['https://sammelband.app', /localhost/], // passing array as environment variable here doesn't work
     credentials: true
 }));
+
+
+
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 const port = process.env.PORT || 3001; // for Heroku deployment
@@ -160,6 +163,7 @@ function handleSubmit (req, res) {
 
 
 app.get('/api', (req, res) => {
+    console.log(res.headers);
     console.log('Session ID: ', req.session.id);
     let body = {};
     console.log(req.session.pocketAccessToken);

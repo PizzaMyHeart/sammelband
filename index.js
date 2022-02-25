@@ -66,7 +66,7 @@ app.use(express.json());
 app.use(cors({
     // origin needs to be set explicitly to allow fetch() calls from the front-end
     // to include cookies in the request (credentials: include)
-    origin: ['https://sammelband.app', /localhost/], // passing array as environment variable here doesn't work
+    origin: [process.env.CLIENT_URL, /localhost/], // passing array as environment variable here doesn't work
     credentials: true
 }));
 
@@ -197,7 +197,7 @@ app.get('/api/pocket/callback', async (req, res) => {
         let response = await getPocketToken('access', req.session.pocketRequestToken);
         console.log('Access token: ', response.data.access_token);
         req.session.pocketAccessToken = response.data.access_token;
-        res.redirect(`${process.env.SERVER_URL}`);
+        res.redirect(`${process.env.CLIENT_URL}`);
     }
     catch (err) {
         console.log(err);

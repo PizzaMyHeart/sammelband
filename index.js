@@ -197,7 +197,7 @@ app.get('/api/pocket/callback', async (req, res) => {
         let response = await getPocketToken('access', req.session.pocketRequestToken);
         console.log('Access token: ', response.data.access_token);
         req.session.pocketAccessToken = response.data.access_token;
-        res.redirect('http://localhost:3000');
+        res.redirect(`${process.env.SERVER_URL}`);
     }
     catch (err) {
         console.log(err);

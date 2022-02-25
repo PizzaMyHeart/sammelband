@@ -72,7 +72,7 @@ app.use(cors({
 
 
 
-
+// TODO: Create /public folder if does not exist
 app.use('/public', express.static(path.join(__dirname, 'public')));
 const port = process.env.PORT || 3001; // for Heroku deployment
 

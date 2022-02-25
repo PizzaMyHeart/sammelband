@@ -13,7 +13,7 @@ async function getPocketToken(tokenType, requestToken /* optional */) {
         url = 'https://getpocket.com/v3/oauth/request';
         data = {
             consumer_key: consumer_key,
-            redirect_uri: 'https://localhost:3001 /pocket/callback'
+            redirect_uri: `${process.env.SERVER_URL}/pocket/callback`
         }
     } else if (tokenType == 'access') {
         url = 'https://getpocket.com/v3/oauth/authorize';

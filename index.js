@@ -14,6 +14,7 @@ const convertFromHtml = require('./components/convert-from-html');
 const mail = require('./components/mail');
 const { getPocketToken, getPocketList }= require('./components/pocket');
 const deleteFile = require('./components/delete-file');
+const pool = require('./db/config');
 
 
 
@@ -251,6 +252,16 @@ app.get('/api/delete', async (req, res) => {
     res.send('Sammelband deleted');
 })
 
+app.post('/api/login', (req, res) => {
+    console.log(`Session ID: ${req.session.id}`);
+    console.log(req.body);
+
+});
+
+app.post('/api/signup', (req, res) => {
+    console.log(`Session ID: ${req.session.id}`);
+    console.log(req.body);
+})
 
 app.listen(port, '0.0.0.0', () => {
     console.log(`Listening on port ${port}`);

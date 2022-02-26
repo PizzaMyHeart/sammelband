@@ -78,6 +78,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 const port = process.env.PORT || 3001; // for Heroku deployment
 
 const styles = require('./styles'); // Load CSS styles from ./styles.js
+const { resourceLimits } = require('worker_threads');
 
 
 
@@ -259,6 +260,11 @@ app.post('/api/login', (req, res) => {
         pool.query(`SELECT * FROM users WHERE username = $1`, [username], (err, result) => {
             if (err) console.log(err);
             console.log(result.rows);
+            if (result.length > 0) {
+                req.session.loggedIn = true;
+                req.session.username = username;
+            }
+            console.log(req.session);
         })
     }
     checkUser(req.body.username, req.body.password);

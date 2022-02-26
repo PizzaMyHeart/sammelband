@@ -255,7 +255,13 @@ app.get('/api/delete', async (req, res) => {
 app.post('/api/login', (req, res) => {
     console.log(`Session ID: ${req.session.id}`);
     console.log(req.body);
-
+    function checkUser(username, password) {
+        pool.query(`SELECT * FROM users WHERE username = $1`, [username], (err, result) => {
+            if (err) console.log(err);
+            console.log(result.rows);
+        })
+    }
+    checkUser(req.body.username, req.body.password);
 });
 
 app.post('/api/signup', (req, res) => {

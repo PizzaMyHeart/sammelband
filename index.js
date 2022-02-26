@@ -260,11 +260,13 @@ app.post('/api/login', (req, res) => {
         pool.query(`SELECT * FROM users WHERE username = $1`, [username], (err, result) => {
             if (err) console.log(err);
             console.log(result.rows);
-            if (result.length > 0) {
+            if (result.rows.length > 0) {
                 req.session.loggedIn = true;
                 req.session.username = username;
+                res.status(200).send('ok');
             }
             console.log(req.session);
+            
         })
     }
     checkUser(req.body.username, req.body.password);
@@ -273,7 +275,30 @@ app.post('/api/login', (req, res) => {
 app.post('/api/signup', (req, res) => {
     console.log(`Session ID: ${req.session.id}`);
     console.log(req.body);
-})
+
+    function newUser(username, password, email) {
+        console.log(`Checking if ${username} exists...`);
+        pool.query(`SELECT EXISTS(SELECT 1 FROM users WHERE username = $1)`, [username], (err, result) => {
+            if (err) console.log(err);
+            if (result.rows[0].exists === true) {
+                console.log('User already exists');
+                res.send('User already exists.');
+            } else {
+                pool.query(`INSERT INTO users (username, password, email) VALUES ($1, $2, $3)`, 
+                [username, password, email],
+                (err, result) => {
+                    if (err) console.log(err);
+                    else {res.send('Signup successful.')};
+                })
+            }
+        
+  
+
+        })
+    }
+    newUser(req.body.newUsername, req.body.newPassword, req.body.newEmail);
+}
+)
 
 app.listen(port, '0.0.0.0', () => {
     console.log(`Listening on port ${port}`);

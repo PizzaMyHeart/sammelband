@@ -14,7 +14,7 @@ const convertFromHtml = require('./components/convert-from-html');
 const mail = require('./components/mail');
 const { getPocketToken, getPocketList }= require('./components/pocket');
 const deleteFile = require('./components/delete-file');
-const pool = require('./db/config');
+const { loginUser, newUser } = require('./components/auth');
 
 
 
@@ -256,47 +256,28 @@ app.get('/api/delete', async (req, res) => {
 app.post('/api/login', (req, res) => {
     console.log(`Session ID: ${req.session.id}`);
     console.log(req.body);
-    function checkUser(username, password) {
-        pool.query(`SELECT * FROM users WHERE username = $1`, [username], (err, result) => {
-            if (err) console.log(err);
-            console.log(result.rows);
-            if (result.rows.length > 0) {
-                req.session.loggedIn = true;
-                req.session.username = username;
-                res.status(200).send('ok');
-            }
-            console.log(req.session);
-            
-        })
+
+    try {
+        loginUser(req.body.username, req.body.password, req.session);
+        res.send('Login successful');
+    } 
+    catch (err) {
+        console.log(err);
     }
-    checkUser(req.body.username, req.body.password);
+    
 });
 
 app.post('/api/signup', (req, res) => {
     console.log(`Session ID: ${req.session.id}`);
     console.log(req.body);
 
-    function newUser(username, password, email) {
-        console.log(`Checking if ${username} exists...`);
-        pool.query(`SELECT EXISTS(SELECT 1 FROM users WHERE username = $1)`, [username], (err, result) => {
-            if (err) console.log(err);
-            if (result.rows[0].exists === true) {
-                console.log('User already exists');
-                res.send('User already exists.');
-            } else {
-                pool.query(`INSERT INTO users (username, password, email) VALUES ($1, $2, $3)`, 
-                [username, password, email],
-                (err, result) => {
-                    if (err) console.log(err);
-                    else {res.send('Signup successful.')};
-                })
-            }
-        
-  
+    try {
+        newUser(req.body.newUsername, req.body.newPassword, req.body.newEmail, res);
 
-        })
+    } catch (err) {
+        console.log(err);
     }
-    newUser(req.body.newUsername, req.body.newPassword, req.body.newEmail);
+    
 }
 )
 

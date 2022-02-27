@@ -170,8 +170,9 @@ app.get('/api', (req, res) => {
     let body = {};
     console.log(req.session.pocketAccessToken);
     // Set Pocket logged in state for front-end
-    if (req.session.pocketAccessToken) body.pocketLoggedIn = true;
-    else if(!req.session.pocketAccessToken) body.pocketLoggedIn = false;
+    req.session.pocketAccessToken ? body.pocketLoggedIn = true : body.pocketLoggedIn = false;
+    req.session.loggedIn ? body.loggedIn = true : body.loggedIn = false;
+    req.session.body.email.length > 0 ? body.email = req.session.body.email : body.email = '';
     console.log(body);
     res.json(body);
 });
@@ -260,7 +261,7 @@ app.post('/api/login', (req, res) => {
 
     loginUser(req.body.username, req.body.password, req.session)
     .then(success => {
-        if (success) res.json({loggedIn: true});
+        if (success) res.json({loggedIn: true, email: req.session.body.email});
         else res.json({loggedIn: false});
     });
     

@@ -23,6 +23,7 @@ function loginUser(username, password, session) {
         if (result.rows.length > 0) {
             session.loggedIn = true;
             session.username = username;
+            session.body.email = result.rows[0].email;
             console.log(session);
             console.log('success');
             return true;

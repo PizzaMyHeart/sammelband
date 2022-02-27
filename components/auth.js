@@ -34,7 +34,7 @@ function loginUser(username, password, session) {
     });
 }
 
-function signUpUser(username, password, email, res) {
+function signUpUser(username, password, email) {
     
     /*
     pool.query(`SELECT EXISTS(SELECT 1 FROM users WHERE username = $1)`, [username], (err, result) => {

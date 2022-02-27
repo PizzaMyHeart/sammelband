@@ -260,8 +260,8 @@ app.post('/api/login', (req, res) => {
 
     loginUser(req.body.username, req.body.password, req.session)
     .then(success => {
-        if (success) res.send('Login successful.');
-        else res.send('Login unsuccessful. Please try again.');
+        if (success) res.json({loggedIn: true});
+        else res.json({loggedIn: false});
     });
     
 });
@@ -271,7 +271,7 @@ app.post('/api/signup', (req, res) => {
     console.log(req.body);
 
     
-    signUpUser(req.body.newUsername, req.body.newPassword, req.body.newEmail, res)
+    signUpUser(req.body.newUsername, req.body.newPassword, req.body.newEmail)
     .then(success => {
         if (success) {
             res.send('Signup successful.');

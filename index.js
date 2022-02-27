@@ -257,13 +257,12 @@ app.post('/api/login', (req, res) => {
     console.log(`Session ID: ${req.session.id}`);
     console.log(req.body);
 
-    try {
-        loginUser(req.body.username, req.body.password, req.session);
-        res.send('Login successful');
-    } 
-    catch (err) {
-        console.log(err);
-    }
+
+    loginUser(req.body.username, req.body.password, req.session)
+    .then(success => {
+        if (success) res.send('Login successful.');
+        else res.send('Login unsuccessful. Please try again.');
+    });
     
 });
 

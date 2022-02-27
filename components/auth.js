@@ -1,16 +1,32 @@
 const pool = require('../db/config');
+const bcrypt = require('bcrypt');
 
 function loginUser(username, password, session) {
-    pool.query(`SELECT * FROM users WHERE username = $1`, [username], (err, result) => {
+    /*
+    pool.query(`SELECT * FROM users WHERE (username = $1 and password = $2)`, [username, password], (err, result) => {
         if (err) console.log(err);
         console.log(result.rows);
+        console.log(result.rows.length);
         if (result.rows.length > 0) {
             session.loggedIn = true;
             session.username = username;
+        } else {
+            throw new Error ('Incorrect credentials');
         }
         console.log(session);
         
     })
+    */
+    return pool.query(`SELECT * FROM users WHERE (username = $1 and password = $2)`, [username, password])
+    .then(result => {
+        console.log(result.rows);
+        if (result.rows.length > 0) {
+            session.loggedIn = true;
+            session.username = username;
+            console.log('success');
+            return true;
+        } else return false;
+    });
 }
 
 function newUser(username, password, email, res) {

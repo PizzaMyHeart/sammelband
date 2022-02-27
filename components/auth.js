@@ -23,14 +23,20 @@ function loginUser(username, password, session) {
         if (result.rows.length > 0) {
             session.loggedIn = true;
             session.username = username;
+            console.log(session);
             console.log('success');
             return true;
-        } else return false;
+        } else {
+            session.loggedIn = false;
+            console.log(session);
+            return false;
+        }
     });
 }
 
-function newUser(username, password, email, res) {
-    console.log(`Checking if ${username} exists...`);
+function signUpUser(username, password, email, res) {
+    
+    /*
     pool.query(`SELECT EXISTS(SELECT 1 FROM users WHERE username = $1)`, [username], (err, result) => {
         if (err) console.log(err);
         if (result.rows[0].exists === true) {
@@ -48,6 +54,37 @@ function newUser(username, password, email, res) {
 
 
     })
+    */
+    return checkUserExists(username)
+    .then(exists => {
+        if (!exists) {
+            console.log('Inserting new user into database');
+            insertUser(username, password, email);
+            return true;
+        } else {
+            console.log(`User ${username} already exists.`);
+            return false;
+        }
+    })
 }
 
-module.exports = {loginUser, newUser};
+function checkUserExists(username) {
+    console.log(`Checking if ${username} exists...`);
+    return pool.query(`SELECT EXISTS(SELECT 1 FROM users WHERE username = $1)`, [username])
+   .then(result => {
+       if (result.rows[0].exists === true) {
+           return true
+       } else return false;
+   })
+}
+
+function insertUser(username, password, email) {
+    pool.query(`INSERT INTO users (username, password, email) VALUES ($1, $2, $3)`, 
+            [username, password, email],
+            (err, result) => {
+                if (err) console.log(err);
+                else console.log(result);
+            })
+}
+
+module.exports = {loginUser, signUpUser};

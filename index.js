@@ -14,7 +14,7 @@ const convertFromHtml = require('./components/convert-from-html');
 const mail = require('./components/mail');
 const { getPocketToken, getPocketList }= require('./components/pocket');
 const deleteFile = require('./components/delete-file');
-const { loginUser, newUser } = require('./components/auth');
+const { loginUser, signUpUser } = require('./components/auth');
 
 
 
@@ -270,12 +270,15 @@ app.post('/api/signup', (req, res) => {
     console.log(`Session ID: ${req.session.id}`);
     console.log(req.body);
 
-    try {
-        newUser(req.body.newUsername, req.body.newPassword, req.body.newEmail, res);
+    
+    signUpUser(req.body.newUsername, req.body.newPassword, req.body.newEmail, res)
+    .then(success => {
+        if (success) {
+            res.send('Signup successful.');
+        } else res.send('Signup unsuccessful. Please try again.')
+    });
 
-    } catch (err) {
-        console.log(err);
-    }
+
     
 }
 )

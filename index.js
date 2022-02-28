@@ -52,6 +52,12 @@ const rateLimiter = rateLimit({
 
 app.use(rateLimiter);
 
+app.use(cors({
+    // origin needs to be set explicitly to allow fetch() calls from the front-end
+    // to include cookies in the request (credentials: include)
+    origin: [process.env.CLIENT_URL, /localhost/], // passing array as environment variable here doesn't work
+    credentials: true
+}));
 
 app.use(
     session({
@@ -64,12 +70,7 @@ app.use(
 
 app.use(express.json());
 
-app.use(cors({
-    // origin needs to be set explicitly to allow fetch() calls from the front-end
-    // to include cookies in the request (credentials: include)
-    origin: [process.env.CLIENT_URL, /localhost/], // passing array as environment variable here doesn't work
-    credentials: true
-}));
+
 
 
 
@@ -167,12 +168,14 @@ function handleSubmit (req, res) {
 app.get('/api', (req, res) => {
     console.log(res.headers);
     console.log('Session ID: ', req.session.id);
+    req.session.body = ''; // Initialize the body property of the session object
+    console.log(req.session);
     let body = {};
     console.log(req.session.pocketAccessToken);
     // Set Pocket logged in state for front-end
     req.session.pocketAccessToken ? body.pocketLoggedIn = true : body.pocketLoggedIn = false;
     req.session.loggedIn ? body.loggedIn = true : body.loggedIn = false;
-    req.session.body.email.length > 0 ? body.email = req.session.body.email : body.email = '';
+    req.session.email ? body.email = req.session.body.email : body.email = '';
     console.log(body);
     res.json(body);
 });
@@ -256,12 +259,12 @@ app.get('/api/delete', async (req, res) => {
 
 app.post('/api/login', (req, res) => {
     console.log(`Session ID: ${req.session.id}`);
-    console.log(req.body);
+    console.log(req.session);
 
 
     loginUser(req.body.username, req.body.password, req.session)
     .then(success => {
-        if (success) res.json({loggedIn: true, email: req.session.body.email});
+        if (success) res.json({loggedIn: true, email: req.session.email});
         else res.json({loggedIn: false});
     });
     

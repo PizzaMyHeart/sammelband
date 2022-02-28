@@ -17,13 +17,14 @@ function loginUser(username, password, session) {
         
     })
     */
+    console.log(session);
     return pool.query(`SELECT * FROM users WHERE (username = $1 and password = $2)`, [username, password])
     .then(result => {
         console.log(result.rows);
         if (result.rows.length > 0) {
             session.loggedIn = true;
             session.username = username;
-            session.body.email = result.rows[0].email;
+            session.email = result.rows[0].email;
             console.log(session);
             console.log('success');
             return true;

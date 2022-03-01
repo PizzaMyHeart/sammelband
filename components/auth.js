@@ -1,4 +1,7 @@
 const pool = require('../db/config');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+const nodemailer = require('nodemailer');
 const bcrypt = require('bcrypt');
 
 function loginUser(email, password, session) {
@@ -59,8 +62,9 @@ function signUpUser(email, password) {
     return checkUserExists(email)
     .then(exists => {
         if (!exists) {
-            console.log('Inserting new user into database');
-            insertUser(email, password);
+            sendRegistrationToken(encodeRegistrationToken(email), email);
+            //console.log('Inserting new user into database');
+            //insertUser(email, password);
             return true;
         } else {
             console.log(`User ${email} already exists.`);
@@ -87,5 +91,39 @@ function insertUser(email, password) {
                 else console.log(result);
             })
 }
+
+/* Email verification */
+function encodeRegistrationToken(email) {
+    const token = jwt.sign({email: email}, process.env.REGISTRATION_TOKEN_SECRET);
+    return token;
+}
+
+async function sendRegistrationToken(token, email) {
+    url = `${process.env.SERVER_URL}/api/verify?email=${token}`;
+
+    let transporter = nodemailer.createTransport({
+        pool: true,
+        host:'smtp.zoho.com',
+        port: 587,
+        secure: false,
+        auth: {
+            user: 'bound@sammelband.app',
+            pass: process.env.MAIL_PASSWORD // Application password (due to 2FA)
+        }
+    });
+
+    let message = {
+        from: 'Sammelbot 🤖 <bound@sammelband.app>',
+        to: email,
+        subject: 'Verify your email address',
+        text: 'Click on the following link to verify your email address. ' + url
+    };
+
+    let info = await transporter.sendMail(message);
+    console.log(`Message sent: ${info.messageId}`);
+}
+
+
+/* ----- */
 
 module.exports = {loginUser, signUpUser};

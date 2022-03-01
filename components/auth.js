@@ -21,15 +21,25 @@ function loginUser(email, password, session) {
     })
     */
     console.log(session);
-    return pool.query(`SELECT * FROM users WHERE (email = $1 and password = $2)`, [email, password])
+    return pool.query(`SELECT * FROM users WHERE email = $1`, [email])
     .then(result => {
         console.log(result.rows);
         if (result.rows.length > 0) {
-            session.loggedIn = true;
-            session.email = email;
-            console.log(session);
-            console.log('success');
-            return true;
+            return bcrypt.compare(password, result.rows[0].password)
+            .then(result => {
+                if (result) {
+                    session.loggedIn = true;
+                    session.email = email;
+                    console.log(session);
+                    console.log('success');
+                    return true;
+                } else {
+                    session.loggedIn = false;
+                    console.log(session);
+                    return false;
+                }
+            })
+            
         } else {
             session.loggedIn = false;
             console.log(session);
@@ -83,13 +93,16 @@ function checkUserExists(email) {
    })
 }
 
-function insertUser(email, password) {
+async function insertUser(email, password) {
+    const hash = await bcrypt.hash(password, 10).then(hash => hash);
+    
     pool.query(`INSERT INTO users (email, password) VALUES ($1, $2)`, 
-            [email, password],
+            [email, hash],
             (err, result) => {
                 if (err) console.log(err);
                 else console.log(result);
             })
+            
 }
 
 function checkUserVerified(email) {

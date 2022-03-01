@@ -269,6 +269,7 @@ app.post('/api/login', (req, res) => {
 
     loginUser(req.body.email, req.body.password, req.session)
     .then(success => {
+        console.log(success);
         if (success) res.json({loggedIn: true, email: req.session.email});
         else res.json({loggedIn: false});
         //if (success) res.redirect(process.env.CLIENT_URL);

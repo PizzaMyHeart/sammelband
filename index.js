@@ -262,7 +262,7 @@ app.post('/api/login', (req, res) => {
     console.log(req.session);
 
 
-    loginUser(req.body.username, req.body.password, req.session)
+    loginUser(req.body.email, req.body.password, req.session)
     .then(success => {
         if (success) res.json({loggedIn: true, email: req.session.email});
         else res.json({loggedIn: false});
@@ -276,7 +276,7 @@ app.post('/api/signup', (req, res) => {
     console.log(req.body);
 
     
-    signUpUser(req.body.newUsername, req.body.newPassword, req.body.newEmail)
+    signUpUser(req.body.newEmail, req.body.newPassword)
     .then(success => {
         if (success) {
             res.send('Signup successful.');

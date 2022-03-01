@@ -1,15 +1,15 @@
 const pool = require('../db/config');
 const bcrypt = require('bcrypt');
 
-function loginUser(username, password, session) {
+function loginUser(email, password, session) {
     /*
-    pool.query(`SELECT * FROM users WHERE (username = $1 and password = $2)`, [username, password], (err, result) => {
+    pool.query(`SELECT * FROM users WHERE (email = $1 and password = $2)`, [email, password], (err, result) => {
         if (err) console.log(err);
         console.log(result.rows);
         console.log(result.rows.length);
         if (result.rows.length > 0) {
             session.loggedIn = true;
-            session.username = username;
+            session.email = email;
         } else {
             throw new Error ('Incorrect credentials');
         }
@@ -18,13 +18,12 @@ function loginUser(username, password, session) {
     })
     */
     console.log(session);
-    return pool.query(`SELECT * FROM users WHERE (username = $1 and password = $2)`, [username, password])
+    return pool.query(`SELECT * FROM users WHERE (email = $1 and password = $2)`, [email, password])
     .then(result => {
         console.log(result.rows);
         if (result.rows.length > 0) {
             session.loggedIn = true;
-            session.username = username;
-            session.email = result.rows[0].email;
+            session.email = email;
             console.log(session);
             console.log('success');
             return true;
@@ -36,17 +35,17 @@ function loginUser(username, password, session) {
     });
 }
 
-function signUpUser(username, password, email) {
+function signUpUser(email, password) {
     
     /*
-    pool.query(`SELECT EXISTS(SELECT 1 FROM users WHERE username = $1)`, [username], (err, result) => {
+    pool.query(`SELECT EXISTS(SELECT 1 FROM users WHERE email = $1)`, [email], (err, result) => {
         if (err) console.log(err);
         if (result.rows[0].exists === true) {
             console.log('User already exists');
             res.send('User already exists.');
         } else {
-            pool.query(`INSERT INTO users (username, password, email) VALUES ($1, $2, $3)`, 
-            [username, password, email],
+            pool.query(`INSERT INTO users (email, password) VALUES ($1, $2)`, 
+            [email, password],
             (err, result) => {
                 if (err) console.log(err);
                 else {res.send('Signup successful.')};
@@ -57,22 +56,22 @@ function signUpUser(username, password, email) {
 
     })
     */
-    return checkUserExists(username)
+    return checkUserExists(email)
     .then(exists => {
         if (!exists) {
             console.log('Inserting new user into database');
-            insertUser(username, password, email);
+            insertUser(email, password);
             return true;
         } else {
-            console.log(`User ${username} already exists.`);
+            console.log(`User ${email} already exists.`);
             return false;
         }
     })
 }
 
-function checkUserExists(username) {
-    console.log(`Checking if ${username} exists...`);
-    return pool.query(`SELECT EXISTS(SELECT 1 FROM users WHERE username = $1)`, [username])
+function checkUserExists(email) {
+    console.log(`Checking if ${email} exists...`);
+    return pool.query(`SELECT EXISTS(SELECT 1 FROM users WHERE email = $1)`, [email])
    .then(result => {
        if (result.rows[0].exists === true) {
            return true
@@ -80,9 +79,9 @@ function checkUserExists(username) {
    })
 }
 
-function insertUser(username, password, email) {
-    pool.query(`INSERT INTO users (username, password, email) VALUES ($1, $2, $3)`, 
-            [username, password, email],
+function insertUser(email, password) {
+    pool.query(`INSERT INTO users (email, password) VALUES ($1, $2)`, 
+            [email, password],
             (err, result) => {
                 if (err) console.log(err);
                 else console.log(result);

@@ -64,7 +64,7 @@ function signUpUser(email, password) {
         if (!exists) {
             sendRegistrationToken(encodeRegistrationToken(email), email);
             //console.log('Inserting new user into database');
-            //insertUser(email, password);
+            insertUser(email, password);
             return true;
         } else {
             console.log(`User ${email} already exists.`);
@@ -123,7 +123,15 @@ async function sendRegistrationToken(token, email) {
     console.log(`Message sent: ${info.messageId}`);
 }
 
+function verifyUser(email) {
+    pool.query(`UPDATE users SET verified = true WHERE email = $1`, 
+    [email],
+    (err, result) => {
+        if (err) console.log(err);
+        else console.log(result);
+    })
+}
 
 /* ----- */
 
-module.exports = {loginUser, signUpUser};
+module.exports = {loginUser, signUpUser, verifyUser};

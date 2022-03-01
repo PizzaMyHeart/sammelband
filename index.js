@@ -14,7 +14,8 @@ const convertFromHtml = require('./components/convert-from-html');
 const mail = require('./components/mail');
 const { getPocketToken, getPocketList }= require('./components/pocket');
 const deleteFile = require('./components/delete-file');
-const { loginUser, signUpUser } = require('./components/auth');
+const { loginUser, signUpUser, verifyUser } = require('./components/auth');
+const jwt = require('jsonwebtoken');
 
 
 
@@ -80,6 +81,7 @@ const port = process.env.PORT || 3001; // for Heroku deployment
 
 const styles = require('./styles'); // Load CSS styles from ./styles.js
 const { resourceLimits } = require('worker_threads');
+const { JsonWebTokenError } = require('jsonwebtoken');
 
 
 
@@ -281,12 +283,30 @@ app.post('/api/signup', (req, res) => {
         if (success) {
             res.send('Signup successful.');
         } else res.send('Signup unsuccessful. Please try again.')
-    });
-
-
-    
+    }); 
 }
-)
+);
+
+app.get('/api/verify', (req, res) => {
+    token = req.query.email;
+    console.log(token);
+    if (token) {
+        try {
+            jwt.verify(token, process.env.REGISTRATION_TOKEN_SECRET, (err, decoded) => {
+                if (err) console.log(err);
+                else {
+                    const email = decoded.email;
+                    console.log(email);
+                    verifyUser(email);
+                    res.redirect(process.env.CLIENT_URL);
+                };
+                
+            })
+        } catch (err) {
+            console.log(err);
+        }
+    }
+})
 
 app.listen(port, '0.0.0.0', () => {
     console.log(`Listening on port ${port}`);

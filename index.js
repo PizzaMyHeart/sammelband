@@ -176,11 +176,16 @@ app.get('/api', async (req, res) => {
     // Set Pocket logged in state for front-end
     req.session.pocketAccessToken ? response.pocketLoggedIn = true : response.pocketLoggedIn = false;
     req.session.loggedIn ? response.loggedIn = true : response.loggedIn = false;
-    req.session.email ? response.email = req.session.email : response.email = '';
+    if (req.session.loggedIn) response.loggedInAs = req.session.email;
     await checkUserVerified(req.session.email)
     .then(verified => {
         response.verified = verified;
     });
+    if (!response.verified) req.session.email = '';
+    req.session.email ? response.email = req.session.email : response.email = '';
+    
+ 
+    
     console.log(response);
     res.json(response);
 });
@@ -246,6 +251,7 @@ app.get('/api/download', (req, res) => {
 app.get('/api/mail', (req, res) => {
     console.log('Session ID: ', req.session.id);
     console.log(req.query);
+    console.log(req.session);
     mail(req, res).catch((err) => {
         console.log(err);
         res.status(500).send(err);

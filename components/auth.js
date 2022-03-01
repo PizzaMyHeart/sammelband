@@ -5,21 +5,7 @@ const nodemailer = require('nodemailer');
 const bcrypt = require('bcrypt');
 
 function loginUser(email, password, session) {
-    /*
-    pool.query(`SELECT * FROM users WHERE (email = $1 and password = $2)`, [email, password], (err, result) => {
-        if (err) console.log(err);
-        console.log(result.rows);
-        console.log(result.rows.length);
-        if (result.rows.length > 0) {
-            session.loggedIn = true;
-            session.email = email;
-        } else {
-            throw new Error ('Incorrect credentials');
-        }
-        console.log(session);
-        
-    })
-    */
+
     console.log(session);
     return pool.query(`SELECT * FROM users WHERE email = $1`, [email])
     .then(result => {
@@ -49,31 +35,11 @@ function loginUser(email, password, session) {
 }
 
 function signUpUser(email, password) {
-    
-    /*
-    pool.query(`SELECT EXISTS(SELECT 1 FROM users WHERE email = $1)`, [email], (err, result) => {
-        if (err) console.log(err);
-        if (result.rows[0].exists === true) {
-            console.log('User already exists');
-            res.send('User already exists.');
-        } else {
-            pool.query(`INSERT INTO users (email, password) VALUES ($1, $2)`, 
-            [email, password],
-            (err, result) => {
-                if (err) console.log(err);
-                else {res.send('Signup successful.')};
-            })
-        }
-    
 
-
-    })
-    */
     return checkUserExists(email)
     .then(exists => {
         if (!exists) {
             sendRegistrationToken(encodeRegistrationToken(email), email);
-            //console.log('Inserting new user into database');
             insertUser(email, password);
             return true;
         } else {
@@ -108,7 +74,6 @@ async function insertUser(email, password) {
 function checkUserVerified(email) {
     return pool.query(`SELECT email FROM users WHERE (email = $1 and verified = true)`, [email])
     .then(result => {
-        console.log(result);
         if (result.rows.length < 1) return false;
         if (result.rows[0].email === email) {
             return true;

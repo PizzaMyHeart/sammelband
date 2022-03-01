@@ -112,6 +112,8 @@ async function sendRegistrationToken(token, email) {
     console.log(`Message sent: ${info.messageId}`);
 }
 
+
+
 function verifyUser(email) {
     pool.query(`UPDATE users SET verified = true WHERE email = $1`, 
     [email],
@@ -123,4 +125,4 @@ function verifyUser(email) {
 
 /* ----- */
 
-module.exports = {loginUser, signUpUser, verifyUser, checkUserVerified};
+module.exports = {loginUser, signUpUser, verifyUser, checkUserVerified, sendRegistrationToken, encodeRegistrationToken};

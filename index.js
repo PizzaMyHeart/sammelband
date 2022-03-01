@@ -14,7 +14,7 @@ const convertFromHtml = require('./components/convert-from-html');
 const mail = require('./components/mail');
 const { getPocketToken, getPocketList }= require('./components/pocket');
 const deleteFile = require('./components/delete-file');
-const { loginUser, signUpUser, verifyUser, checkUserVerified } = require('./components/auth');
+const { loginUser, signUpUser, verifyUser, checkUserVerified, sendRegistrationToken, encodeRegistrationToken } = require('./components/auth');
 const jwt = require('jsonwebtoken');
 
 
@@ -176,12 +176,13 @@ app.get('/api', async (req, res) => {
     // Set Pocket logged in state for front-end
     req.session.pocketAccessToken ? response.pocketLoggedIn = true : response.pocketLoggedIn = false;
     req.session.loggedIn ? response.loggedIn = true : response.loggedIn = false;
+    //req.session.loggedInAs = req.session.email;
     if (req.session.loggedIn) response.loggedInAs = req.session.email;
     await checkUserVerified(req.session.email)
     .then(verified => {
         response.verified = verified;
     });
-    if (!response.verified) req.session.email = '';
+    //if (!response.verified) req.session.email = '';
     req.session.email ? response.email = req.session.email : response.email = '';
     
  
@@ -300,11 +301,18 @@ app.post('/api/signup', (req, res) => {
     signUpUser(req.body.newEmail, req.body.newPassword)
     .then(success => {
         if (success) {
+            req.session.email = req.body.newEmail;
             res.send('Signup successful.');
-        } else res.send('Signup unsuccessful. Please try again.')
+        } else res.status(400).send('Signup unsuccessful. Please try again.')
     }); 
 }
 );
+
+app.get('/api/send-verification', async (req, res) => {
+    console.log(req.session);
+    await sendRegistrationToken(encodeRegistrationToken(req.session.email), req.session.email);;
+    res.send('Verification email sent.');
+})
 
 app.get('/api/verify', (req, res) => {
     token = req.query.email;

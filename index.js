@@ -168,7 +168,6 @@ function handleSubmit (req, res) {
 
 
 app.get('/api', async (req, res) => {
-    console.log(res.headers);
     console.log('Session ID: ', req.session.id);
     req.session.body = ''; // Initialize the body property of the session object
     console.log(req.session);
@@ -227,7 +226,6 @@ app.get('/api/pocket/list', async (req, res) => {
         const accessToken = req.session.pocketAccessToken;
         console.log(accessToken);
         let response = await getPocketList(accessToken);
-        //console.log(response.data);
         res.send(response.data);
     }
     catch (err) {
@@ -279,7 +277,6 @@ app.post('/api/login', (req, res) => {
         console.log(success);
         if (success) res.json({loggedIn: true, email: req.session.email});
         else res.json({loggedIn: false});
-        //if (success) res.redirect(process.env.CLIENT_URL);
     });
     
 });
@@ -325,7 +322,6 @@ app.get('/api/verify', (req, res) => {
                     const email = decoded.email;
                     console.log(email);
                     verifyUser(email);
-                    //res.json({loggedIn: true, email: req.session.email})
                     req.session.loggedIn = true;
                     req.session.email = email;
                     res.redirect(process.env.CLIENT_URL);

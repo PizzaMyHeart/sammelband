@@ -17,7 +17,6 @@ async function mail(req, res) {
     console.log(`Sending as ${type} to ${email}`);
     
     const html = await fs.promises.readFile(path.join(__dirname, `../public/sammelband-${id}.html`), 'utf8');
-    //const html = fs.readFileSync(path.join(__dirname, `../public/sammelband-${id}.html`), 'utf8');
     
     let transporter = nodemailer.createTransport({
         pool: true,

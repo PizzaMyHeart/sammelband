@@ -298,6 +298,9 @@ app.get('/api/verify', (req, res) => {
                     const email = decoded.email;
                     console.log(email);
                     verifyUser(email);
+                    //res.json({loggedIn: true, email: req.session.email})
+                    req.session.loggedIn = true;
+                    req.session.email = email;
                     res.redirect(process.env.CLIENT_URL);
                 };
                 

@@ -14,7 +14,7 @@ const convertFromHtml = require('./components/convert-from-html');
 const mail = require('./components/mail');
 const { getPocketToken, getPocketList }= require('./components/pocket');
 const deleteFile = require('./components/delete-file');
-const { loginUser, signUpUser, verifyUser } = require('./components/auth');
+const { loginUser, signUpUser, verifyUser, checkUserVerified } = require('./components/auth');
 const jwt = require('jsonwebtoken');
 
 
@@ -167,7 +167,7 @@ function handleSubmit (req, res) {
 
 
 
-app.get('/api', (req, res) => {
+app.get('/api', async (req, res) => {
     console.log(res.headers);
     console.log('Session ID: ', req.session.id);
     req.session.body = ''; // Initialize the body property of the session object
@@ -178,6 +178,10 @@ app.get('/api', (req, res) => {
     req.session.pocketAccessToken ? response.pocketLoggedIn = true : response.pocketLoggedIn = false;
     req.session.loggedIn ? response.loggedIn = true : response.loggedIn = false;
     req.session.email ? response.email = req.session.email : response.email = '';
+    await checkUserVerified(req.session.email)
+    .then(verified => {
+        response.verified = verified;
+    });
     console.log(response);
     res.json(response);
 });

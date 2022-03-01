@@ -92,6 +92,17 @@ function insertUser(email, password) {
             })
 }
 
+function checkUserVerified(email) {
+    return pool.query(`SELECT email FROM users WHERE (email = $1 and verified = true)`, [email])
+    .then(result => {
+        console.log(result);
+        if (result.rows.length < 1) return false;
+        if (result.rows[0].email === email) {
+            return true;
+        } else return false;
+    })
+}
+
 /* Email verification */
 function encodeRegistrationToken(email) {
     const token = jwt.sign({email: email}, process.env.REGISTRATION_TOKEN_SECRET);
@@ -134,4 +145,4 @@ function verifyUser(email) {
 
 /* ----- */
 
-module.exports = {loginUser, signUpUser, verifyUser};
+module.exports = {loginUser, signUpUser, verifyUser, checkUserVerified};

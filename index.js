@@ -173,7 +173,6 @@ app.get('/api', async (req, res) => {
     req.session.body = ''; // Initialize the body property of the session object
     console.log(req.session);
     let response = {};
-    console.log(req.session.pocketAccessToken);
     // Set Pocket logged in state for front-end
     req.session.pocketAccessToken ? response.pocketLoggedIn = true : response.pocketLoggedIn = false;
     req.session.loggedIn ? response.loggedIn = true : response.loggedIn = false;
@@ -276,6 +275,15 @@ app.post('/api/login', (req, res) => {
     });
     
 });
+
+app.get('/api/logout', (req, res) => {
+    console.log(`Session ID: ${req.session.id}`);
+    console.log('Logging out');
+    delete req.session.loggedIn;
+    delete req.session.email;
+    console.log(req.session);
+    res.send('Logout successful');
+})
 
 app.post('/api/signup', (req, res) => {
     console.log(`Session ID: ${req.session.id}`);

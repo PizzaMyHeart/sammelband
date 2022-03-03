@@ -21,6 +21,7 @@ const logger = require('./components/logger');
 
 
 const app = express();
+app.set('trust proxy', '127.0.0.1');
 app.use(logger);
 // Initialize a Puppeteer browser instance, reuse for subsequent requests
 let browser;

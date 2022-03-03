@@ -114,7 +114,7 @@ function writeToFile(parsedArticles, req) {
         let author; let siteName;
         parsedArticles[i].byline ? author = `by ${parsedArticles[i].byline}` : author = '';
         parsedArticles[i].siteName ? siteName = `, ${parsedArticles[i].siteName}` : siteName = '';
-        let content = `<h1 class="${breakBefore}">❧ ${parsedArticles[i].title} ☙</h1><br>
+        let content = `<h1 class="${breakBefore}">${parsedArticles[i].title}</h1><br>
                         <p><i>${author}${siteName}</i></p><br>
                         ${parsedArticles[i].content}<hr>`;
         fs.writeFile(filepath, content, { flag: 'a+' }, err => {if (err) console.log(err)});

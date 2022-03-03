@@ -16,11 +16,12 @@ const { getPocketToken, getPocketList }= require('./components/pocket');
 const deleteFile = require('./components/delete-file');
 const { loginUser, signUpUser, verifyUser, checkUserVerified, sendRegistrationToken, encodeRegistrationToken } = require('./components/auth');
 const jwt = require('jsonwebtoken');
+const logger = require('./components/logger');
 
 
 
 const app = express();
-
+app.use(logger);
 // Initialize a Puppeteer browser instance, reuse for subsequent requests
 let browser;
 (async () => {
@@ -114,9 +115,10 @@ function writeToFile(parsedArticles, req) {
         let author; let siteName;
         parsedArticles[key].byline ? author = `by ${parsedArticles[key].byline}` : author = '';
         parsedArticles[key].siteName ? siteName = `, ${parsedArticles[key].siteName}` : siteName = '';
-        let content = `<h1 class="${breakBefore}">${parsedArticles[key].title}</h1><br>
-                        <p><i>${author}${siteName}</i></p><br>
-                        ${parsedArticles[key].content}<hr>`;
+        let content = `<h1 class="${breakBefore}">${parsedArticles[key].title}</h1><br/>
+                        <p><i>${author}${siteName}</i></p><br/>
+                        <p><a href=${key} target="_blank" rel="noreferrer">View original article</a></p>
+                        ${parsedArticles[key].content}<hr/>`;
         fs.writeFile(filepath, content, { flag: 'a+' }, err => {if (err) console.log(err)});
     }
 

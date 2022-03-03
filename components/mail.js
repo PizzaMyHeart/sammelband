@@ -6,11 +6,12 @@ require('crypto');
 
 
 async function mail(req, res) {
-    const [id, email, type, format] = [req.session.id, 
-                                    req.session.body.email, 
-                                    req.query.type,
-                                    req.session.body.format
-                                    ];
+    const [id, email, type, format, date] = [req.session.id, 
+                                            req.session.body.email, 
+                                            req.query.type,
+                                            req.session.body.format,
+                                            req.session.body.date
+                                            ];
     if (!email) throw 'No email address supplied. Please re-submit along with email.';
     if (type!='body' && type!='attachment') throw 'Mail error: No email type defined.';
     console.log(`sessionID for email: ${id}`);
@@ -33,7 +34,7 @@ async function mail(req, res) {
     let message = {
         from: 'Sammelbot 🤖 <bound@sammelband.app>',
         to: email,
-        subject: 'Sammelband'
+        subject: `Sammelband - ${date}`
     }
 
     if (type == 'attachment') {

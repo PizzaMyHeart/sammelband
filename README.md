@@ -1,5 +1,7 @@
 # Sammelband
 
+This repo contains the source code for the back-end of [sammelband.app](https://sammelband.app).
+
 Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/Sammelband). A read-them-later service, if you will.
 
 ## TODO
@@ -14,7 +16,7 @@ Collate web articles into a virtual [sammelband](https://en.wikipedia.org/wiki/S
 - [X] Implement email function
 - [X] Notification when email sent
 - [X] Send as email attachment
-- [ ] Implement user authentication - will need to login to use email features
+- [X] Implement user authentication - will need to login to use email features
 - [ ] Better Axios error handling e.g. dead links
 - [X] Form validation
 - [X] Download button

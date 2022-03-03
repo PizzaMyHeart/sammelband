@@ -104,22 +104,24 @@ function writeToFile(parsedArticles, req) {
     //console.log(req.body.color);
     fs.writeFile(filepath, '', { flag: 'w+' }, err => {if (err) console.log(err)});
     fs.writeFile(filepath, applyStyle(req.body.color, req.body.font), { flag: 'a+' }, err => {if (err) throw err;});
-    
-    for (let i = 0; i < parsedArticles.length; i++) {
+ 
+    for (let key of Object.keys(parsedArticles)) {
         // "break-before" is a Gutenberg CSS class that places the element on a new page
         // We don't want the first article to be broken onto a new page
         // https://github.com/BafS/Gutenberg#force-break-page
         let breakBefore;
-        i == 0 ? breakBefore = '' : breakBefore = 'break-before';
+        Object.keys(parsedArticles).indexOf(key) === 0 ? breakBefore = '' : breakBefore = 'break-before';
         let author; let siteName;
-        parsedArticles[i].byline ? author = `by ${parsedArticles[i].byline}` : author = '';
-        parsedArticles[i].siteName ? siteName = `, ${parsedArticles[i].siteName}` : siteName = '';
-        let content = `<h1 class="${breakBefore}">${parsedArticles[i].title}</h1><br>
+        parsedArticles[key].byline ? author = `by ${parsedArticles[key].byline}` : author = '';
+        parsedArticles[key].siteName ? siteName = `, ${parsedArticles[key].siteName}` : siteName = '';
+        let content = `<h1 class="${breakBefore}">${parsedArticles[key].title}</h1><br>
                         <p><i>${author}${siteName}</i></p><br>
-                        ${parsedArticles[i].content}<hr>`;
+                        ${parsedArticles[key].content}<hr>`;
         fs.writeFile(filepath, content, { flag: 'a+' }, err => {if (err) console.log(err)});
     }
-    return parsedArticles;
+
+    return Object.values(parsedArticles);
+    
 }
 
 

@@ -14,7 +14,7 @@ const convertFromHtml = require('./components/convert-from-html');
 const mail = require('./components/mail');
 const { getPocketToken, getPocketList }= require('./components/pocket');
 const deleteFile = require('./components/delete-file');
-const { loginUser, signUpUser, verifyUser, checkUserVerified, sendRegistrationToken, encodeRegistrationToken } = require('./components/auth');
+const { loginUser, signUpUser, verifyUser, checkUserVerified, sendToken, encodeToken } = require('./components/auth');
 const jwt = require('jsonwebtoken');
 const logger = require('./components/logger');
 
@@ -84,6 +84,7 @@ const port = process.env.PORT || 3001; // for Heroku deployment
 const styles = require('./styles'); // Load CSS styles from ./styles.js
 const { resourceLimits } = require('worker_threads');
 const { JsonWebTokenError } = require('jsonwebtoken');
+const { get } = require('http');
 
 
 
@@ -312,9 +313,9 @@ app.post('/api/signup', (req, res) => {
 
 app.get('/api/send-verification', async (req, res) => {
     console.log(req.session);
-    await sendRegistrationToken(encodeRegistrationToken(req.session.email), req.session.email);;
+    await sendToken(encodeToken(req.session.email), req.session.email, 'verify');
     res.send('Verification email sent.');
-})
+});
 
 app.get('/api/verify', (req, res) => {
     token = req.query.email;
@@ -337,6 +338,17 @@ app.get('/api/verify', (req, res) => {
             console.log(err);
         }
     }
+});
+
+app.get('/api/send-reset-password', async (req, res) => {
+    console.log(req.session);
+    await sendToken(encodeToken(req.session.email), req.session.email, 'reset');
+    res.send('Reset email sent');
+});
+
+app.get('/api/reset', (req, res) => {
+    token = req.query.email;
+
 })
 
 app.listen(port, '0.0.0.0', () => {

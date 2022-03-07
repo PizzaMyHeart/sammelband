@@ -39,7 +39,7 @@ function signUpUser(email, password) {
     return checkUserExists(email)
     .then(exists => {
         if (!exists) {
-            sendRegistrationToken(encodeRegistrationToken(email), email);
+            sendToken(encodeToken(email), email, 'verify');
             insertUser(email, password);
             return true;
         } else {
@@ -82,13 +82,21 @@ function checkUserVerified(email) {
 }
 
 /* Email verification */
-function encodeRegistrationToken(email) {
+function encodeToken(email) {
     const token = jwt.sign({email: email}, process.env.REGISTRATION_TOKEN_SECRET);
     return token;
 }
 
-async function sendRegistrationToken(token, email) {
-    url = `${process.env.SERVER_URL}/api/verify?email=${token}`;
+async function sendToken(token, email, type) {
+    let url;
+    let text;
+    if (type === 'verify') {
+        text = 'Click on the following link to verify your email address. ';
+        url = `${process.env.SERVER_URL}/api/verify?email=${token}`;
+    } else if (type === 'reset') {
+        text = 'Click on the following link to reset your password. '; 
+        url = `${process.env.SERVER_URL}/api/reset?email=${token}`
+    }
 
     let transporter = nodemailer.createTransport({
         pool: true,
@@ -105,7 +113,7 @@ async function sendRegistrationToken(token, email) {
         from: 'Sammelbot 🤖 <bound@sammelband.app>',
         to: email,
         subject: 'Verify your email address',
-        text: 'Click on the following link to verify your email address. ' + url
+        text: text + url
     };
 
     let info = await transporter.sendMail(message);
@@ -125,4 +133,8 @@ function verifyUser(email) {
 
 /* ----- */
 
-module.exports = {loginUser, signUpUser, verifyUser, checkUserVerified, sendRegistrationToken, encodeRegistrationToken};
+function resetPassword() {
+
+}
+
+module.exports = {loginUser, signUpUser, verifyUser, checkUserVerified, sendToken, encodeToken};
